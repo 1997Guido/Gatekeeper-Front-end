@@ -2,12 +2,16 @@
 :root{
     --base: #2e6255;
 }   
-body{
-    /*background: radial-gradient(at bottom,#2e6255,#549a88,#59d1b3);*/
-    background: radial-gradient(at bottom,#2e6255,#5d1f53,#169576);
-    min-height: 100vh;
-}
 .row{
     max-width: 100%;
     margin:auto;
+}
+.bg{
+    background-color: #2e6255;
+    height: 100vh;
+}
+.Title{
+    text-align: center;
+    background-color: bisque;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }

@@ -3,12 +3,11 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 
 
-
-function Home() {
+function AdminQr() {
     return ( 
-        <div className='bg'>
-        </div>
+        <>
+        </>
      );
 }
 
-export default Home;
+export default AdminQr;
