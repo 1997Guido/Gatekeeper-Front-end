@@ -1,0 +1,16 @@
+/*@media screen and (max-width: 900px) and (min-width: 200px) {*/
+:root{
+    --base: #2e6255;
+}   
+.row{
+    max-width: 100%;
+}
+.Title{
+    text-align: center;
+    background-color: bisque;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+body{
+    background: radial-gradient(rgb(75, 201, 193), rgb(61, 6, 95), blue);
+    min-height: 100vh;
+}
