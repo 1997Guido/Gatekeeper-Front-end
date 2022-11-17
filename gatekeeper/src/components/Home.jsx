@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 function Home() {
     return ( 
-        <div className='bg'>
+        <div className=''>
         </div>
      );
 }
