@@ -1,6 +1,6 @@
 import './../css/style.css'
 import './../css/scanner.css'
-import 'bootstrap/dist/css/bootstrap.css';
+import bootstrap from 'bootstrap/dist/css/bootstrap.css';
 import React, { useState } from 'react';
 import { QrReader } from 'react-qr-reader';
 

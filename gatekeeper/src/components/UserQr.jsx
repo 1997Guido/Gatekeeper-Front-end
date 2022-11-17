@@ -1,5 +1,5 @@
 import './../css/style.css'
-import 'bootstrap/dist/css/bootstrap.css';
+import bootstrap from 'bootstrap/dist/css/bootstrap.css';
 
 
 

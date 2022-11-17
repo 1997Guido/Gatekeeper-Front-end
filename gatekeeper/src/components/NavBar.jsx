@@ -1,6 +1,6 @@
 import './../css/style.css'
 import './../css/mNav.css'
-import 'bootstrap/dist/css/bootstrap.css';
+import bootstrap from 'bootstrap/dist/css/bootstrap.css';
 import logo from './../images/alleenschedel.png';
 import * as TbIcons from "react-icons/tb";
 import * as MdIcons from "react-icons/md";
