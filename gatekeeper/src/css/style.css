@@ -4,14 +4,13 @@
 }   
 .row{
     max-width: 100%;
-    margin:auto;
-}
-.bg{
-    background-color: #2e6255;
-    height: 100vh;
 }
 .Title{
     text-align: center;
     background-color: bisque;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+body{
+    background: radial-gradient(rgb(75, 201, 193), rgb(61, 6, 95), blue);
+    min-height: 100vh;
 }
