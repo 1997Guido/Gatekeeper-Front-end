@@ -33,9 +33,7 @@ class Nav extends Component {
   } 
     return (
         <>
-      <header>
-        <h1 className='Title'>GateKeeper</h1>
-      </header>
+        <h1 className='Title'>Gatekeeper</h1>
         <nav className="mobile-nav">
           <Link to='/adminqr' className="bloc-icon" >
           <HiIcons.HiOutlineQrcode id='adminqr' className='icons' onClick={() => selectNav("adminqr")}/>
