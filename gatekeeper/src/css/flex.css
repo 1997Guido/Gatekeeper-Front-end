@@ -1,0 +1,41 @@
+/*@media screen and (max-width: 1024px) and (min-width: 768px) {*/
+.flexcontainerhead{
+    gap: 3%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:aquamarine;
+}
+.flexcontainermid{
+    display: flex;
+}
+.flexcontainerfoot{
+    display: flex;
+}
+.flexitem-hl{
+    width: 25%;
+}
+.flexitem-hm{
+    width: 50%;
+}
+.flexitem-hr{
+    width: 25%;
+}
+.flexitem-ml{
+    width: 33%;
+}
+.flexitem-mm{
+    width: 33%;
+}
+.flexitem-mr{
+    width: 33%;
+}
+.flexitem-fl{
+    width: 33%;
+}
+.flexitem-fm{
+    width: 33%;
+}
+.flexitem-fr{
+    width: 33%;
+}

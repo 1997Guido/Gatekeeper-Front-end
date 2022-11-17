@@ -1,0 +1,13 @@
+/*@media screen and (max-width: 900px) and (min-width: 200px) {*/
+:root{
+    --base: #2e6255;
+}   
+body{
+    /*background: radial-gradient(at bottom,#2e6255,#549a88,#59d1b3);*/
+    background: radial-gradient(at bottom,#2e6255,#5d1f53,#169576);
+    min-height: 100vh;
+}
+.row{
+    max-width: 100%;
+    margin:auto;
+}
