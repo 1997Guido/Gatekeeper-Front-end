@@ -1,18 +1,15 @@
 import './../css/style.css'
 import './../css/mNav.css'
-import bootstrap from 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap.css';
 import logo from './../images/alleenschedel.png';
-import * as TbIcons from "react-icons/tb";
-import * as MdIcons from "react-icons/md";
 import * as HiIcons from "react-icons/hi";
 import React, { Component } from 'react';
-import banner from './../images/balkjeeffect.png'
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 
 class Nav extends Component {
   render() {
     function selectNav(pagy){
-      if(pagy != "home"){
+      if(pagy !== "home"){
         document.getElementById("home").classList.remove("logosel")
         document.getElementById("adminqr").classList.remove("iconsel")
         document.getElementById("admin").classList.remove("iconsel")
@@ -33,7 +30,7 @@ class Nav extends Component {
   } 
     return (
         <>
-        <h1 className='Title'>Gatekeeper</h1>
+        <div className='Title'>Gatekeeper</div>
         <nav className="mobile-nav">
           <Link to='/adminqr' className="bloc-icon" >
           <HiIcons.HiOutlineQrcode id='adminqr' className='icons' onClick={() => selectNav("adminqr")}/>

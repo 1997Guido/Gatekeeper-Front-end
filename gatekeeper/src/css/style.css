@@ -1,16 +1,22 @@
-/*@media screen and (max-width: 900px) and (min-width: 200px) {*/
+@font-face {
+    font-family: 'kirsty';
+    src: local('kirsty'), url(./../fonts/kirstybd.otf) format('opentype');
+    /* other formats include: 'woff2', 'truetype, 'opentype',
+                              'embedded-opentype', and 'svg' */
+  }
 :root{
     --base: #2e6255;
-}   
-.row{
-    max-width: 100%;
 }
 .Title{
     text-align: center;
     background-color: bisque;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-family: kirsty;
+    font-size: 4vh;
+    min-height: 5vh;
+
 }
-body{
-    background: radial-gradient(rgb(75, 201, 193), rgb(61, 6, 95), blue);
+.App{
     min-height: 100vh;
+    max-width: 100%;
+    background: radial-gradient(at top, rgb(49, 157, 49), rgb(165, 121, 49), yellow)
 }

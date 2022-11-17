@@ -1,4 +1,4 @@
-import bootstrap from 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap.css';
 import './../css/style.css';
 import './../css/userprofile.css';
 
