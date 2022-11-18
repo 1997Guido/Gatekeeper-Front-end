@@ -13,7 +13,6 @@ function AdminQr() {
         axios.post('http://localhost/PHPApiForm/test.php', data)
         .then(function(response){
               console.log(response);
-              const apiresponse = response;
           });
           console.log(data);
       };
@@ -23,6 +22,7 @@ function AdminQr() {
         <div className="row justify-content-center">
             <div className="col scanner">
                 <QrReader
+                    facingMode="environment"
                     onResult={(result, error) => {
                     if (!!result) {
                     setData(result?.text);

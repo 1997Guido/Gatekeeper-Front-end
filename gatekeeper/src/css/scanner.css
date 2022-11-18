@@ -1,6 +1,8 @@
 .scanner{
     margin-top: 15vh;
     max-width: 40vh;
+    border: solid 10px;
+    box-shadow: 5px 5px 5px black;
 }
 .result{
     font-family: kirsty;
