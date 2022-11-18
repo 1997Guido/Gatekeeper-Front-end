@@ -4,19 +4,18 @@ import 'bootstrap/dist/css/bootstrap.css';
 import React, { useState } from 'react';
 import { QrReader } from 'react-qr-reader';
 import axios from 'axios';
-import { useEffect } from 'react';
 
 function AdminQr() {
-
+    const apiresponse ='';
     const [data, setData] = useState('nothing yet');
 
     const sendData = (parsed) => {
-        axios.post('http://localhost/PHPApiForm/test.php', {data: {
-          name: parsed.name
-            }}).then(function(response){
+        axios.post('http://localhost/PHPApiForm/test.php', data)
+        .then(function(response){
               console.log(response);
+              const apiresponse = response;
           });
-          console.log(parsed);
+          console.log(data);
       };
     return ( 
         <>
@@ -27,10 +26,6 @@ function AdminQr() {
                     onResult={(result, error) => {
                     if (!!result) {
                     setData(result?.text);
-                    const parsed = JSON.parse(result?.text)
-                    console.log(parsed);
-                    console.log(parsed.name);
-                    sendData(parsed);
                     }
                     if (!!error) {
                     console.info(error);
@@ -38,7 +33,7 @@ function AdminQr() {
                     }}
                     style={{ width: '100%' }}
                 />
-                <div className='result'>{data}</div>
+                <div className='result'>{apiresponse}</div>
             </div>
         </div>
     </div>
