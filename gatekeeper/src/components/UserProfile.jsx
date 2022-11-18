@@ -11,22 +11,22 @@ function UserProfile() {
         <div className='UserProfileContainer'>
             <div className='row'>
                 <div className='col-profile'>
-                    <h1 className='text-center'>Profile:</h1>
+                    <p className='text-center textbox'>Profile:</p>
                 </div>
             </div>
             <div className='row'>
                 <div className='col-name'>
-                    <h2 className='text-left'>Full name: Mike Vermeer</h2>
+                    <p className='text-left textbox'>Full name: Mike Vermeer</p>
                 </div>
             </div>
             <div className='row'>
                 <div className='col-age'>
-                    <h2 className='text-left'>Age: 20</h2>
+                    <p className='text-left textbox'>Age: 20</p>
                 </div>
             </div>
             <div className='row'>
                 <div className='col-gender'>
-                    <h2 className='text-left'>Gender: Male</h2>
+                    <p className='text-left textbox'>Gender: Male</p>
                 </div>
             </div>
         </div>
