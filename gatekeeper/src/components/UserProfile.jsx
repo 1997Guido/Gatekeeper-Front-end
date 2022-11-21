@@ -11,7 +11,7 @@ function UserProfile() {
         <div className='UserProfileContainer'>
             <div className='row'>
                 <div className='col-profile'>
-                    <p className='text-center textbox'>Profile:</p>
+                    <p className='text-center title'>Profile:</p>
                 </div>
             </div>
             <div className='row'>
