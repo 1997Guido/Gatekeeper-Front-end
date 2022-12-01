@@ -4,6 +4,7 @@ import UserProfile from './../components/UserProfile';
 import UserQr from './../components/UserQr';
 import Admin from './../components/Admin'
 import AdminQr from './../components/AdminQr'
+import Register from './Register';
 import {AnimatePresence} from "framer-motion";
 import React from 'react';
 
@@ -13,7 +14,8 @@ function AnimatedRoutes() {
     return (
     <AnimatePresence>
         <Routes location={location} key={location.pathname}>
-            <Route path="/" element={<Home />}></Route>
+            <Route path="/" element={<Register />}></Route>
+            <Route path="/home" element={<Home />}></Route>
             <Route path="/admin" element={<Admin />}></Route>
             <Route path="/adminqr" element={<AdminQr />}></Route>
             <Route path="/userprofile" element={<UserProfile />}></Route>
