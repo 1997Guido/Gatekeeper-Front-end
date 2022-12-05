@@ -28,43 +28,25 @@ function Register(){
         });
         console.log(RegisterInfo);
     };
-          return (
+    return (
           <>
-                <div className="row">
-                <div className="col crewbanner">
-                  <h1>Register</h1>
-                </div>
-                </div>
-                  <div className="row">
-                    <div className="col myForm">
-                      <form onSubmit={handleSubmit}>
-                          <div className="form-group text-light">
-                              <label htmlFor="emailadres1">Email address</label>
-                              <input type="email" className="form-control" name='email' aria-describedby="email" placeholder="Enter email"
-                              onChange={handleChange} value={RegisterInfo.email}
-                              />
-                          <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
-                          </div>
-                          <div className="form-group">
-                              <label htmlFor="nameInput">Name</label>
-                              <input type="text" name="name" className="form-control" placeholder="Name"
-                              onChange={handleChange} value={RegisterInfo.name}
-                              />
-                          </div>
-                          <div className="form-group">
-                              <label htmlFor="exampleFormControlTextarea1">Message</label>
-                              <textarea className="form-control" placeholder='I would like to know.....' name="message" rows="3" 
-                              onChange={handleChange} value={RegisterInfo.message}
-                              ></textarea>
-                          </div>
-                          <div>
-                            <button className='btn btn-primary'>Submit</button> 
-                          </div>
-                      </form>
-                  </div>
-                </div>
-                  </>
+          <form className="myForm">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Username</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"/>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"/>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword2">Password</label>
+              <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Repeat password"/>
+            </div>
+              <button type="submit" class="btn btn-primary">Register</button>
+          </form>
+          </>
           );
       }
    
-  export default Register ;
+export default Register ;
