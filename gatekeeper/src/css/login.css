@@ -1,0 +1,19 @@
+@media screen and (min-width: 600px) {
+    .myForm{
+        background-color: #2c2c2c;
+        text-align: center;
+        border-radius: 50% 50% black;
+        color: white;
+        max-width: 40vh;
+    }
+}
+@media screen and (max-width: 599px) {
+    .myForm{
+        background-color: #2c2c2c;
+        text-align: center;
+        border-radius: 50% 50% black;
+        color: white;
+        max-width: 40vh;
+        margin: auto;
+    }
+}
