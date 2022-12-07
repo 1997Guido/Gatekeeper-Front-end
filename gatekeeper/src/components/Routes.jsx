@@ -1,9 +1,9 @@
 import { Route, Routes, useLocation } from 'react-router-dom';
-import Home from './../components/Home';
-import UserProfile from './../components/UserProfile';
-import UserQr from './../components/UserQr';
-import Admin from './../components/Admin'
-import AdminQr from './../components/AdminQr'
+import Home from './Home';
+import UserProfile from './UserProfile';
+import UserQr from './UserQr';
+import Admin from './Admin'
+import AdminQr from './AdminQr'
 import Register from './Register';
 import Login from './Login';
 import {AnimatePresence} from "framer-motion";

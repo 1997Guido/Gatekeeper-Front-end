@@ -1,11 +1,16 @@
 import './../css/style.css'
 import 'bootstrap/dist/css/bootstrap.css';
-import
-
+import NavBar from './..NavBar'
+import HeaderFooter from './HeaderFooter';
 
 
 function Layout() {
-  return (  );
+  return (
+    <>
+    <HeaderFooter/> 
+    <NavBar/>
+    </>
+   );
 }
 
 export default Layout;
