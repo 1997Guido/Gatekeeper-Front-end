@@ -1,11 +1,19 @@
+import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.css';
 import './../css/style.css';
 import './../css/userprofile.css';
-
+import { useEffect } from 'react';
 
 
 
 function UserProfile() {
+    const getProfile = () => {
+        axios.get('http://localhost:8000/api/profileapi', 
+        { withCredentials: true },)
+        .then(function(response){
+            console.log(response);
+        });
+    }
     return ( 
         <>
         <div className='UserProfileContainer'>
@@ -29,6 +37,7 @@ function UserProfile() {
                     <h2 className='text-left'>Gender: Male</h2>
                 </div>
             </div>
+            <button className='btn btn-primary' onClick={getProfile}>Profile</button>
         </div>
     </>
      );
