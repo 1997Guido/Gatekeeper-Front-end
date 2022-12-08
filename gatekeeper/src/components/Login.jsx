@@ -4,7 +4,6 @@ import './../css/login.css'
 import { useState } from 'react';
 import axios from 'axios';
 
-
 function Login(){
     const [Success, setSucces] = useState(false);
     const [LoginInfo, setLoginInfo] = useState({
@@ -18,13 +17,10 @@ function Login(){
       e.preventDefault()
       axios.post('http://localhost:8000/auth/login/', 
       {method: 'post',
-      withCredentials: true,
-      headers: {
-        'Content-Type': 'multipart/form-data'
-    },
         username: LoginInfo.username,
         password: LoginInfo.password,
           }).then(function(response){
+            localStorage.setItem('access_token', response.data.access);
             console.log(response);
             setSucces(true);
         });
