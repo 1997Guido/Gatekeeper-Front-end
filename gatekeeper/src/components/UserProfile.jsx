@@ -1,47 +1,48 @@
-import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.css';
 import './../css/style.css';
 import './../css/userprofile.css';
-import { useEffect } from 'react';
-
-
+import { useEffect, useState } from 'react';
+import axiosinstance from './../api/axiosApi';
 
 function UserProfile() {
+
+    const [data, setData] = useState([]);
+
     const getProfile = () => {
-        axios.get('http://localhost:8000/api/profileapi',
-            {
-            withCredentials: true,
-            },
-        )
+        axiosinstance.get('profileapi')
         .then(function(response){
-            console.log(response);
+            const Actualdata = response.data
+            setData(Actualdata)
+            console.log(Actualdata)
         });
     }
+      useEffect(() => {
+        getProfile();
+      }, []);
     return ( 
         <>
-        <div className='UserProfileContainer'>
-            <div className='row'>
-                <div className='col-profile'>
-                    <h1 className='text-center'>Profile:</h1>
+                    <div className='UserProfileContainer'>
+                    <div className='row'>
+                        <div className='col-profile'>
+                            <h1 className='text-center'>Profile:</h1>
+                        </div>
+                    </div>
+                    <div className='row'>
+                        <div className='col-name'>
+                            <h2 className='text-left'>{data.first_name} {data.last_name}</h2>
+                        </div>
+                    </div>
+                    <div className='row'>
+                        <div className='col-age'>
+                            <h2 className='text-left'>{data.age}</h2>
+                        </div>
+                    </div>
+                    <div className='row'>
+                        <div className='col-gender'>
+                            <h2 className='text-left'>{data.gender}</h2>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div className='row'>
-                <div className='col-name'>
-                    <h2 className='text-left'>Full name: Mike Vermeer</h2>
-                </div>
-            </div>
-            <div className='row'>
-                <div className='col-age'>
-                    <h2 className='text-left'>Age: 20</h2>
-                </div>
-            </div>
-            <div className='row'>
-                <div className='col-gender'>
-                    <h2 className='text-left'>Gender: Male</h2>
-                </div>
-            </div>
-            <button className='btn btn-primary' onClick={getProfile}>Profile</button>
-        </div>
     </>
      );
 }
