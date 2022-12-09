@@ -15,16 +15,14 @@ function Login(){
     };
     const handleSubmit = (e) => {
       e.preventDefault()
-      axios.post('http://localhost:8000/auth/login/', 
-      {method: 'post',
+      axios.post('http://localhost:8000/auth/login/',{
         username: LoginInfo.username,
         password: LoginInfo.password,
-          }).then(function(response){
-            localStorage.setItem('access_token', response.data.access);
-            console.log(response);
+          },{withCredentials: true})
+          .then(function(response){
             setSucces(true);
+            console.log("Logged In");
         });
-        console.log(LoginInfo);
     };
     return (
           <>

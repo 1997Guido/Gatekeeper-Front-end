@@ -9,12 +9,10 @@ import { useEffect } from 'react';
 function UserProfile() {
     const getProfile = () => {
         axios.get('http://localhost:8000/api/profileapi',
-        {
-        withCredentials: true,
-        headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'
-    }
-    },
-       )
+            {
+            withCredentials: true,
+            },
+        )
         .then(function(response){
             console.log(response);
         });
