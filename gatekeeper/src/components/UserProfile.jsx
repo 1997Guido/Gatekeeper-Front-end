@@ -3,47 +3,51 @@ import './../css/style.css';
 import './../css/userprofile.css';
 import { useEffect, useState } from 'react';
 import axiosinstance from './../api/axiosApi';
+import {motion} from "framer-motion";
 
 function UserProfile() {
 
     const [data, setData] = useState([]);
 
     const getProfile = () => {
-        axiosinstance.get('profileapi')
+        axiosinstance.get('api/profileapi')
         .then(function(response){
             const Actualdata = response.data
             setData(Actualdata)
-            console.log(Actualdata)
         });
     }
       useEffect(() => {
         getProfile();
       }, []);
     return ( 
-        <>
-                    <div className='UserProfileContainer'>
+        <motion.div
+        initial={{ opacity: 0, scale: 0.5}}
+        animate={{ opacity: 1, scale: 1}}
+        transition={{ duration: 1 }}
+      >
+                <div className='UserProfileContainer'>
                     <div className='row'>
-                        <div className='col-profile'>
-                            <h1 className='text-center'>Profile:</h1>
+                        <div className='col Userprofile'>
+                            <p className='ProfileTitle'>Your Profile</p>
                         </div>
                     </div>
                     <div className='row'>
-                        <div className='col-name'>
-                            <h2 className='text-left'>{data.first_name} {data.last_name}</h2>
+                        <div className='col Userprofile'>
+                            <p>{data.first_name} {data.last_name}</p>
                         </div>
                     </div>
                     <div className='row'>
-                        <div className='col-age'>
-                            <h2 className='text-left'>{data.age}</h2>
+                        <div className='col Userprofile'>
+                            <p>{data.age}</p>
                         </div>
                     </div>
                     <div className='row'>
-                        <div className='col-gender'>
-                            <h2 className='text-left'>{data.gender}</h2>
+                        <div className='col Userprofile'>
+                            <p>{data.gender}</p>
                         </div>
                     </div>
                 </div>
-    </>
+    </motion.div>
      );
 }
 

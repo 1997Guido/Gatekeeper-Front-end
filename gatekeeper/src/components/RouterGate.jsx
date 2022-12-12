@@ -21,10 +21,10 @@ function RouterGate() {
             <Route element={<PrivateRoutes/>}>
                 <Route path="/" element={<Home />}></Route>
                 <Route path="/admin" element={<Admin />}></Route>
-                <Route element={<AdminQr/>} path="adminqr" exact/>
+                <Route path="adminqr" element={<AdminQr/>} exact/>
                 <Route path="/userprofile" element={<UserProfile />}></Route>
                 <Route path="/userqr" element={<UserQr />}></Route>
-                </Route>
+            </Route>
         </Routes>
     </AnimatePresence>
     );

@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './../css/register.css'
 import { useState } from 'react';
 import axios from 'axios';
-
+import {motion} from "framer-motion";
 
 function Register(){  
     const [RegisterInfo, setRegisterInfo] = useState({
@@ -29,7 +29,11 @@ function Register(){
         console.log(RegisterInfo);
     };
     return (
-          <>
+    <motion.div
+      initial={{ opacity: 0, scale: 0.5}}
+      animate={{ opacity: 1, scale: 1}}
+      transition={{ duration: 1 }}
+    >
           <form className="myForm">
             <div class="form-group">
               <label for="exampleInputEmail1">Username</label>
@@ -45,7 +49,7 @@ function Register(){
             </div>
               <button type="submit" class="btn btn-primary">Register</button>
           </form>
-          </>
+          </motion.div>
           );
       }
    

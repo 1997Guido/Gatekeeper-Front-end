@@ -5,10 +5,10 @@ import HeaderFooter from './HeaderFooter';
 
 
 function Layout() {
+  let [isAuth, setIsAuth] = useState(localStorage.getItem('Auth') === 'true' ? true : false);
   return (
     <>
-    <HeaderFooter/> 
-    <NavBar/>
+    <HeaderFooter/>
     </>
    );
 }
