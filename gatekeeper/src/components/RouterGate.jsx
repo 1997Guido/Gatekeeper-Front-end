@@ -1,4 +1,4 @@
-import { Route, Routes, useLocation, Redirect } from 'react-router-dom';
+import { Route, Routes, useLocation} from 'react-router-dom';
 import Home from './Home';
 import UserProfile from './UserProfile';
 import UserQr from './UserQr';
@@ -11,7 +11,7 @@ import React from 'react';
 import PrivateRoutes from '../api/ProtectedRoutes.jsx';
 
 
-function AnimatedRoutes() {
+function RouterGate() {
     const location = useLocation();
     return (
     <AnimatePresence>
@@ -31,4 +31,4 @@ function AnimatedRoutes() {
 }
 
 
-export default AnimatedRoutes;
+export default RouterGate;

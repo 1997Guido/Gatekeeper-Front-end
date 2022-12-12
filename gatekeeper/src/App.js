@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router} from 'react-router-dom';
-import AnimatedRoutes from './components/Routes';
+import RouterGate from './components/RouterGate';
 import Layout from './components/NavBar'
 import './css/style.css'
 import './css/mNav.css'
@@ -11,7 +11,7 @@ function App() {
     <div className="App">
     <Router>
       <Layout/>
-      <AnimatedRoutes/>
+      <RouterGate/>
     </Router>
     </div>
   );
