@@ -4,11 +4,13 @@ import 'bootstrap/dist/css/bootstrap.css';
 import React, { useState } from 'react';
 import { QrReader } from 'react-qr-reader';
 import axios from 'axios';
+import {motion} from "framer-motion";
+
 
 function AdminQr() {
+    console.log = console.warn = console.error = () => {};
     const apiresponse ='';
     const [data, setData] = useState('nothing yet');
-
     const sendData = (parsed) => {
         axios.post('http://localhost/PHPApiForm/test.php', data)
         .then(function(response){
@@ -17,7 +19,11 @@ function AdminQr() {
           console.log(data);
       };
     return ( 
-        <>
+<motion.div
+    initial={{ opacity: 0, scale: 0.5}}
+    animate={{ opacity: 1, scale: 1}}
+    transition={{ duration: 1 }}
+>
     <div className="container-fluid">
         <div className="row justify-content-center">
             <div className="col scanner">
@@ -37,7 +43,7 @@ function AdminQr() {
             </div>
         </div>
     </div>
-        </>
+</motion.div>
      );
 }
 

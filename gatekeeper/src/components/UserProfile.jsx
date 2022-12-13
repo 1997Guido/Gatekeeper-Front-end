@@ -1,36 +1,53 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import './../css/style.css';
 import './../css/userprofile.css';
-
-
-
+import { useEffect, useState } from 'react';
+import axiosinstance from './../api/axiosApi';
+import {motion} from "framer-motion";
 
 function UserProfile() {
+
+    const [data, setData] = useState([]);
+
+    const getProfile = () => {
+        axiosinstance.get('api/profileapi')
+        .then(function(response){
+            const Actualdata = response.data
+            setData(Actualdata)
+        });
+    }
+      useEffect(() => {
+        getProfile();
+      }, []);
     return ( 
-        <>
-        <div className='UserProfileContainer'>
-            <div className='row'>
-                <div className='col-profile'>
-                    <p className='text-center textbox'>Profile:</p>
+        <motion.div
+        initial={{ opacity: 0, scale: 0.5}}
+        animate={{ opacity: 1, scale: 1}}
+        transition={{ duration: 1 }}
+      >
+                <div className='UserProfileContainer'>
+                    <div className='row'>
+                        <div className='col Userprofile'>
+                            <p className='ProfileTitle'>Your Profile</p>
+                        </div>
+                    </div>
+                    <div className='row'>
+                        <div className='col Userprofile'>
+                            <p>{data.first_name} {data.last_name}</p>
+                        </div>
+                    </div>
+                    <div className='row'>
+                        <div className='col Userprofile'>
+                            <p>{data.age}</p>
+                        </div>
+                    </div>
+                    <div className='row'>
+                        <div className='col Userprofile'>
+                            <p>{data.gender}</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div className='row'>
-                <div className='col-name'>
-                    <p className='text-left textbox'>Full name: Mike Vermeer</p>
-                </div>
-            </div>
-            <div className='row'>
-                <div className='col-age'>
-                    <p className='text-left textbox'>Age: 20</p>
-                </div>
-            </div>
-            <div className='row'>
-                <div className='col-gender'>
-                    <p className='text-left textbox'>Gender: Male</p>
-                </div>
-            </div>
-        </div>
-    </>
+    </motion.div>
      );
 }
 
