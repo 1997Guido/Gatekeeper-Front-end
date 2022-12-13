@@ -8,16 +8,7 @@ import {motion} from "framer-motion";
 
 
 function AdminQr() {
-    console.log = console.warn = console.error = () => {};
-    const apiresponse ='';
     const [data, setData] = useState('nothing yet');
-    const sendData = (parsed) => {
-        axios.post('http://localhost/PHPApiForm/test.php', data)
-        .then(function(response){
-              console.log(response);
-          });
-          console.log(data);
-      };
     return ( 
 <motion.div
     initial={{ opacity: 0, scale: 0.5}}
@@ -39,7 +30,7 @@ function AdminQr() {
                     }}
                     style={{ width: '100%' }}
                 />
-                <div className='result'>{apiresponse}</div>
+                <div className='result'></div>
             </div>
         </div>
     </div>
