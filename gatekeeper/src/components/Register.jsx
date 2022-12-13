@@ -4,8 +4,9 @@ import './../css/register.css'
 import { useState } from 'react';
 import axios from 'axios';
 import {motion} from "framer-motion";
-
-function Register(){  
+import { Link } from 'react-router-dom';
+function Register(){
+    const [Success, setSucces] = useState(false);  
     const [RegisterInfo, setRegisterInfo] = useState({
       username: "",
       password: "",
@@ -14,16 +15,16 @@ function Register(){
       setRegisterInfo({ ...RegisterInfo, [event.target.name]: event.target.value });
     };
     const handleSubmit = (event) => {
-      axios.post('http://localhost:8000/register', 
-      {method: 'post',
-      headers: {
-        'Content-Type': 'application/json'
-    },
-    data: {
+      axios.post('http://localhost:8000/auth/register',
+      {
         name: RegisterInfo.name,
         email: RegisterInfo.email,
         message: RegisterInfo.message
-          }}).then(function(response){
+      },
+      {
+        withCredentials: true
+      })
+      .then(function(response){
             console.log(response);
         });
         console.log(RegisterInfo);
@@ -34,21 +35,31 @@ function Register(){
       animate={{ opacity: 1, scale: 1}}
       transition={{ duration: 1 }}
     >
-          <form className="myForm">
-            <div class="form-group">
-              <label for="exampleInputEmail1">Username</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"/>
-            </div>
-            <div class="form-group">
-              <label for="exampleInputPassword1">Password</label>
-              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"/>
-            </div>
-            <div class="form-group">
-              <label for="exampleInputPassword2">Password</label>
-              <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Repeat password"/>
-            </div>
-              <button type="submit" class="btn btn-primary">Register</button>
+      <div className="container-flex LoginContainer">
+        <form onClick={handleSubmit} className="myForm">
+          <div className="form-group myFormGroup">
+            <label htmlFor="username">Username</label>
+            <input type="text" className="form-control" name="username" placeholder="Enter Username"
+            onChange={handleChange} value={RegisterInfo.username}/>
+          </div>
+          <div className="form-group myFormGroup">
+            <label htmlFor="email">Emailadress</label>
+            <input type="email" className="form-control" name="email" placeholder="Enter Emailadress"
+            onChange={handleChange} value={RegisterInfo.email}/>
+          </div>
+          <div className="form-group myFormGroup">
+            <label htmlFor="Password1">Password</label>
+            <input type="password" className="form-control" name="password1" placeholder="Password"
+            onChange={handleChange}/>
+          </div>
+          <div className="form-group myFormGroup">
+            <label htmlFor="Password2">Repeat Password</label>
+            <input type="password" className="form-control" name="password2" placeholder="Repeat Password"
+            onChange={handleChange}/>
+          </div>
+            <button type="submit" className="btn btn-primary">Register</button>
           </form>
+      </div>
           </motion.div>
           );
       }

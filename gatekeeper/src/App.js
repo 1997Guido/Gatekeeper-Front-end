@@ -26,11 +26,7 @@ function App() {
     <Router>
       <HeaderFooter/>
       <RouterGate/>      
-      {isAuth ? (
-        <Nav/>
-          ) : (
-            <div></div>
-          )} 
+      <Nav/>
     </Router>
     </div>
   );

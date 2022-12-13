@@ -7,7 +7,7 @@ import { Navigate } from 'react-router-dom';
 import Home from './Home';
 import {motion} from "framer-motion";
 import validateUserLoggedIn from '../api/ValidateUserLoggedIn';
-
+import { Link } from 'react-router-dom';
 
 function Login(){
   let [isAuth, setIsAuth] = useState(localStorage.getItem('Auth') === 'true' ? true : false);
@@ -64,7 +64,10 @@ function Login(){
             onChange={handleChange}/>
           </div>
             <button type="submit" className="btn btn-primary">Login</button>
-        </form>
+            <div className='registerButton'>
+          Don't have an account? click <Link to='/register'> here</Link> to register.
+        </div>
+          </form>
       </div>
           )}
     </motion.div>
