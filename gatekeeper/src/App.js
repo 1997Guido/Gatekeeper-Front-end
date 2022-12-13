@@ -1,5 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter as Router} from 'react-router-dom';
+import { BrowserRouter as Router, useLocation} from 'react-router-dom';
 import RouterGate from './components/RouterGate';
 import './css/style.css'
 import './css/mNav.css'
@@ -7,6 +7,8 @@ import HeaderFooter from "./components/HeaderFooter";
 import { useEffect, useState } from "react";
 import Nav from "./components/NavBar";
 import validateUserLoggedIn from "./api/ValidateUserLoggedIn";
+
+
 
 function App() {
   let [isAuth, setIsAuth] = useState(localStorage.getItem('Auth') === 'true' ? true : false);
@@ -26,7 +28,6 @@ function App() {
     <Router>
       <HeaderFooter/>
       <RouterGate/>      
-      <Nav/>
     </Router>
     </div>
   );

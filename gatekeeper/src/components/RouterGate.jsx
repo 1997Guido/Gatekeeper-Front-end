@@ -9,6 +9,8 @@ import Login from './Login';
 import {AnimatePresence} from "framer-motion";
 import React from 'react';
 import PrivateRoutes from '../api/ProtectedRoutes.jsx';
+import Nav from './NavBar.jsx';
+
 
 
 function RouterGate() {
@@ -26,6 +28,11 @@ function RouterGate() {
                 <Route path="/userqr" element={<UserQr />}></Route>
             </Route>
         </Routes>
+        <div>
+    {location.pathname !== '/login' && location.pathname !== '/register' ?
+      <Nav/>:null
+    }
+    </div>
     </AnimatePresence>
     );
 }

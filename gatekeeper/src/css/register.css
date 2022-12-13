@@ -1,5 +1,5 @@
 @media screen and (min-width: 600px) {
-    .myForm{
+    .myFormRegister{
         background-color: #2c2c2c;
         text-align: center;
         border-radius: 50% 50% black;
@@ -8,13 +8,13 @@
     }
 }
 @media screen and (max-width: 599px) {
-    .myForm{
+    .myFormRegister{
         background-color: #2c2c2c;
         text-align: center;
         color: white;
         width: 40vh;
         min-width: 30vh;
-        height: 60vh;
+        height: 80vh;
         margin: auto;
         border: 1px solid #2c2c2c;
         border-radius: 3%;
@@ -22,8 +22,8 @@
         margin-top: 5vh;
     }
 }
-.myFormGroup{
-    margin-top: 5vh;
+.myFormGroupRegister{
+    margin-top: 2vh;
     margin-bottom: 2vh;
     margin-left: 5vh;
     margin-right: 5vh;

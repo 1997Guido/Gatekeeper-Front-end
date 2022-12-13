@@ -5,7 +5,6 @@ import {motion} from "framer-motion";
 import { useState, useEffect } from 'react';
 import validateUserLoggedIn from '../api/ValidateUserLoggedIn';
 
-
 function Home() {
     let [isAuth, setIsAuth] = useState(localStorage.getItem('Auth') === 'true' ? true : false);
     useEffect(() => {
@@ -21,6 +20,7 @@ function Home() {
     })
     
     return (
+      <>
 <motion.div
     initial={{ opacity: 0, scale: 0.5}}
     animate={{ opacity: 1, scale: 1}}
@@ -36,6 +36,7 @@ function Home() {
         </div>
     </div>
 </motion.div>
+</>
      );
 }
 

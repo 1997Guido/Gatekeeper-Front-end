@@ -4,7 +4,6 @@ import './../css/login.css'
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Navigate } from 'react-router-dom';
-import Home from './Home';
 import {motion} from "framer-motion";
 import validateUserLoggedIn from '../api/ValidateUserLoggedIn';
 import { Link } from 'react-router-dom';
