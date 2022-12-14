@@ -7,8 +7,8 @@ import { Navigate } from 'react-router-dom';
 
 
 function Register(){
-    const [Success, setSucces] = useState(false);  
-    const [gender, setGender] = useState('Undefined');
+    const [Success, setSucces] = useState(false);
+    const [isChecked, setisChecked] = useState(false);
     const [RegisterInfo, setRegisterInfo] = useState({
       username: "",
       password1: "",
@@ -17,6 +17,7 @@ function Register(){
       firstname: "",
       lastname: "",
       date_of_birth: "",
+      gender: "",
     });
     const handleChange = (event) => {
       setRegisterInfo({ ...RegisterInfo, [event.target.name]: event.target.value });
@@ -68,17 +69,19 @@ function Register(){
             <input type="text" className="form-control" name="lastname" placeholder="Enter Lastname"
             onChange={handleChange} value={RegisterInfo.lastname}/>
           </div>
-
+          <h1>{RegisterInfo.gender}</h1>
           <div className="myFormGroupRegister">
             <p>Gender</p>
-            <input type="radio" className="btn-check" name="male" id="option2" autocomplete="off"
-            checked={RegisterInfo.gender === 'Male'} onChange={handleChange} onClick={() => setRegisterInfo.gender('Male')} value="Male"/>
+            <input type="radio" className="btn-check" name="gender" autocomplete="off"
+            onChange={handleChange} value="Male" checked={isChecked}/>
             <label className="btn btn-secondary" for="male">Male</label>
-            <input type="radio" className="btn-check" name="female" id="option2" autocomplete="off"
-            checked={RegisterInfo.gender === 'Female'} onChange={handleChange} onClick={() => setRegisterInfo.gender('Male')} value="Female"/>
-            <label className="btn btn-secondary" for="option2">Female</label>
-            <input type="radio" className="btn-check" name="undefined" id="option2" autocomplete="off"
-            checked={RegisterInfo.gender === 'Undefined'} onChange={handleChange} onClick={() => setRegisterInfo.gender('Male')} value="Undefined"/>
+
+            <input type="radio" className="btn-check" name="gender" autocomplete="off"
+            onChange={handleChange}  value="Female" checked={isChecked}/>
+            <label className="btn btn-secondary" for="female">Female</label>
+
+            <input type="radio" className="btn-check" name="gender" autocomplete="off"
+            onChange={(e)=>setisChecked(e.target.value)} value={"Undefined"} checked={isChecked}/>
             <label className="btn btn-secondary" for="undefined">Undefined</label>
           </div>
 
