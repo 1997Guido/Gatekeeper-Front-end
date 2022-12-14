@@ -38,7 +38,7 @@ function UserProfile() {
                     </div>
                     <div className='row'>
                         <div className='col Userprofile'>
-                            <p>{data.age}</p>
+                            <p>{data.date_of_birth}</p>
                         </div>
                     </div>
                     <div className='row'>
