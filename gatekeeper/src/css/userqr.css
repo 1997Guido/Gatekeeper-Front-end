@@ -1,0 +1,13 @@
+.QRContainer {
+    width: 35vh;
+    height: 35vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    padding: 6px;
+    margin: auto;
+    max-width: auto;
+    max-height: auto;
+    margin-top: 40%;
+}
