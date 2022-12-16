@@ -8,7 +8,7 @@ import {motion} from "framer-motion";
 
 
 function AdminQr() {
-    const [qrdata, setqrdata] = useState('Scan a QR Code');
+    const [data, setData] = useState('nothing yet');
     return ( 
 <motion.div
     initial={{ opacity: 0, scale: 0.5}}
@@ -22,10 +22,10 @@ function AdminQr() {
                     facingMode="environment"
                     onResult={(result, error) => {
                     if (!!result) {
-                    setqrdata(result?.text);
+                    setData(result?.text);
                     }
                     if (!!error) {
-                    //console.info(error);
+                    console.info(error);
                     }
                     }}
                     style={{ width: '100%' }}
@@ -33,12 +33,6 @@ function AdminQr() {
                 <div className='result'></div>
             </div>
         </div>
-    </div>
-
-    <br></br>
-
-    <div className="result">
-        <p className="qrdata"> {qrdata} </p>
     </div>
 </motion.div>
      );

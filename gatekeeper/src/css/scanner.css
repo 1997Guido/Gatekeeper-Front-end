@@ -8,8 +8,7 @@
     font-family: kirsty;
     text-align: center;
     margin: auto;
-    width: auto;
-    height: auto;
+    width: 25vh;
     background-color: antiquewhite;
     opacity: 0.4;
     box-shadow: 5px 5px 5px black;
@@ -21,8 +20,4 @@
     background-color: aqua;
     height: 5vh;
 
-}
-.qrdata {
-    font-family: kirsty;
-    word-wrap: break-word;
 }
