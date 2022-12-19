@@ -1,0 +1,28 @@
+.scanner{
+    margin-top: 15vh;
+    max-width: 40vh;
+    border: solid 10px;
+    box-shadow: 5px 5px 5px black;
+}
+.result{
+    font-family: kirsty;
+    text-align: center;
+    margin: auto;
+    width: auto;
+    height: auto;
+    background-color: antiquewhite;
+    opacity: 0.4;
+    box-shadow: 5px 5px 5px black;
+    border: 8px solid black;
+    border-radius: 3px 5px 5px;
+}
+.box{
+    margin-top: 35vh;
+    background-color: aqua;
+    height: 5vh;
+
+}
+.qrdata {
+    font-family: kirsty;
+    word-wrap: break-word;
+}

@@ -1,4 +1,14 @@
-.UserProfileContainer{
+@media screen and (min-width: 600px) {
+    .myForm{
+        background-color: #2c2c2c;
+        text-align: center;
+        border-radius: 50% 50% black;
+        color: white;
+        max-width: 40vh;
+    }
+}
+@media screen and (max-width: 599px) {
+    .myForm{
         background-color: #2c2c2c;
         text-align: center;
         color: white;
@@ -10,14 +20,17 @@
         border-radius: 3%;
         opacity: 95%;
         margin-top: 5vh;
+    }
 }
-.UserProfile{
+.myFormGroup{
     margin-top: 5vh;
     margin-bottom: 2vh;
     margin-left: 5vh;
     margin-right: 5vh;
 }
-.ProfileTitle{
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 5vh;
+.btn{
+    color: #2c2c2c;
+    background-color: #2e6255;
+    border: #2e6255;
+    width: 10vh;
 }

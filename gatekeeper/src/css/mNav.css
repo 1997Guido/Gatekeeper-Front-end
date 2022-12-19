@@ -88,7 +88,7 @@
 .bloc-logo img {
     margin-top: 1vh;
     margin-bottom: 1vh;
-    width: 10vh;
+    width: 8vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -102,7 +102,7 @@
     justify-content: center;
     align-items: center;
     background-color:#2e6255;
-    border-radius: 15%;
+    border-radius: 50%;
     transition: 1.5s;
 }
 .icons{
@@ -122,15 +122,6 @@
     width: 8vh;
     transition: 1.5s;
     border-radius: 15%;
-}
-.banner{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: auto;
-    width: 100%;
-    max-height: 10vh;
-    background-color: #2c2c2c;
 }
 @media screen and (min-width: 600px) {
     .banner{

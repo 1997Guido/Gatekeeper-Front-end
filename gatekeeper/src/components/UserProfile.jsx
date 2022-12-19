@@ -1,36 +1,53 @@
-import bootstrap from 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap.css';
 import './../css/style.css';
 import './../css/userprofile.css';
-
-
-
+import { useEffect, useState } from 'react';
+import axiosinstance from './../api/axiosApi';
+import {motion} from "framer-motion";
 
 function UserProfile() {
+
+    const [data, setData] = useState([]);
+
+    const getProfile = () => {
+        axiosinstance.get('api/profileapi')
+        .then(function(response){
+            const Actualdata = response.data
+            setData(Actualdata)
+        });
+    }
+      useEffect(() => {
+        getProfile();
+      }, []);
     return ( 
-        <>
-        <div className='UserProfileContainer'>
-            <div className='row'>
-                <div className='col-profile'>
-                    <h1 className='text-center'>Profile:</h1>
+        <motion.div
+        initial={{ opacity: 0, scale: 0.5}}
+        animate={{ opacity: 1, scale: 1}}
+        transition={{ duration: 1 }}
+      >
+                <div className='UserProfileContainer'>
+                    <div className='row'>
+                        <div className='col Userprofile'>
+                            <p className='ProfileTitle'>Your Profile</p>
+                        </div>
+                    </div>
+                    <div className='row'>
+                        <div className='col Userprofile'>
+                            <p>{data.first_name} {data.last_name}</p>
+                        </div>
+                    </div>
+                    <div className='row'>
+                        <div className='col Userprofile'>
+                            <p>{data.date_of_birth}</p>
+                        </div>
+                    </div>
+                    <div className='row'>
+                        <div className='col Userprofile'>
+                            <p>{data.gender}</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div className='row'>
-                <div className='col-name'>
-                    <h2 className='text-left'>Full name: Mike Vermeer</h2>
-                </div>
-            </div>
-            <div className='row'>
-                <div className='col-age'>
-                    <h2 className='text-left'>Age: 20</h2>
-                </div>
-            </div>
-            <div className='row'>
-                <div className='col-gender'>
-                    <h2 className='text-left'>Gender: Male</h2>
-                </div>
-            </div>
-        </div>
-    </>
+    </motion.div>
      );
 }
 
