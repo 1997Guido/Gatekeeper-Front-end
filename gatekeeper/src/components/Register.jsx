@@ -4,11 +4,15 @@ import { useState } from 'react';
 import axios from 'axios';
 import {motion} from "framer-motion";
 import { Navigate } from 'react-router-dom';
-
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
 
 function Register(){
+  const options = [
+    'male', 'female', 'other'
+  ];
+  const defaultOption = options[0];
     const [Success, setSucces] = useState(false);
-    const [isChecked, setisChecked] = useState(false);
     const [RegisterInfo, setRegisterInfo] = useState({
       username: "",
       password1: "",
@@ -69,28 +73,12 @@ function Register(){
             <input type="text" className="form-control" name="lastname" placeholder="Enter Lastname"
             onChange={handleChange} value={RegisterInfo.lastname}/>
           </div>
-          <h1>{RegisterInfo.gender}</h1>
-          <div className="myFormGroupRegister">
-            <p>Gender</p>
-            <input type="radio" className="btn-check" name="gender" autocomplete="off"
-            onChange={handleChange} value="Male" checked={isChecked}/>
-            <label className="btn btn-secondary" for="male">Male</label>
-
-            <input type="radio" className="btn-check" name="gender" autocomplete="off"
-            onChange={handleChange}  value="Female" checked={isChecked}/>
-            <label className="btn btn-secondary" for="female">Female</label>
-
-            <input type="radio" className="btn-check" name="gender" autocomplete="off"
-            onChange={(e)=>setisChecked(e.target.value)} value={"Undefined"} checked={isChecked}/>
-            <label className="btn btn-secondary" for="undefined">Undefined</label>
-          </div>
-
           <div className="myFormGroupRegister">
             <label htmlFor="date_of_birth">Date of birth</label>
             <input type="date" className="form-control" name="date_of_birth" placeholder="Date of birth"
             onChange={handleChange} value={RegisterInfo.date_of_birth}/>
           </div>
-
+          <Dropdown options={options} onChange={handleChange} value={defaultOption} placeholder="Select an option" />;
           <div className="form-group myFormGroupRegister">
             <label htmlFor="username">Username</label>
             <input type="text" className="form-control" name="username" placeholder="Enter Username"
