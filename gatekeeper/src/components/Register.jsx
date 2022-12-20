@@ -4,14 +4,8 @@ import { useState } from 'react';
 import axios from 'axios';
 import {motion} from "framer-motion";
 import { Navigate } from 'react-router-dom';
-import Dropdown from 'react-dropdown';
-import 'react-dropdown/style.css';
 
 function Register(){
-  const options = [
-    'male', 'female', 'other'
-  ];
-  const defaultOption = options[0];
     const [Success, setSucces] = useState(false);
     const [RegisterInfo, setRegisterInfo] = useState({
       username: "",
@@ -37,7 +31,6 @@ function Register(){
         first_name: RegisterInfo.firstname,
         last_name: RegisterInfo.lastname,
         date_of_birth: RegisterInfo.date_of_birth,
-        gender: RegisterInfo.gender,
       },
       {headers: {
         'Content-Type': 'application/json',
@@ -61,7 +54,7 @@ function Register(){
       <Navigate replace to ="/login"/>
     ) : (
       <div className="container-flex RegisterContainer">
-        <form onClick={handleSubmit} className="myFormRegister">
+        <form onSubmit={handleSubmit} className="myFormRegister">
           <div className="myFormGroupRegister">
             <label htmlFor="firstname">Firstname</label>
             <input type="text" className="form-control" name="firstname" placeholder="Enter Firstname"
@@ -78,7 +71,13 @@ function Register(){
             <input type="date" className="form-control" name="date_of_birth" placeholder="Date of birth"
             onChange={handleChange} value={RegisterInfo.date_of_birth}/>
           </div>
-          <Dropdown options={options} onChange={handleChange} value={defaultOption} placeholder="Select an option" />;
+          <div className="myFormGroupRegister">
+            <label htmlFor="gender" className="label">gender:</label>
+              <input type="radio" id="male" name="gender" value='male' checked={RegisterInfo.gender === 'male'}onChange={handleChange}/>
+              <label for="male">Male</label>
+              <input type="radio" id="female" name="gender" value='female' checked={RegisterInfo.gender === 'female'} onChange={handleChange}/>
+              <label for="female">Female</label>
+          </div>
           <div className="form-group myFormGroupRegister">
             <label htmlFor="username">Username</label>
             <input type="text" className="form-control" name="username" placeholder="Enter Username"
