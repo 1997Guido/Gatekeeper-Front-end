@@ -15,19 +15,19 @@ function Nav() {
     function selectNav(pagy){
       if(pagy !== "home"){
         document.getElementById("home").classList.remove("logosel")
-        document.getElementById("adminqr").classList.remove("iconsel")
+        document.getElementById("qrpage").classList.remove("iconsel")
         document.getElementById("admin").classList.remove("iconsel")
         document.getElementById("userprofile").classList.remove("iconsel")
-        document.getElementById("userqr").classList.remove("iconsel")
+        document.getElementById("events").classList.remove("iconsel")
         let id = document.getElementById(pagy)
         id.classList.add("iconsel")
       }
       else{
         document.getElementById("home").classList.remove("logosel")
-        document.getElementById("adminqr").classList.remove("iconsel")
+        document.getElementById("qrpage").classList.remove("iconsel")
         document.getElementById("admin").classList.remove("iconsel")
         document.getElementById("userprofile").classList.remove("iconsel")
-        document.getElementById("userqr").classList.remove("iconsel")
+        document.getElementById("events").classList.remove("iconsel")
         let id = document.getElementById(pagy)
         id.classList.add("logosel")
       }
@@ -36,8 +36,8 @@ function Nav() {
       <>
           <div>
                 <nav className="mobile-nav">
-                  <Link to='/adminqr' className="bloc-icon" >
-                  <HiIcons.HiOutlineQrcode id='adminqr' className='icons' onClick={() => selectNav("adminqr")}/>
+                  <Link to='/qrpage' className="bloc-icon" >
+                  <HiIcons.HiOutlineQrcode id='qrpage' className='icons' onClick={() => selectNav("qrpage")}/>
                   </Link>
                   <Link to='/admin' className="bloc-icon">
                   <HiIcons.HiLogin id="admin" className='icons' onClick={() => selectNav("admin")}/>
@@ -48,8 +48,8 @@ function Nav() {
                   <Link to='/userprofile' className="bloc-icon">
                   <HiIcons.HiOutlineUserCircle id="userprofile" className='icons' onClick={() => selectNav("userprofile")}/>
                   </Link>
-                  <Link to='/userqr' className="bloc-icon">
-                  <TbIcons.TbCalendarMinus id="userqr" className='icons' onClick={() => selectNav("userqr")}/>
+                  <Link to='/events' className="bloc-icon">
+                  <TbIcons.TbCalendarMinus id="events" className='icons' onClick={() => selectNav("events")}/>
                   </Link>
                 </nav>
           </div>

@@ -2,7 +2,7 @@ import { Route, Routes, useLocation} from 'react-router-dom';
 import Home from './Home';
 import UserProfile from './UserProfile';
 import UserQr from './UserQr';
-import Admin from './Admin'
+import Events from './Events'
 import AdminQr from './AdminQr'
 import Register from './Register';
 import Login from './Login';
@@ -22,10 +22,10 @@ function RouterGate() {
             <Route path="/login" element={<Login />}></Route>
             <Route element={<PrivateRoutes/>}>
                 <Route path="/" element={<Home />}></Route>
-                <Route path="/admin" element={<Admin />}></Route>
-                <Route path="adminqr" element={<AdminQr/>} exact/>
+                <Route path="/admin" element={<AdminQr />}></Route>
+                <Route path="/qrpage" element={<UserQr/>}/>
                 <Route path="/userprofile" element={<UserProfile />}></Route>
-                <Route path="/userqr" element={<UserQr />}></Route>
+                <Route path="/events" element={<Events />}></Route>
             </Route>
         </Routes>
         <div>
