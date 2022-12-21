@@ -13,12 +13,17 @@ function AdminQr() {
     
     let csrftoken = useCookies(['csrftoken'])
     const [encryptedqrdata, setencryptedqrdata] = useState('Scan a QR Code');
+    const [Success, setSucces] = useState(false);
 
     const qrVerify = () => {
         axiosinstance.post('api/qrcodeverificatorapi', {encryptedqrdata},
         {headers: {'X-CSRFToken': csrftoken[0].csrftoken}})
           .then(function(response){
-            console.log(response);
+            if (response.data.check === 'True') {
+                console.log('QR Verified!');
+                console.log(response.data.userdata);
+              } 
+            //console.log(response);
           })
     }
     useEffect(() => {
@@ -30,7 +35,11 @@ function AdminQr() {
     animate={{ opacity: 1, scale: 1}}
     transition={{ duration: 1 }}
 >
-    <div className="container-fluid">
+    <>
+    {Success ? (
+        <p>Success</p>
+    ) : (
+        <div className="container-fluid">
         <div className="row justify-content-center">
             <div className="col scanner">
                 <QrReader
@@ -50,11 +59,11 @@ function AdminQr() {
         </div>
     </div>
 
-    <br></br>
-
+</>
     <div className="result">
         <p className="encryptedqrdata"> {encryptedqrdata} </p>
     </div>
+    )}
 </motion.div>
      );
 }
