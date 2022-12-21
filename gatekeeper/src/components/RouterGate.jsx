@@ -11,6 +11,7 @@ import {AnimatePresence} from "framer-motion";
 import React from 'react';
 import PrivateRoutes from '../api/ProtectedRoutes.jsx';
 import Nav from './NavBar.jsx';
+import SingleEvent from './SingleEventPage';
 
 
 
@@ -28,6 +29,7 @@ function RouterGate() {
                 <Route path="/userprofile" element={<UserProfile />}></Route>
                 <Route path="/events" element={<Events />}></Route>
                 <Route path="/eventcreate" element={<CreateEvent />}></Route>
+                <Route path="/singleeventview" element={<SingleEvent />}></Route>
             </Route>
         </Routes>
         <div>

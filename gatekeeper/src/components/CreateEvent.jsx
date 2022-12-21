@@ -3,13 +3,13 @@ import axiosInstance from '../api/axiosApi'
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useCookies } from 'react-cookie'
-
+import './../css/CreateEvent.css'
 
 
 
 function CreateEvent() {
     let csrftoken = useCookies(['csrftoken'])
-    const [Success, setSucces] = useState(false);
+    const [Success, setSuccess] = useState(false);
     const [EventInfo, setEventInfo] = useState({
         EventTitle: '',
         EventDescription: '',
@@ -18,7 +18,7 @@ function CreateEvent() {
         EventTimeEnd: '',
         EventLocation: '',
         EventMaxGuests: '',
-        EventInvitedGuests: '',
+        EventInvitedGuests: [{}],
         EventIsFree: true,
         EventPrice: 0,
         EventDuration: 0,
@@ -40,9 +40,6 @@ function CreateEvent() {
             EventTimeEnd: EventInfo.EventTimeEnd,
             EventLocation: EventInfo.EventLocation,
             EventMaxGuests: EventInfo.EventMaxGuests,
-            EventInvitedGuests: EventInfo.EventInvitedGuests,
-            EventIsFree: EventInfo.EventIsFree,
-            EventPrice: EventInfo.EventPrice,
             EventDuration: EventInfo.EventDuration,
             EventMinimumAge: EventInfo.EventMinimumAge,
             EventOrganizer: EventInfo.EventOrganizer,
@@ -51,7 +48,7 @@ function CreateEvent() {
           .then(function(response){
             console.log(EventInfo)
                 console.log(response);
-                setSucces(true);
+                setSuccess(true);
             });
         };
         return (
@@ -63,8 +60,8 @@ function CreateEvent() {
         {Success ? (
           <div>Successs</div>
         ) : (
-          <div className="container-flex EventContainer">
-            <form onClick={handleSubmit} className="myFormEvent">
+          <div className="container-flex CreateEventContainer">
+            <form onSubmit={handleSubmit} className="myFormEvent">
               <div className="myFormGroupEvent">
                 <label htmlFor="EventTitle">EventTitle</label>
                 <input type="text" className="form-control" name="EventTitle" placeholder="Enter EventTitle"
@@ -75,9 +72,9 @@ function CreateEvent() {
                 <input type="text" className="form-control" name="EventDescription" placeholder="Enter EventDescription"
                 onChange={handleChange} value={EventInfo.EventDescription}/>
               </div>
-              <div className="myFormGroupEvent">
-                <label htmlFor="EventDate">EventDate</label>
-                <input type="text" className="form-control" name="EventDate" placeholder="Enter EventDate"
+              <div className="myFormGroupRegister">
+                <label htmlFor="date_of_birth">Date of Event</label>
+                <input type="date" className="form-control" name="EventDate" placeholder="Date of Event"
                 onChange={handleChange} value={EventInfo.EventDate}/>
               </div>
               <div className="myFormGroupEvent">
@@ -91,29 +88,9 @@ function CreateEvent() {
                 onChange={handleChange} value={EventInfo.EventMaxGuests}/>
               </div>
               <div className="myFormGroupEvent">
-                <label htmlFor="EventInvitedGuests">EventInvitedGuests</label>
-                <input type="text" className="form-control" name="EventInvitedGuests" placeholder="Enter EventInvitedGuests"
-                onChange={handleChange} value={EventInfo.EventInvitedGuests}/>
-              </div>
-              <div className="myFormGroupEvent">
-                <label htmlFor="EventIsFree">EventIsFree</label>
-                <input type="text" className="form-control" name="EventIsFree" placeholder="Enter EventIsFree"
-                onChange={handleChange} value={EventInfo.EventIsFree}/>
-              </div>
-              <div className="myFormGroupEvent">
-                <label htmlFor="EventPrice">EventPrice</label>
-                <input type="text" className="form-control" name="EventPrice" placeholder="Enter EventPrice"
-                onChange={handleChange} value={EventInfo.EventPrice}/>
-              </div>
-              <div className="myFormGroupEvent">
                 <label htmlFor="EventDuration">EventDuration</label>
-                <input type="text" className="form-control" name="EventDuration" placeholder="Enter EventDuration"
+                <input type="time" step="1" className="form-control" name="EventDuration" placeholder="Enter EventDuration"
                 onChange={handleChange} value={EventInfo.EventDuration}/>
-              </div>
-              <div className="myFormGroupEvent">
-                <label htmlFor="EventMinimumAge">EventMinimumAge</label>
-                <input type="text" className="form-control" name="EventMinimumAge" placeholder="Enter EventMinimumAge"
-                onChange={handleChange} value={EventInfo.EventMinimumAge}/>
               </div>
               <div className="myFormGroupEvent">
                 <label htmlFor="EventOrganizer">EventOrganizer</label>

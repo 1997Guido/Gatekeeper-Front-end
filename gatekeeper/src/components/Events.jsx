@@ -5,55 +5,58 @@ import { useEffect, useState } from 'react';
 import axiosinstance from '../api/axiosApi';
 import { useCookies } from 'react-cookie';
 import { Link } from 'react-router-dom';
-
+import SingleEvent from './SingleEventPage';
+import { useNavigate } from 'react-router-dom';
 function Events() {
-        
-    let csrftoken = useCookies(['csrftoken'])
+    const navigate = useNavigate();
+    const navigateToSingleEvent = (eventnumber) => {
+        localStorage.setItem('eventnumber', eventnumber);
+        navigate('/singleeventview',{eventnumber});
+    }
     const [event, setevent] = useState([]);
+    const [singleview, setsingleview] = useState(false);
 
     const getEvents = () => {
-        axiosinstance.get('api/eventviewapi')
+        axiosinstance.get('/api/eventviewapi?format=json')
           .then(function(response){
             console.log(response);
-            setevent(response);
+            setevent(response.data);
+            localStorage.setItem('events', JSON.stringify(response.data));
           })
     }
+    useEffect(() => {
+        getEvents();
+    }, []);
     return ( 
         <>
-        <div className="container-fluid EventContainer">
-            <div className="row EventTitle">
-                <div className="col EventTitle">
-                    Events
-                </div>
-            </div>
-            {event.map((events, index) => (
-            <div className="row eventbox">
-                <div className="col eventtext eventtitel" key={events.id}>
-                    {events.name}
-                </div>
-                <div className="row">
-                  <div className="col eventtext">
-                    Description: {events.description}<br />
-                    Attending: {events.attending_count}<br />
-                  </div>
-                </div>
-            <div className="row">
-              <div className="col eventtext">
-                  Date: {events.start_time}
-              </div>
-              <div className="row">
-                <div className="col eventtext">
-                </div>
-              </div>
-            </div>
-            </div>
-            ))}
-            <div className="row">
-                <div className="col">
-                <Link to='/eventcreate'><button className='btn btn-primary'>Create event</button></Link>
-                </div>
+        <div className="container-fluid">
+        <div className="row">
+            <div className="col EventBanner">
+                Events
             </div>
         </div>
+        <div className="row">
+          <div className="col"></div>
+              <Link to='/eventcreate'><button className='btn btn-primary EventButton'>Create Event</button></Link>
+              <div className="col"></div>
+        </div>
+        {event.map((event, index) => (
+        <div className="row EventContainer" key={index}>
+            <div className="col EventTitle">
+                {event.EventTitle}
+                <button onClick={() => navigateToSingleEvent(index)}>View</button>
+            </div>
+            <div className="">
+              <div className="col">
+                Organized by:<br/>
+                {event.EventOrganizer}<br/>
+                {event.EventDate}<br />
+                {event.EventLocation}<br />
+              </div>
+            </div>
+        </div>
+        ))}
+    </div>
 
         </>
      );

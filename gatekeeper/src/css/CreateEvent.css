@@ -1,0 +1,13 @@
+.CreateEventContainer{
+        background-color: #2c2c2c;
+        text-align: center;
+        color: white;
+        width: 40vh;
+        min-width: 30vh;
+        height: 140vh;
+        margin: auto;
+        border: 1px solid #2c2c2c;
+        border-radius: 3%;
+        opacity: 95%;
+        margin-top: 5vh;
+}

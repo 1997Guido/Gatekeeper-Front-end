@@ -1,12 +1,15 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import './../css/register.css'
 import { useState } from 'react';
-import axios from 'axios';
+import axiosinstance from './../api/axiosApi';
 import {motion} from "framer-motion";
 import { Navigate } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 
 function Register(){
     const [Success, setSucces] = useState(false);
+    const [error, setError] = useState();
+    const csrftoken = useCookies(['csrftoken'])
     const [RegisterInfo, setRegisterInfo] = useState({
       username: "",
       password1: "",
@@ -22,7 +25,7 @@ function Register(){
     };
     const handleSubmit = (event) => {
       event.preventDefault()
-      axios.post('http://localhost:8000/auth/registration/',
+      axiosinstance.post('/auth/registration/',
       {
         username: RegisterInfo.username,
         email: RegisterInfo.email,
@@ -31,18 +34,16 @@ function Register(){
         first_name: RegisterInfo.firstname,
         last_name: RegisterInfo.lastname,
         date_of_birth: RegisterInfo.date_of_birth,
+        gender: RegisterInfo.gender,
       },
-      {headers: {
-        'Content-Type': 'application/json',
-      }},
-      {
-        withCredentials: true
-      })
+      {headers: {'X-CSRFToken': csrftoken[0].csrftoken}})
       .then(function(response){
-        console.log(RegisterInfo)
-            console.log(response);
-            setSucces(true);
-        });
+          console.log(response)
+          setSucces(true);
+        }).catch(function(error){
+          console.log(error)
+          setError(error.response.data)
+        })
     };
     return (
     <motion.div
@@ -51,7 +52,7 @@ function Register(){
       transition={{ duration: 1 }}
     >
     {Success ? (
-      <Navigate replace to ="/login"/>
+      <Navigate replace to ="/"/>
     ) : (
       <div className="container-flex RegisterContainer">
         <form onSubmit={handleSubmit} className="myFormRegister">
@@ -72,11 +73,15 @@ function Register(){
             onChange={handleChange} value={RegisterInfo.date_of_birth}/>
           </div>
           <div className="myFormGroupRegister">
-            <label htmlFor="gender" className="label">gender:</label>
-              <input type="radio" id="male" name="gender" value='male' checked={RegisterInfo.gender === 'male'}onChange={handleChange}/>
-              <label for="male">Male</label>
-              <input type="radio" id="female" name="gender" value='female' checked={RegisterInfo.gender === 'female'} onChange={handleChange}/>
-              <label for="female">Female</label>
+              <button className='btn btn-primary' type="radio" id="Male" name="gender" value='Male' checked={RegisterInfo.gender === 'Male'}onChange={handleChange}>
+                Male
+              </button>
+              <button className='btn btn-primary' type="radio" id="Female" name="gender" value='Female' checked={RegisterInfo.gender === 'Female'} onChange={handleChange}>
+                Female
+              </button>
+              <button className='btn btn-primary' type="radio" id="Undefined" name="gender" value='Undefined' checked={RegisterInfo.gender === 'Undefined'} onChange={handleChange}>
+                Other
+              </button>
           </div>
           <div className="form-group myFormGroupRegister">
             <label htmlFor="username">Username</label>
