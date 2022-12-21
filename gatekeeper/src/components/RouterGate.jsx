@@ -6,6 +6,7 @@ import Admin from './Admin'
 import AdminQr from './AdminQr'
 import Register from './Register';
 import Login from './Login';
+import AdminResult from './AdminResult';
 import {AnimatePresence} from "framer-motion";
 import React from 'react';
 import PrivateRoutes from '../api/ProtectedRoutes.jsx';
@@ -26,6 +27,7 @@ function RouterGate() {
                 <Route path="adminqr" element={<AdminQr/>} exact/>
                 <Route path="/userprofile" element={<UserProfile />}></Route>
                 <Route path="/userqr" element={<UserQr />}></Route>
+                <Route path="/adminresult" element={<AdminResult />}></Route>
             </Route>
         </Routes>
         <div>

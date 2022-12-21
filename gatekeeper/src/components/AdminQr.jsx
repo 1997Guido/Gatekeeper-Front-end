@@ -13,15 +13,17 @@ function AdminQr() {
     
     let csrftoken = useCookies(['csrftoken'])
     const [encryptedqrdata, setencryptedqrdata] = useState('Scan a QR Code');
-    const [Success, setSucces] = useState(false);
+    const [Success, setSuccess] = useState(false);
+    const [userdata, setuserdata] = useState('');
 
     const qrVerify = () => {
         axiosinstance.post('api/qrcodeverificatorapi', {encryptedqrdata},
         {headers: {'X-CSRFToken': csrftoken[0].csrftoken}})
           .then(function(response){
             if (response.data.check === 'True') {
-                console.log('QR Verified!');
+                console.log('QR Verified!')
                 console.log(response.data.userdata);
+                setuserdata(response.data.userdata);
               } 
             //console.log(response);
           })
@@ -31,13 +33,36 @@ function AdminQr() {
     });
     return ( 
 <motion.div
-    initial={{ opacity: 0, scale: 0.5}}
-    animate={{ opacity: 1, scale: 1}}
-    transition={{ duration: 1 }}
+    initial= {{ opacity: 0, scale: 0.5}}
+    animate= {{ opacity: 1, scale: 1}}
+    transition= {{ duration: 1 }}
 >
     <>
     {Success ? (
-        <p>Success</p>
+    <div className='UserProfileContainer'>
+        <div className='row'>
+            <div className='col Userprofile'>
+            <p className='ProfileTitle'>Scanned Profile</p>
+        </div>
+        </div>
+        <div className='row'>
+            <div className='col Userprofile'>
+            <p>{userdata.first_name} {userdata.last_name}</p>
+            </div>
+        </div>
+        <div className='row'>
+            <div className='col Userprofile'>
+                <p>Placholder date of birth</p>
+            </div>
+        </div>
+        <div className='row'>
+            <div className='col Userprofile'>
+                <p>{userdata.gender}</p>
+            </div>
+        </div>
+        <button className='btn btn-primary' onClick={() => setSuccess(false)}>Scan Again</button>
+    </div>
+
     ) : (
         <div className="container-fluid">
         <div className="row justify-content-center">
@@ -47,6 +72,7 @@ function AdminQr() {
                     onResult={(result, error) => {
                     if (!!result) {
                     setencryptedqrdata(result?.text);
+                    setSuccess(true);
                     }
                     if (!!error) {
                     //console.info(error);
@@ -58,12 +84,11 @@ function AdminQr() {
             </div>
         </div>
     </div>
-
-</>
+    )}
     <div className="result">
         <p className="encryptedqrdata"> {encryptedqrdata} </p>
     </div>
-    )}
+</>
 </motion.div>
      );
 }
