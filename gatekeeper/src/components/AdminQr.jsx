@@ -10,7 +10,6 @@ import { useCookies } from 'react-cookie';
 import { useEffect } from 'react';
 
 function AdminQr() {
-
     function ScanAgain() {
         window.location.reload(false);
       }
@@ -18,11 +17,13 @@ function AdminQr() {
     let csrftoken = useCookies(['csrftoken'])
     const [encryptedqrdata, setencryptedqrdata] = useState('Scan a QR Code');
     const [userdata, setuserdata] = useState('');
+    let result = '';
 
     const qrVerify = () => {
         axiosinstance.post('api/qrcodeverificatorapi', {encryptedqrdata},
         {headers: {'X-CSRFToken': csrftoken[0].csrftoken}})
           .then(function(response){
+            result = '';
             if (response.data.check === 'True') {
                 console.log('QR Verified!')
                 console.log(response.data.userdata);
@@ -34,6 +35,7 @@ function AdminQr() {
 
     useEffect(() => {
         qrVerify();
+        result = '';
     }, [encryptedqrdata])
 
     if (encryptedqrdata !== 'Scan a QR Code') {
@@ -79,7 +81,6 @@ function AdminQr() {
                     onResult={(result, error) => {
                     if (!!result) {
                     setencryptedqrdata(result?.text);
-                    result = '';
                     }
                     if (!!error) {
                     //console.info(error);
