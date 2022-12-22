@@ -12,9 +12,7 @@ import React from 'react';
 import PrivateRoutes from '../api/ProtectedRoutes.jsx';
 import Nav from './NavBar.jsx';
 import SingleEvent from './SingleEventPage';
-
-
-
+import MyEvents from './MyEvents';
 function RouterGate() {
     const location = useLocation();
     return (
@@ -23,6 +21,7 @@ function RouterGate() {
             <Route path="/Register" element={<Register />}></Route>
             <Route path="/login" element={<Login />}></Route>
             <Route element={<PrivateRoutes/>}>
+                <Route path="*" element={<Home />}></Route>
                 <Route path="/" element={<Home />}></Route>
                 <Route path="/admin" element={<AdminQr />}></Route>
                 <Route path="/qrpage" element={<UserQr/>}/>
@@ -30,6 +29,7 @@ function RouterGate() {
                 <Route path="/events" element={<Events />}></Route>
                 <Route path="/eventcreate" element={<CreateEvent />}></Route>
                 <Route path="/singleeventview" element={<SingleEvent />}></Route>
+                <Route path="/myevents" element={<MyEvents />}></Route>
             </Route>
         </Routes>
         <div>

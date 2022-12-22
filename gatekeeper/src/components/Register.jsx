@@ -7,8 +7,8 @@ import { Navigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 
 function Register(){
-    const [Success, setSucces] = useState(false);
-    const [error, setError] = useState();
+    const [Success, setSuccess] = useState(false);
+    const [error, setError] = useState('no error');
     const csrftoken = useCookies(['csrftoken'])
     const [RegisterInfo, setRegisterInfo] = useState({
       username: "",
@@ -25,6 +25,7 @@ function Register(){
     };
     const handleSubmit = (event) => {
       event.preventDefault()
+      console.log(RegisterInfo.gender)
       axiosinstance.post('/auth/registration/',
       {
         username: RegisterInfo.username,
@@ -38,11 +39,11 @@ function Register(){
       },
       {headers: {'X-CSRFToken': csrftoken[0].csrftoken}})
       .then(function(response){
-          console.log(response)
-          setSucces(true);
+          setSuccess(true);
         }).catch(function(error){
-          console.log(error)
-          setError(error.response.data)
+          setSuccess(false);
+          console.log(error.response.data)
+          setError(error)
         })
     };
     return (
@@ -73,15 +74,12 @@ function Register(){
             onChange={handleChange} value={RegisterInfo.date_of_birth}/>
           </div>
           <div className="myFormGroupRegister">
-              <button className='btn btn-primary' type="radio" id="Male" name="gender" value='Male' checked={RegisterInfo.gender === 'Male'}onChange={handleChange}>
-                Male
-              </button>
-              <button className='btn btn-primary' type="radio" id="Female" name="gender" value='Female' checked={RegisterInfo.gender === 'Female'} onChange={handleChange}>
-                Female
-              </button>
-              <button className='btn btn-primary' type="radio" id="Undefined" name="gender" value='Undefined' checked={RegisterInfo.gender === 'Undefined'} onChange={handleChange}>
-                Other
-              </button>
+              <input className='form-check-input' type="radio" id="Male" name="gender" value='Male' checked={RegisterInfo.gender === 'Male'} onChange={handleChange}/>
+              Male<br/>
+              <input className='form-check-input' type="radio" id="Female" name="gender" value='Female' checked={RegisterInfo.gender === 'Female'} onChange={handleChange}/>
+              Female<br/>
+              <input className='form-check-input' type="radio" id="Undefined" name="gender" value='Undefined' checked={RegisterInfo.gender === 'Undefined'} onChange={handleChange}/>
+              Undefined
           </div>
           <div className="form-group myFormGroupRegister">
             <label htmlFor="username">Username</label>

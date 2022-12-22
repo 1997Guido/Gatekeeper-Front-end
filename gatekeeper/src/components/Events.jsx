@@ -38,7 +38,9 @@ function Events() {
         <div className="row">
           <div className="col"></div>
               <Link to='/eventcreate'><button className='btn btn-primary EventButton'>Create Event</button></Link>
-              <div className="col"></div>
+              <div className="col">
+              <Link to='/myevents'><button className='btn btn-primary EventButton'>My events</button></Link>
+              </div>
         </div>
         {event.map((event, index) => (
         <div className="row EventContainer" key={index}>
