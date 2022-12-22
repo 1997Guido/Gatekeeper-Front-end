@@ -10,10 +10,13 @@ import { useCookies } from 'react-cookie';
 import { useEffect } from 'react';
 
 function AdminQr() {
+
+    function ScanAgain() {
+        window.location.reload(false);
+      }
     
     let csrftoken = useCookies(['csrftoken'])
     const [encryptedqrdata, setencryptedqrdata] = useState('Scan a QR Code');
-    const [Success, setSuccess] = useState(false);
     const [userdata, setuserdata] = useState('');
 
     const qrVerify = () => {
@@ -28,9 +31,38 @@ function AdminQr() {
             //console.log(response);
           })
     }
+
     useEffect(() => {
         qrVerify();
-    });
+    }, [encryptedqrdata])
+
+    if (encryptedqrdata !== 'Scan a QR Code') {
+        return(
+            <div className='UserProfileContainer'>
+            <div className='row'>
+                <div className='col Userprofile'>
+                <p className='ProfileTitle'>Scanned Profile</p>
+            </div>
+            </div>
+            <div className='row'>
+                <div className='col Userprofile'>
+                <p>{userdata.first_name} {userdata.last_name}</p>
+                </div>
+            </div>
+            <div className='row'>
+                <div className='col Userprofile'>
+                    <p>{userdata.date_of_birth}</p>
+                </div>
+            </div>
+            <div className='row'>
+                <div className='col Userprofile'>
+                    <p>{userdata.gender}</p>
+                </div>
+            </div>
+            <button className='ScanAgain' onClick={() => setencryptedqrdata('Scan a QR Code')} >Scan Again</button>
+        </div>
+        )
+    } else
     return ( 
 <motion.div
     initial= {{ opacity: 0, scale: 0.5}}
@@ -38,32 +70,7 @@ function AdminQr() {
     transition= {{ duration: 1 }}
 >
     <>
-    {Success ? (
-    <div className='UserProfileContainer'>
-        <div className='row'>
-            <div className='col Userprofile'>
-            <p className='ProfileTitle'>Scanned Profile</p>
-        </div>
-        </div>
-        <div className='row'>
-            <div className='col Userprofile'>
-            <p>{userdata.first_name} {userdata.last_name}</p>
-            </div>
-        </div>
-        <div className='row'>
-            <div className='col Userprofile'>
-                <p>Placholder date of birth</p>
-            </div>
-        </div>
-        <div className='row'>
-            <div className='col Userprofile'>
-                <p>{userdata.gender}</p>
-            </div>
-        </div>
-        <button className='btn btn-primary' onClick={() => setSuccess(false)}>Scan Again</button>
-    </div>
 
-    ) : (
         <div className="container-fluid">
         <div className="row justify-content-center">
             <div className="col scanner">
@@ -72,7 +79,7 @@ function AdminQr() {
                     onResult={(result, error) => {
                     if (!!result) {
                     setencryptedqrdata(result?.text);
-                    setSuccess(true);
+                    result = '';
                     }
                     if (!!error) {
                     //console.info(error);
@@ -84,7 +91,6 @@ function AdminQr() {
             </div>
         </div>
     </div>
-    )}
     <div className="result">
         <p className="encryptedqrdata"> {encryptedqrdata} </p>
     </div>
