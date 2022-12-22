@@ -25,28 +25,30 @@ function UserProfile() {
         animate={{ opacity: 1, scale: 1}}
         transition={{ duration: 1 }}
       >
-                <div className='UserProfileContainer'>
-                    <div className='row'>
-                        <div className='col Userprofile'>
-                            <p className='ProfileTitle'>Your Profile</p>
-                        </div>
-                    </div>
-                    <div className='row'>
-                        <div className='col Userprofile'>
-                            <p>{data.first_name} {data.last_name}</p>
-                        </div>
-                    </div>
-                    <div className='row'>
-                        <div className='col Userprofile'>
-                            <p>{data.date_of_birth}</p>
-                        </div>
-                    </div>
-                    <div className='row'>
-                        <div className='col Userprofile'>
-                            <p>{data.gender}</p>
-                        </div>
-                    </div>
-                </div>
+    <div className='UserProfileContainer'>
+        <div className='row'>
+            <div className='col Userprofile'>
+            <p className='ProfileTitle'>Your Profile</p>
+        </div>
+    </div>
+        <div className='row'>
+            <div className='col Userprofile'>
+                <p>{data.first_name} {data.last_name}</p>
+            </div>
+        </div>
+        <div className='row'>
+            <div className='col Userprofile'>
+                <p>{data.date_of_birth}</p>
+            </div>
+        </div>
+        <div className='row'>
+            <div className='col Userprofile'>
+                <p>{data.gender}</p>
+            </div>
+        </div>
+    </div>
+
+
     </motion.div>
      );
 }
