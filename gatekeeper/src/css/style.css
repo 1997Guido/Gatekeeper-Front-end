@@ -18,7 +18,5 @@
 }
 .App{
     min-height: 100vh;
-    height: 200vh;
-    max-width: 100%;
     background-color: var(--base);
 }

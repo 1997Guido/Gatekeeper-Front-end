@@ -18,11 +18,6 @@ function CreateEvent() {
         EventTimeEnd: '',
         EventLocation: '',
         EventMaxGuests: '',
-        EventInvitedGuests: [{}],
-        EventIsFree: true,
-        EventPrice: 0,
-        EventDuration: 0,
-        EventMinimumAge: 0,
         EventOrganizer: '',
         });
     const handleChange = (event) => {
@@ -40,8 +35,6 @@ function CreateEvent() {
             EventTimeEnd: EventInfo.EventTimeEnd,
             EventLocation: EventInfo.EventLocation,
             EventMaxGuests: EventInfo.EventMaxGuests,
-            EventDuration: EventInfo.EventDuration,
-            EventMinimumAge: EventInfo.EventMinimumAge,
             EventOrganizer: EventInfo.EventOrganizer,
           },
           {headers: {'X-CSRFToken': csrftoken[0].csrftoken}})
@@ -88,31 +81,20 @@ function CreateEvent() {
                 onChange={handleChange} value={EventInfo.EventMaxGuests}/>
               </div>
               <div className="myFormGroupEvent">
-                <label htmlFor="EventDuration">EventDuration</label>
-                <input type="time" step="1" className="form-control" name="EventDuration" placeholder="Enter EventDuration"
-                onChange={handleChange} value={EventInfo.EventDuration}/>
-              </div>
-              <div className="myFormGroupEvent">
                 <label htmlFor="EventOrganizer">EventOrganizer</label>
                 <input type="text" className="form-control" name="EventOrganizer" placeholder="Enter EventOrganizer"
                 onChange={handleChange} value={EventInfo.EventOrganizer}/>
               </div>
               <div className="myFormGroupEvent">
-                <label htmlFor="EventIsPrivate">EventIsPrivate</label>
-                <input type="text" className="form-control" name="EventIsPrivate" placeholder="Enter EventIsPrivate"
-                onChange={handleChange} value={EventInfo.EventIsPrivate}/>
-              </div>
-              <div className="myFormGroupEvent">
                 <label htmlFor="EventTimeStart">EventTimeStart</label>
-                <input type="text" className="form-control" name="EventTimeStart" placeholder="Enter EventTimeStart"
+                <input type="time" className="form-control" name="EventTimeStart" placeholder="Enter EventTimeStart"
                 onChange={handleChange} value={EventInfo.EventTimeStart}/>
               </div>
               <div className="myFormGroupEvent">
                 <label htmlFor="EventTimeEnd">EventTimeEnd</label>
-                <input type="text" className="form-control" name="EventTimeEnd" placeholder="Enter EventTimeEnd"
+                <input type="time" className="form-control" name="EventTimeEnd" placeholder="Enter EventTimeEnd"
                 onChange={handleChange} value={EventInfo.EventTimeEnd}/>
               </div>
-    
                 <button type="submit" className="btn btn-primary">Create Event</button>
               </form>
           </div>

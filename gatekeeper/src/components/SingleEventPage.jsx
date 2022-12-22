@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 function SingleEvent() {  
     const csrftoken = useCookies(['csrftoken'])      
     const events = JSON.parse(localStorage.getItem('events'));
+    console.log(events)
     const singleevent = events[localStorage.getItem('eventnumber')];
     const [event, setevent] = useState([]);
     const pk = singleevent.pk;
