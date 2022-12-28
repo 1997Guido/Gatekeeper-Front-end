@@ -1,11 +1,11 @@
 import React from 'react'
-import axiosInstance from '../api/axiosApi'
+import axiosinstance from '../api/axiosApi'
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useCookies } from 'react-cookie'
 import './../css/CreateEvent.css'
-
-
+import { Link } from 'react-router-dom'
+import * as TbIcons from "react-icons/tb";
 
 function CreateEvent() {
     let csrftoken = useCookies(['csrftoken'])
@@ -26,7 +26,7 @@ function CreateEvent() {
         const handleSubmit = (event) => {
             console.log(EventInfo)
           event.preventDefault()
-          axiosInstance.post('api/eventcreationapi',
+          axiosinstance.post('api/eventcreationapi',
           {
             EventTitle: EventInfo.EventTitle,
             EventDescription: EventInfo.EventDescription,
@@ -45,11 +45,12 @@ function CreateEvent() {
             });
         };
         return (
-        <motion.div
-          initial={{ opacity: 0, scale: 0.5}}
-          animate={{ opacity: 1, scale: 1}}
-          transition={{ duration: 1 }}
-        >
+        <>
+    <motion.div
+      initial={{ opacity: 0, scale: 0.7}}
+      animate={{ opacity: 1, scale: 1}}
+      transition={{ duration: 0.8 }}
+    >
         {Success ? (
           <div>Successs</div>
         ) : (
@@ -100,6 +101,8 @@ function CreateEvent() {
           </div>
         )}
     </motion.div>
+    <Link to='/events'><TbIcons.TbArrowBackUp className="BackButton" /></Link>
+    </>
   )
 }
 

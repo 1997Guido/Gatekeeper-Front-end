@@ -36,7 +36,9 @@ function Login(){
         password: LoginInfo.password,
           },{withCredentials: true})
           .then(function(response){
+            console.log(response.data);
             localStorage.setItem("Auth", "true");
+            localStorage.setItem("userpk", response.data.user.pk);
             setSucces(true);
             console.log("Logged In");
         });

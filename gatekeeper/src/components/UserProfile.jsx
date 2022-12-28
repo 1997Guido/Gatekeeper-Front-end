@@ -4,6 +4,7 @@ import './../css/userprofile.css';
 import { useEffect, useState } from 'react';
 import axiosinstance from './../api/axiosApi';
 import {motion} from "framer-motion";
+import { Link } from 'react-router-dom';
 
 function UserProfile() {
 

@@ -5,10 +5,17 @@ import { useEffect, useState } from 'react';
 import axiosinstance from '../api/axiosApi';
 import { useCookies } from 'react-cookie';
 import { Link } from 'react-router-dom';
-
-
+import * as TbIcons from "react-icons/tb";
+import { useNavigate } from 'react-router-dom';
 function MyEvents() {       
-    const [event, setevent] = useState([]);
+  const [event, setevent] = useState([]);
+  const navigate = useNavigate();
+
+  const navigateToSingleEvent = (eventnumber) => {
+    localStorage.setItem('eventnumber', eventnumber);
+    navigate('/singleeventview',{eventnumbers: eventnumber});
+  }
+
   useEffect(() => {
     axiosinstance.get('/api/eventviewapipersonal')
     .then(function(response){
@@ -16,8 +23,13 @@ function MyEvents() {
       console.log(response.data)
     })
   }, [])
-    return ( 
-        <>
+    return (
+    <> 
+    <motion.div
+      initial={{ opacity: 0, scale: 0.7}}
+      animate={{ opacity: 1, scale: 1}}
+      transition={{ duration: 0.8 }}
+    >
       {event.map((event, index) => (
         <div className="row EventContainer" key={index}>
             <div className="col EventTitle">
@@ -31,11 +43,16 @@ function MyEvents() {
                 {event.EventLocation}<br />
               </div>
             </div>
+            <div className="col">
+              <TbIcons.TbFileInfo className='EventInfoButton' onClick={() => navigateToSingleEvent(index)}/>
+            </div>
         </div>
         ))}
-        <Link to='/events'><button className='btn btn-primary MyEventsButton'>Back</button></Link>
+        <div className='heightmaker'></div>
 
-        </>
+    </motion.div>
+    <Link to='/events'><TbIcons.TbArrowBackUp className="BackButton" /></Link>
+    </>
      );
 }
 
