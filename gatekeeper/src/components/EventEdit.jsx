@@ -3,6 +3,7 @@ import axiosInstance from "../api/axiosApi";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useCookies } from "react-cookie";
+import "./../css/EventEdit.css";
 
 function EventEdit() {
     let singleevent = JSON.parse(localStorage.getItem("singleevent"));
@@ -17,7 +18,6 @@ function EventEdit() {
     EventLocation: singleevent.EventLocation,
     EventMaxGuests: singleevent.EventMaxGuests,
     EventOrganizer: singleevent.EventOrganizer,
-    EventInvitedGuests: singleevent.EventInvitedGuests,
     EventIsCancelled: singleevent.EventIsCancelled,
     EventIsPrivate: singleevent.EventIsPrivate,
     EventPrice: singleevent.EventPrice,
@@ -41,7 +41,6 @@ function EventEdit() {
           EventLocation: EventInfo.EventLocation,
           EventMaxGuests: EventInfo.EventMaxGuests,
           EventOrganizer: EventInfo.EventOrganizer,
-          EventInvitedGuests: EventInfo.EventInvitedGuests,
           EventIsCancelled: EventInfo.EventIsCancelled,
           EventIsPrivate: EventInfo.EventIsPrivate,
           EventPrice: EventInfo.EventPrice,
@@ -56,9 +55,10 @@ function EventEdit() {
       });
   };
   return (
-    <div className="container-flex CreateEventContainer">
-      <form onSubmit={handleSubmit} className="myFormEvent">
-        <div className="myFormGroupEvent">
+  <>
+    <div className="container-flex EditEventContainer">
+      <form onSubmit={handleSubmit} className="myFormGroupEvent">
+        <div className="">
           <label htmlFor="EventTitle">EventTitle</label>
           <input
             type="text"
@@ -69,7 +69,7 @@ function EventEdit() {
             value={EventInfo.EventTitle}
           />
         </div>
-        <div className="myFormGroupEvent">
+        <div className="">
           <label htmlFor="EventDescription">EventDescription</label>
           <input
             type="text"
@@ -91,7 +91,7 @@ function EventEdit() {
             value={EventInfo.EventDate}
           />
         </div>
-        <div className="myFormGroupEvent">
+        <div className="myFormEditEvent">
           <label htmlFor="EventLocation">EventLocation</label>
           <input
             type="text"
@@ -102,7 +102,7 @@ function EventEdit() {
             value={EventInfo.EventLocation}
           />
         </div>
-        <div className="myFormGroupEvent">
+        <div className="myFormEditEvent">
           <label htmlFor="EventMaxGuests">EventMaxGuests</label>
           <input
             type="text"
@@ -113,7 +113,7 @@ function EventEdit() {
             value={EventInfo.EventMaxGuests}
           />
         </div>
-        <div className="myFormGroupEvent">
+        <div className="myFormEditEvent">
           <label htmlFor="EventOrganizer">EventOrganizer</label>
           <input
             type="text"
@@ -124,7 +124,7 @@ function EventEdit() {
             value={EventInfo.EventOrganizer}
           />
         </div>
-        <div className="myFormGroupEvent">
+        <div className="myFormEditEvent">
           <label htmlFor="EventTimeStart">EventTimeStart</label>
           <input
             type="time"
@@ -135,7 +135,7 @@ function EventEdit() {
             value={EventInfo.EventTimeStart}
           />
         </div>
-        <div className="myFormGroupEvent">
+        <div className="myFormEditEvent">
           <label htmlFor="EventTimeEnd">EventTimeEnd</label>
           <input
             type="time"
@@ -146,18 +146,7 @@ function EventEdit() {
             value={EventInfo.EventTimeEnd}
           />
         </div>
-        <div className="myFormGroupEvent">
-          <label htmlFor="EventTimeEnd">EventTimeEnd</label>
-          <input
-            type="time"
-            className="form-control"
-            name="EventTimeEnd"
-            placeholder="Enter EventTimeEnd"
-            onChange={handleChange}
-            value={EventInfo.EventTimeEnd}
-          />
-        </div>
-        <div className="myFormGroupEvent">
+        <div className="myFormEditEvent">
           <label htmlFor="EventPrice">EventPrice</label>
           <input
             type="text"
@@ -168,7 +157,7 @@ function EventEdit() {
             value={EventInfo.EventPrice}
           />
         </div>
-        <div className="myFormGroupEvent">
+        <div className="myFormEditEvent">
           <label htmlFor="EventMinimumAge">EventMinimumAge</label>
           <input
             type="text"
@@ -179,7 +168,7 @@ function EventEdit() {
             value={EventInfo.EventMinimumAge}
           />
         </div>
-        <div className="myFormGroupEvent">
+        <div className="myFormEditEvent">
           <label htmlFor="EventIsCancelled">EventIsCancelled</label>
           <input
             type="text"
@@ -191,10 +180,12 @@ function EventEdit() {
           />
         </div>
         <button type="submit" className="btn btn-primary">
-          Create Event
+          Edit Event
         </button>
       </form>
     </div>
+    <div className="heightmaker"></div>
+  </>
   );
 }
 

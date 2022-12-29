@@ -11,9 +11,9 @@ function MyEvents() {
   const [event, setevent] = useState([]);
   const navigate = useNavigate();
 
-  const navigateToSingleEvent = (eventnumber) => {
-    localStorage.setItem('eventnumber', eventnumber);
-    navigate('/singleeventview',{eventnumbers: eventnumber});
+  const navigateToSingleEvent = (singleventpk) => {
+    localStorage.setItem('singleventpk', singleventpk);
+    navigate('/singleeventview');
   }
 
   useEffect(() => {
@@ -44,7 +44,7 @@ function MyEvents() {
               </div>
             </div>
             <div className="col">
-              <TbIcons.TbFileInfo className='EventInfoButton' onClick={() => navigateToSingleEvent(index)}/>
+              <TbIcons.TbFileInfo className='EventInfoButton' onClick={() => navigateToSingleEvent(event.pk)}/>
             </div>
         </div>
         ))}

@@ -13,11 +13,6 @@ import * as TbIcons from "react-icons/tb";
 
 
 function Events() {
-    const navigate = useNavigate();
-    const navigateToSingleEvent = (eventnumber) => {
-        localStorage.setItem('eventnumber', eventnumber);
-        navigate('/singleeventview');
-    }
     const [event, setevent] = useState([]);
 
     const getEvents = async () => {
@@ -63,7 +58,7 @@ function Events() {
               </div>
             </div>
             <div className="col">
-                <TbIcons.TbFileInfo className='EventInfoButton' onClick={() => navigateToSingleEvent(index)}/>
+                <TbIcons.TbFileInfo className='EventInfoButton' onClick={() => navigateToSingleEvent(event.pk)}/>
             </div>
         </div>
         ))}

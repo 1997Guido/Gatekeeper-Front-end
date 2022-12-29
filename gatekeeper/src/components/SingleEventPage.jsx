@@ -7,16 +7,13 @@ import { useCookies } from "react-cookie";
 import { Link } from "react-router-dom";
 import * as TbIcons from "react-icons/tb";
 import EventEdit from "./EventEdit";
+import { useNavigate } from "react-router-dom";
 function SingleEvent() {
   const csrftoken = useCookies(["csrftoken"]);
-  const events = JSON.parse(localStorage.getItem("events"));
-  console.log(events);
-  const singleevent = events[localStorage.getItem("eventnumber")];
   const [event, setevent] = useState([]);
   const [eventowner, seteventowner] = useState(false);
-  const [editmode, seteditmode] = useState(false);
-  const pk = singleevent.pk;
-
+  const [editmode, seteditmode] = useState('false');
+  const pk = localStorage.getItem("singleventpk");
   const getSingleEvent = async () => {
     await axiosinstance
       .post(
@@ -47,8 +44,14 @@ function SingleEvent() {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8 }}
       >
-        {editmode ? (
-          <EventEdit eventdata={event} />
+        {editmode !== 'false' ? (
+          <div>
+          {editmode === 'edit' ? (
+            <EventEdit eventdata={event} />
+          ) : (
+            <EventInvite eventdata={event} />
+          )}
+          </div>
         ) : (
           <div className="container-fluid">
             <div className="row">
@@ -98,10 +101,16 @@ function SingleEvent() {
             <div className="row">
               <div className="col">
                 {eventowner ? (
+                <div>
                   <TbIcons.TbEdit
-                    onClick={() => seteditmode(true)}
+                    onClick={() => seteditmode('edit')}
                     className="EventInfoButton"
                   />
+                  <TbIcons.TbAddressBook
+                  onClick={() => seteditmode('invite')}
+                  className="EventInviteButton"
+                  />
+                </div>
                 ) : (
                   ""
                 )}
