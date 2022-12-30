@@ -1,13 +1,17 @@
-import "./../css/SingleEvent.css";
+import "./../../css/SingleEvent.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import axiosinstance from "../api/axiosApi";
+import axiosinstance from "../../api/axiosApi";
 import { useCookies } from "react-cookie";
 import { Link } from "react-router-dom";
 import * as TbIcons from "react-icons/tb";
 import EventEdit from "./EventEdit";
 import { useNavigate } from "react-router-dom";
+import EventInvite from "./EventInvite";
+
+
+
 function SingleEvent() {
   const csrftoken = useCookies(["csrftoken"]);
   const [event, setevent] = useState([]);
@@ -109,6 +113,10 @@ function SingleEvent() {
                   <TbIcons.TbAddressBook
                   onClick={() => seteditmode('invite')}
                   className="EventInviteButton"
+                  />
+                  <TbIcons.TbTrash
+                    onClick={() => seteditmode('delete')}
+                    className="EventDeleteButton"
                   />
                 </div>
                 ) : (

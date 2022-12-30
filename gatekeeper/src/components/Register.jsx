@@ -1,5 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import './../css/register.css'
+import './../css/GlobalStyle.css'
 import { useState } from 'react';
 import axiosinstance from './../api/axiosApi';
 import {motion} from "framer-motion";
@@ -86,7 +87,6 @@ function Register(){
             <input type="text" className="form-control" name="username" placeholder="Enter Username"
             onChange={handleChange} value={RegisterInfo.username}/>
           </div>
-
           <div className="form-group myFormGroupRegister">
             <label htmlFor="email">Emailadress</label>
             <input type="email" className="form-control" name="email" placeholder="Enter Emailadress"

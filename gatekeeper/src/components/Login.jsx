@@ -1,4 +1,4 @@
-import './../css/style.css'
+import './../css/GlobalStyle.css'
 import 'bootstrap/dist/css/bootstrap.css';
 import './../css/login.css'
 import { useState, useEffect } from 'react';

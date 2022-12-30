@@ -2,8 +2,8 @@ import { Route, Routes, useLocation} from 'react-router-dom';
 import Home from './Home';
 import UserProfile from './UserProfile';
 import UserQr from './UserQr';
-import CreateEvent from './CreateEvent';
-import Events from './Events'
+import CreateEvent from '../components/Events/CreateEvent';
+import Events from '../components/Events/Events'
 import AdminQr from './AdminQr'
 import Register from './Register';
 import Login from './Login';
@@ -11,8 +11,10 @@ import {AnimatePresence} from "framer-motion";
 import React from 'react';
 import PrivateRoutes from '../api/ProtectedRoutes.jsx';
 import Nav from './NavBar.jsx';
-import SingleEvent from './SingleEventPage';
-import MyEvents from './MyEvents';
+import MyEvents from '../components/Events/MyEvents';
+import SingleEvent from '../components/Events/SingleEventPage';
+import validateUserLoggedIn from '../api/ValidateUserLoggedIn';
+
 function RouterGate() {
     const location = useLocation();
     return (

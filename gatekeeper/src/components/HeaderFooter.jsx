@@ -1,4 +1,4 @@
-import './../css/style.css'
+import './../css/GlobalStyle.css'
 import './../css/HeaderFooter.css'
 import 'bootstrap/dist/css/bootstrap.css';
 

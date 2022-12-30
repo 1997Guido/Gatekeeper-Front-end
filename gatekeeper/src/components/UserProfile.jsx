@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.css';
-import './../css/style.css';
+import './../css/GlobalStyle.css';
 import './../css/userprofile.css';
 import { useEffect, useState } from 'react';
 import axiosinstance from './../api/axiosApi';

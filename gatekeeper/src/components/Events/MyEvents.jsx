@@ -1,8 +1,8 @@
-import './../css/MyEvents.css'
+import './../../css/MyEvents.css'
 import 'bootstrap/dist/css/bootstrap.css';
 import {motion} from "framer-motion";
 import { useEffect, useState } from 'react';
-import axiosinstance from '../api/axiosApi';
+import axiosinstance from '../../api/axiosApi';
 import { useCookies } from 'react-cookie';
 import { Link } from 'react-router-dom';
 import * as TbIcons from "react-icons/tb";
@@ -15,13 +15,16 @@ function MyEvents() {
     localStorage.setItem('singleventpk', singleventpk);
     navigate('/singleeventview');
   }
-
-  useEffect(() => {
-    axiosinstance.get('/api/eventviewapipersonal')
+  const getPersonalEvents = async () => {
+    await axiosinstance.get('/api/eventviewapipersonal')
     .then(function(response){
       setevent(response.data);
       console.log(response.data)
     })
+  }
+
+  useEffect(() => {
+    getPersonalEvents();
   }, [])
     return (
     <> 

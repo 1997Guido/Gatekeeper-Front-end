@@ -1,8 +1,8 @@
-import './../css/Events.css'
+import './../../css/Events.css'
 import 'bootstrap/dist/css/bootstrap.css';
 import {motion} from "framer-motion";
 import { useEffect, useState } from 'react';
-import axiosinstance from '../api/axiosApi';
+import axiosinstance from '../../api/axiosApi';
 import { useCookies } from 'react-cookie';
 import { Link } from 'react-router-dom';
 import SingleEvent from './SingleEventPage';
@@ -14,6 +14,11 @@ import * as TbIcons from "react-icons/tb";
 
 function Events() {
     const [event, setevent] = useState([]);
+    const navigate = useNavigate();
+    const navigateToSingleEvent = (singleventpk) => {
+      localStorage.setItem('singleventpk', singleventpk);
+      navigate('/singleeventview');
+    }
 
     const getEvents = async () => {
         await axiosinstance.get('/api/eventviewapi?format=json')
