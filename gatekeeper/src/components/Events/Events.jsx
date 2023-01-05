@@ -3,9 +3,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import {motion} from "framer-motion";
 import { useEffect, useState } from 'react';
 import axiosinstance from '../../api/axiosApi';
-import { useCookies } from 'react-cookie';
 import { Link } from 'react-router-dom';
-import SingleEvent from './SingleEventPage';
 import { useNavigate } from 'react-router-dom';
 import * as TbIcons from "react-icons/tb";
 
@@ -25,14 +23,13 @@ function Events() {
           .then(function(response){
             console.log(response);
             setevent(response.data);
-            localStorage.setItem('events', JSON.stringify(response.data));
           })
     }
     useEffect(() => {
         getEvents();
     }, []);
     return (
-        <> 
+  <> 
     <motion.div
       initial={{ opacity: 0, scale: 0.7}}
       animate={{ opacity: 1, scale: 1}}
@@ -73,7 +70,7 @@ function Events() {
         </motion.div>
         <Link to='/myevents'><button className='EventButton'>My events</button></Link>
         <Link to='/eventcreate'><TbIcons.TbPlus className='EventButton2'/></Link>
-        </>
+  </>
      );
 }
 

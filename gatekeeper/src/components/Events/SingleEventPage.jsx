@@ -7,9 +7,8 @@ import { useCookies } from "react-cookie";
 import { Link } from "react-router-dom";
 import * as TbIcons from "react-icons/tb";
 import EventEdit from "./EventEdit";
-import { useNavigate } from "react-router-dom";
 import EventInvite from "./EventInvite";
-
+import EventDelete from "./EventDelete";
 
 
 function SingleEvent() {
@@ -18,6 +17,7 @@ function SingleEvent() {
   const [eventowner, seteventowner] = useState(false);
   const [editmode, seteditmode] = useState('false');
   const pk = localStorage.getItem("singleventpk");
+
   const getSingleEvent = async () => {
     await axiosinstance
       .post(
@@ -48,15 +48,7 @@ function SingleEvent() {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8 }}
       >
-        {editmode !== 'false' ? (
-          <div>
-          {editmode === 'edit' ? (
-            <EventEdit eventdata={event} />
-          ) : (
-            <EventInvite eventdata={event} />
-          )}
-          </div>
-        ) : (
+        {editmode === 'false' ? (
           <div className="container-fluid">
             <div className="row">
               <div className="col SingleEventBanner">SingleEvent</div>
@@ -125,11 +117,21 @@ function SingleEvent() {
               </div>
             </div>
           </div>
+        ) : (
+          <div>
+          {editmode === 'edit' ? (<EventEdit eventdata={event} />) : (null)}
+          {editmode === 'invite' ? (<EventInvite eventdata={event} />) : (null)}
+          {editmode === 'delete' ? (<EventDelete eventdata={event} />) : (null)}
+          </div>
         )}
       </motion.div>
+      {editmode === 'false' ? (
       <Link to="/events">
         <TbIcons.TbArrowBackUp className="BackButton" />
       </Link>
+      ) : (
+        <TbIcons.TbArrowBackUp className="BackButton" onClick={() => seteditmode('false')} />
+      )}
     </>
   );
 }

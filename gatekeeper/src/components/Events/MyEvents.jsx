@@ -10,7 +10,6 @@ import { useNavigate } from 'react-router-dom';
 function MyEvents() {       
   const [event, setevent] = useState([]);
   const navigate = useNavigate();
-
   const navigateToSingleEvent = (singleventpk) => {
     localStorage.setItem('singleventpk', singleventpk);
     navigate('/singleeventview');
