@@ -3,6 +3,7 @@ import axiosInstance from '../../api/axiosApi'
 import {useState, useEffect} from 'react'
 import Select from 'react-select'
 import './../../css/EventInvite.css'
+import Async, { useAsync } from 'react-select/async';
 function EventInvite(event) {
   const [userlist, setuserlist] = useState([{}])
   const [invitedUsers, setInvitedUsers] = useState([{}])
@@ -14,6 +15,7 @@ function EventInvite(event) {
       .then(function(response){
         console.log(userlist)
         console.log(response.data)
+        if (userlist !== [{}]){
         for (let i = 0; i < response.data.length; i++) {
           if (tempList.includes(response.data[i].id) === false){
           tempList.push({value: response.data[i].id, label: response.data[i].username})
@@ -21,6 +23,7 @@ function EventInvite(event) {
         }
         setuserlist(tempList)
         console.log(userlist)
+        }
       })
   }
   const handleChange = (selectedOption) => {
@@ -28,11 +31,6 @@ function EventInvite(event) {
     invitedUsers.push(selectedOption)
     console.log(`Option selected:`, selectedOption);
   };
-
-  useEffect(() => {
-    getUserNames();
-    console.log(userlist)
-  }, []);
   return (
   <>
     <div>
