@@ -1,5 +1,14 @@
-.Invite{
+.EventInviteContainer{
+    background-color: #2c2c2c;
+    text-align: center;
+    color: white;
+    width: 40vh;
+    min-width: 30vh;
+    height: 50vh;
     margin: auto;
-    margin-top: 5vh;
-    background-color: aqua;
+    border: 1px solid #2c2c2c;
+    border-radius: 3%;
+    opacity: 95%;
+    margin-top: 2vh;
+    margin-bottom: 10vh;
 }
