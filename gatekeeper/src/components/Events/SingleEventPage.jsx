@@ -12,12 +12,13 @@ import EventDelete from "./EventDelete";
 
 
 function SingleEvent() {
+  const [currentInvitedUsers, setcurrentInvitedUsers] = useState([{}]);
   const csrftoken = useCookies(["csrftoken"]);
   const [event, setevent] = useState([]);
   const [eventowner, seteventowner] = useState(false);
   const [editmode, seteditmode] = useState('false');
   const pk = localStorage.getItem("singleventpk");
-
+  
   const getSingleEvent = async () => {
     await axiosinstance
       .get(
@@ -27,7 +28,7 @@ function SingleEvent() {
       .then(function (response) {
         console.log('response:', response.data);
         setevent(response.data[0]);
-        localStorage.setItem("singleevent", JSON.stringify(response.data));
+        localStorage.setItem("singleevent", JSON.stringify(response.data[0]));
         console.log(response.data.EventOwner);
         console.log(localStorage.getItem("userpk"));
         if (response.data[0].EventOwner == localStorage.getItem("userpk")) {
@@ -54,35 +55,39 @@ function SingleEvent() {
             </div>
             <div className="row SingleEventContainer">
               <div className="col SingleEventTitle">{event.EventTitle}</div>
-              <div className="">
                 <div className="col">
                   Organized by:
                   <br />
                   {event.EventOrganizer}
                   <br />
-                  Date:
+                  <TbIcons.TbCalendarEvent className="EventIcon"/>
                   {event.EventDate}
                   <br />
-                  Location:
+                  <TbIcons.TbLocation className="EventIcon"/>
                   {event.EventLocation}
                   <br />
-                  Description:
+                  <TbIcons.TbInfoCircle className="EventIcon"/>
+                  <br/>
                   {event.EventDescription}
                   <br />
-                  Invited Guests:
-                  {event.EventInvitedGuests}
-                  <br />
                   Private:
+                  {event.EventIsPrivate === true ? (
+                    <TbIcons.TbCross className="EventIcon"/>) : (<TbIcons.TbCheck className="EventIcon"/>)}
                   {event.EventIsPrivate}
                   <br />
                   Free:
+                  {event.EventIsFree === true ? (
+                    <TbIcons.TbCross className="EventIcon"/>) : (<TbIcons.TbCheck className="EventIcon"/>)}
                   {event.EventIsFree}
                   <br />
                   Event Max Capacity:
                   {event.EventMaxGuests}
                   <br />
-                  Event Price:
-                  {event.EventPrice}
+                  {event.EventIsFree === false ? (
+                    null) : 
+                    (<div>
+                      {event.EventPrice}
+                      </div>)}
                   <br />
                   Guests currently at event:
                   {event.EventCurrentGuests}
@@ -91,7 +96,6 @@ function SingleEvent() {
                   {event.EventMinimumAge}
                   <br />
                 </div>
-              </div>
             </div>
             <div className="row">
               <div className="col">

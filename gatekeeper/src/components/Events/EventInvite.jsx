@@ -6,20 +6,16 @@ import Select from "react-select";
 import "./../../css/EventInvite.css";
 import { useCookies } from "react-cookie";
 
-
-
 function EventInvite(event) {
-  console.log("event", event)
   let csrftoken = useCookies(["csrftoken"]);
   const [userlist, setuserlist] = useState([{}]);
-  console.log("userlist", userlist);
+  const [currentInvitedUsers, setcurrentInvitedUsers] = useState([{}]);
   const tempList = [{}];
   const invitedUsers = [];
   const [selectedOption, setSelectedOption] = useState(null);
-
   const getUserNames = async () => {
     await axiosInstance
-      .get("/api/usernamelistviewapi")
+      .get(`/api/usernameviewapi?allusers=yes`)
       .then(function (response) {
         console.log("response.data:", response.data);
         for (let i = 0; i < response.data.length; i++) {
@@ -33,6 +29,20 @@ function EventInvite(event) {
         setuserlist(tempList);
       });
   };
+  const getInvitedUsers = async () => {
+    await axiosInstance
+      .post(
+        "/api/getinvitedusers",
+        {
+          pk: event.eventdata.pk,
+        },
+        { headers: { "X-CSRFToken": csrftoken[0].csrftoken } }
+      )
+      .then(function (response) {
+        console.log("response.data:", response.data);
+        setcurrentInvitedUsers(response.data);
+      });
+  };
 
   const handleChange = (selectedOption) => {
     setSelectedOption(selectedOption);
@@ -41,23 +51,26 @@ function EventInvite(event) {
     console.log(`Option selected:`, selectedOption);
   };
 
-  const Invite = () => {
+  const Invite = (invite) => {
     axiosInstance
       .post(
         "/api/eventinviteapi",
         {
           pk: event.eventdata.pk,
-          invitedUsers: selectedOption
+          invitedUsers: selectedOption,
+          inv: invite,
         },
         { headers: { "X-CSRFToken": csrftoken[0].csrftoken } }
       )
       .then(function (response) {
+        getInvitedUsers();
         console.log(response);
       });
   };
 
   useEffect(() => {
     getUserNames();
+    getInvitedUsers();
     console.log("i should fire once");
   }, []);
   return (
@@ -75,7 +88,21 @@ function EventInvite(event) {
         <div className="EventInviteContainer">
           <div className="row">
             <div className="col">
-              <button className="btn btn-primary" onClick={() => Invite()}>Invite</button>
+              <button
+                className="btn btn-primary"
+                onClick={() => Invite("Invite")}
+              >
+                Invite
+              </button>
+              <button
+                className="btn btn-primary"
+                onClick={() => Invite("Uninvite")}
+              >
+                Uninvite
+              </button>
+              {currentInvitedUsers.map((user, index) => (
+                <div key={index}>{user.username}</div>
+              ))}
             </div>
           </div>
         </div>

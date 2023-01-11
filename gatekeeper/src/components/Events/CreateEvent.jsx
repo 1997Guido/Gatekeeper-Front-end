@@ -24,7 +24,7 @@ function CreateEvent() {
           setEventInfo({ ...EventInfo, [event.target.name]: event.target.value });
         };
         const handleSubmit = (event) => {
-            console.log(EventInfo)
+          console.log(EventInfo)
           event.preventDefault()
           axiosinstance.post('api/eventcreationapi',
           {

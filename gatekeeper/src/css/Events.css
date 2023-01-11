@@ -83,5 +83,5 @@
     margin-left: 35vh;
 }
 .heightmaker{
-    height: 31vh;
+    min-height: 20vh;
 }

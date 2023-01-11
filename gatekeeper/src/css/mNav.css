@@ -1,4 +1,4 @@
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 850px) {
         .mobile-nav {
             background: #2c2c2c;
             top: 9vh;
@@ -68,7 +68,7 @@
             }
         }
 }
-@media screen and (max-width: 599px) {
+@media screen and (max-width: 850px) {
 .mobile-nav {
     z-index: 1;
     background: #2c2c2c;
