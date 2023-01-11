@@ -5,13 +5,18 @@ import "bootstrap/dist/css/bootstrap.css";
 import Select from "react-select";
 import "./../../css/EventInvite.css";
 import { useCookies } from "react-cookie";
+
+
+
 function EventInvite(event) {
-  let csrftoken = useCookies(['csrftoken'])
+  console.log("event", event)
+  let csrftoken = useCookies(["csrftoken"]);
   const [userlist, setuserlist] = useState([{}]);
   console.log("userlist", userlist);
   const tempList = [{}];
   const invitedUsers = [];
   const [selectedOption, setSelectedOption] = useState(null);
+
   const getUserNames = async () => {
     await axiosInstance
       .get("/api/usernamelistviewapi")
@@ -28,20 +33,29 @@ function EventInvite(event) {
         setuserlist(tempList);
       });
   };
+
   const handleChange = (selectedOption) => {
     setSelectedOption(selectedOption);
     invitedUsers.push(selectedOption);
-    console.log("invitedUsers", invitedUsers)
+    console.log("invitedUsers", invitedUsers);
     console.log(`Option selected:`, selectedOption);
   };
+
   const Invite = () => {
-    axiosInstance.post("/api/eventinviteapi", {
-      invitedUsers: invitedUsers,
-    }, {headers: {'X-CSRFToken': csrftoken[0].csrftoken}})
+    axiosInstance
+      .post(
+        "/api/eventinviteapi",
+        {
+          pk: event.eventdata.pk,
+          invitedUsers: selectedOption
+        },
+        { headers: { "X-CSRFToken": csrftoken[0].csrftoken } }
+      )
       .then(function (response) {
-        console.log(response)
-        });
-  }
+        console.log(response);
+      });
+  };
+
   useEffect(() => {
     getUserNames();
     console.log("i should fire once");
@@ -53,16 +67,15 @@ function EventInvite(event) {
           <div className="col EventBanner">Invite</div>
         </div>
         <Select
-                  defaultValue={selectedOption}
-                  onChange={handleChange}
-                  options={userlist}
-                  isMulti={true}
-                />
+          defaultValue={selectedOption}
+          onChange={handleChange}
+          options={userlist}
+          isMulti={true}
+        />
         <div className="EventInviteContainer">
-          <div className="row SelectBox">
+          <div className="row">
             <div className="col">
-              <div>
-              </div>
+              <button className="btn btn-primary" onClick={() => Invite()}>Invite</button>
             </div>
           </div>
         </div>
