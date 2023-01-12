@@ -75,12 +75,16 @@
 .EventInfoButton{
     width: 7vh;
     height: 5vh;
-    margin-left: 30vh;
+    margin-left: 10vh;
 }
 .EventInviteButton{
     width: 7vh;
     height: 5vh;
-    margin-left: 35vh;
+}
+.EventDeleteButton{
+    width: 7vh;
+    height: 5vh;
+    color: rgb(200, 46, 46);
 }
 .heightmaker{
     min-height: 20vh;
