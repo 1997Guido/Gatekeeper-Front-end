@@ -50,15 +50,18 @@ function AdminQr() {
       axiosinstance
         .post(
           "api/qrcodeverificatorapi",
-          { encryptedqrdata },
+          { encryptedqrdata: encryptedqrdata,
+            event: selectedOption.value },
           { headers: { "X-CSRFToken": csrftoken[0].csrftoken } }
         )
         .then(function (response) {
           result = "";
+          console.log("QR Verified!");
+          console.log("Response Check: " , response.data.check);
+          console.log("response" , response)
+          console.log("Response Userdata: " , response.data.userdata);
+          console.log("Selected Option: " , selectedOption);
           if (response.data.check === "True") {
-            console.log("QR Verified!");
-            console.log("Response Userdata: " + response.data.userdata);
-            console.log("Selected Option: " + selectedOption);
             setuserdata(response.data.userdata);
           }
           //console.log(response);
