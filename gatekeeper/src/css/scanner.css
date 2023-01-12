@@ -26,3 +26,26 @@
     font-family: kirsty;
     word-wrap: break-word;
 }
+.QRProfileContainer {
+    background-color: #2c2c2c;
+    text-align: center;
+    color: white;
+    width: 40vh;
+    min-width: 30vh;
+    height: 50vh;
+    margin: auto;
+    border: 1px solid #2c2c2c;
+    border-radius: 3%;
+    opacity: 95%;
+    margin-top: 5vh;
+    transition: 1s;
+}
+.render {
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.6s ease;
+}
+.show {
+    visibility: visible;
+    opacity: 1;
+  }
