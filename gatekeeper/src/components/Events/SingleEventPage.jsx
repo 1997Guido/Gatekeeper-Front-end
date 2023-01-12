@@ -55,6 +55,7 @@ function SingleEvent() {
             </div>
             <div className="row SingleEventContainer">
               <div className="col SingleEventTitle">{event.EventTitle}</div>
+              <div className="row">
                 <div className="col">
                   Organized by:
                   <br />
@@ -81,21 +82,20 @@ function SingleEvent() {
                   {event.EventIsFree}
                   <br />
                   Event Max Capacity:
-                  {event.EventMaxGuests}
+                  {event.EventCurrentGuests}/{event.EventMaxGuests}
+                  <br />
+                  Guests currently at event:
+                  {event.EventCurrentGuests}
+                  <br />
+                  {event.EventMinimumAge === 0 ? (null) : (<div>Minimum Age:{event.EventMinimumAge}</div>)}
                   <br />
                   {event.EventIsFree === false ? (
                     null) : 
                     (<div>
                       {event.EventPrice}
                       </div>)}
-                  <br />
-                  Guests currently at event:
-                  {event.EventCurrentGuests}
-                  <br />
-                  Minimum Age:
-                  {event.EventMinimumAge}
-                  <br />
                 </div>
+            </div>
             </div>
             <div className="row">
               <div className="col">
