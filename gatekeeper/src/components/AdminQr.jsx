@@ -8,13 +8,42 @@ import axiosinstance from "./../api/axiosApi";
 import { motion } from "framer-motion";
 import { useCookies } from "react-cookie";
 import { useEffect } from "react";
+import Select from "react-select";
 import QrProfile from "./QrProfile";
 
 function AdminQr() {
+  const [selectedOption, setSelectedOption] = useState(null);
   let csrftoken = useCookies(["csrftoken"]);
   const [encryptedqrdata, setencryptedqrdata] = useState("Scan a QR Code");
   const [userdata, setuserdata] = useState("");
+  const [event, setevent] = useState("");
+  const [eventlist, seteventlist] = useState([{}]);
+  const tempList = [{}];
   let result = "";
+
+
+  const handleChange = (selectedOption) => {
+    setSelectedOption(selectedOption);
+    console.log(`Option selected:`, selectedOption);
+  };
+
+  const getPersonalEvents = async () => {
+    await axiosinstance.get('/api/eventviewapipersonal')
+    .then(function(response){
+      setevent(response.data);
+      console.log(response.data)
+      for (let i = 0; i < response.data.length; i++) {
+        if (tempList.includes(response.data[i].id) === false) {
+          tempList.push({
+            value: response.data[i].pk,
+            label: response.data[i].EventTitle,
+          });
+        }
+      }
+
+      seteventlist(tempList);
+    })
+  }
 
   const qrVerify = () => {
     if (encryptedqrdata !== "Scan a QR Code") {
@@ -28,7 +57,8 @@ function AdminQr() {
           result = "";
           if (response.data.check === "True") {
             console.log("QR Verified!");
-            //console.log(response.data.userdata);
+            console.log("Response Userdata: " + response.data.userdata);
+            console.log("Selected Option: " + selectedOption);
             setuserdata(response.data.userdata);
           }
           //console.log(response);
@@ -39,6 +69,7 @@ function AdminQr() {
 
   useEffect(() => {
     qrVerify();
+    getPersonalEvents();
     result = "";
   }, [encryptedqrdata]);
   return(
@@ -72,6 +103,12 @@ function AdminQr() {
           <div className="result">
             <p className="encryptedqrdata"> {encryptedqrdata} </p>
           </div>
+          <Select
+          defaultValue={selectedOption}
+          onChange={handleChange}
+          options={eventlist}
+          isMulti={false}
+        />
         </>
       </motion.div>
     )
