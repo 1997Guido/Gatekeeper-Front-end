@@ -6,7 +6,8 @@ import axiosinstance from './../api/axiosApi';
 import {motion} from "framer-motion";
 import { Navigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
-
+import { Link } from 'react-router-dom';
+import * as TbIcons from 'react-icons/tb';
 function Register(){
     const [Success, setSuccess] = useState(false);
     const [error, setError] = useState('no error');
@@ -107,6 +108,10 @@ function Register(){
 
             <button type="submit" className="btn btn-primary">Register</button>
           </form>
+          <div className="heightmaker"></div>
+          <Link to="/login">
+          <TbIcons.TbArrowBackUp className="BackButton" />
+        </Link>
       </div>
     )}
           </motion.div>

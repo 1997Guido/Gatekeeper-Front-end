@@ -1,4 +1,4 @@
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 800px) {
     .myFormRegister{
         background-color: #2c2c2c;
         text-align: center;
@@ -7,14 +7,14 @@
         max-width: 40vh;
     }
 }
-@media screen and (max-width: 599px) {
+@media screen and (max-width: 800px) {
     .myFormRegister{
         background-color: #2c2c2c;
         text-align: center;
         color: white;
         width: 40vh;
         min-width: 30vh;
-        height: 80vh;
+        height: 100vh;
         margin: auto;
         border: 1px solid #2c2c2c;
         border-radius: 3%;
