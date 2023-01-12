@@ -8,6 +8,7 @@ import axiosinstance from "./../api/axiosApi";
 import { motion } from "framer-motion";
 import { useCookies } from "react-cookie";
 import { useEffect } from "react";
+import QrProfile from "./QrProfile";
 
 function AdminQr() {
   let csrftoken = useCookies(["csrftoken"]);
@@ -40,42 +41,9 @@ function AdminQr() {
     qrVerify();
     result = "";
   }, [encryptedqrdata]);
-
-  if (encryptedqrdata !== "Scan a QR Code") {
-    return (
-      <div className="QRProfileContainer">
-        <div className="row">
-          <div className="col Userprofile">
-            <p className="ProfileTitle">Scanned Profile</p>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col Userprofile">
-            <p>
-              {userdata.first_name} {userdata.last_name}
-            </p>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col Userprofile">
-            <p>{userdata.date_of_birth}</p>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col Userprofile">
-            <p>{userdata.gender}</p>
-          </div>
-        </div>
-        <button
-          className="ScanAgain"
-          onClick={() => setencryptedqrdata("Scan a QR Code")}
-        >
-          Scan Again
-        </button>
-      </div>
-    );
-  } else
-    return (
+  return(
+    <div>
+      {encryptedqrdata !== "Scan a QR Code" ? (<QrProfile userdata={userdata} />) : (
       <motion.div
         initial={{ opacity: 0, scale: 0.5 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -106,7 +74,9 @@ function AdminQr() {
           </div>
         </>
       </motion.div>
-    );
-}
+    )
+};
+</div>
+)};
 
 export default AdminQr;
