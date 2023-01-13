@@ -9,6 +9,7 @@ function EventEdit() {
   let singleevent = JSON.parse(localStorage.getItem("singleevent"));
   let csrftoken = useCookies(["csrftoken"]);
   const [Status, setStatus] = useState("ready");
+  const [error , setError] = useState("no error");
   const [EventInfo, setEventInfo] = useState({
     EventTitle: singleevent.EventTitle,
     EventDescription: singleevent.EventDescription,
@@ -55,56 +56,55 @@ function EventEdit() {
           if (response.data === "Event edited") {
             setStatus("Event edited");
           } else {
-            console.log(response.headers["content-type"]);
-            console.log(Status);
-            setStatus(response.headers["content-type"]);
-            console.log(Status);
+            setError(response.data)
           }
-        } else {
-          setStatus(error);
-        }
+        } 
+      }).catch(function (error) {
+        console.log("Error",error);
       });
   };
   return (
     <>
-      {Status === "ready" ? (
+    {Status === "ready" ? (
         <div>
           <div className="container-flex EditEventContainer">
             <form onSubmit={handleSubmit} className="myFormGroupEvent">
               <div className="">
-                <label htmlFor="EventTitle">EventTitle</label>
+                <label htmlFor="EventTitle">Event Title</label>
+                {error !== "no error" ? (
+                  <div className="error">{error.EventTitle}</div>
+                ) : null}
                 <input
                   type="text"
                   className="form-control"
                   name="EventTitle"
-                  placeholder="Enter EventTitle"
+                  placeholder="What is the title of your event?"
                   onChange={handleChange}
                   value={EventInfo.EventTitle}
                 />
               </div>
-              <div className="">
-                <label htmlFor="EventDescription">EventDescription</label>
-                <input
-                  type="text"
+              <div class="form-group">
+                <label for="EventDescription">
+                  Event Description
+                </label>
+                {error !== "no error" ? (
+                  <div className="error">{error.EventDescription}</div>
+                ) : null}
+                <textarea
                   className="form-control"
                   name="EventDescription"
-                  placeholder="Enter EventDescription"
+                  placeholder="What is the description of your event?"
                   onChange={handleChange}
                   value={EventInfo.EventDescription}
-                />
-              </div>
-              <div class="form-group">
-                <label for="exampleFormControlTextarea1">
-                  Example textarea
-                </label>
-                <textarea
-                  class="form-control"
-                  id="exampleFormControlTextarea1"
-                  rows="3"
+                  rows="4"
+                  maxLength={100}
                 ></textarea>
               </div>
               <div className="myFormGroupRegister">
                 <label htmlFor="date_of_birth">Date of Event</label>
+                {error !== "no error" ? (
+                  <div className="error">{error.EventDate}</div>
+                ) : null}
                 <input
                   type="date"
                   className="form-control"
@@ -115,7 +115,10 @@ function EventEdit() {
                 />
               </div>
               <div className="myFormEditEvent">
-                <label htmlFor="EventLocation">EventLocation</label>
+                <label htmlFor="EventLocation">Where is your event going to be located?</label>
+                {error !== "no error" ? (
+                  <div className="error">{error.EventLocation}</div>
+                ) : null}
                 <input
                   type="text"
                   className="form-control"
@@ -126,7 +129,10 @@ function EventEdit() {
                 />
               </div>
               <div className="myFormEditEvent">
-                <label htmlFor="EventMaxGuests">EventMaxGuests</label>
+                <label htmlFor="EventMaxGuests">What is your guest capacity?</label>
+                {error !== "no error" ? (
+                  <div className="error">{error.EventMaxGuests}</div>
+                ) : null}
                 <input
                   type="text"
                   className="form-control"
@@ -137,7 +143,10 @@ function EventEdit() {
                 />
               </div>
               <div className="myFormEditEvent">
-                <label htmlFor="EventOrganizer">EventOrganizer</label>
+                <label htmlFor="EventOrganizer">Who or what is organizing this event?</label>
+                {error !== "no error" ? (
+                  <div className="error">{error.EventOrganizer}</div>
+                ) : null}
                 <input
                   type="text"
                   className="form-control"
@@ -148,7 +157,10 @@ function EventEdit() {
                 />
               </div>
               <div className="myFormEditEvent">
-                <label htmlFor="EventTimeStart">EventTimeStart</label>
+                <label htmlFor="EventTimeStart">When will your event start?</label>
+                {error !== "no error" ? (
+                  <div className="error">{error.EventTimeStart}</div>
+                ) : null}
                 <input
                   type="time"
                   className="form-control"
@@ -159,7 +171,10 @@ function EventEdit() {
                 />
               </div>
               <div className="myFormEditEvent">
-                <label htmlFor="EventTimeEnd">EventTimeEnd</label>
+                <label htmlFor="EventTimeEnd">When will it end?</label>
+                {error !== "no error" ? (
+                  <div className="error">{error.EventTimeEnd}</div>
+                ) : null}
                 <input
                   type="time"
                   className="form-control"
@@ -170,10 +185,16 @@ function EventEdit() {
                 />
               </div>
               <div className="myFormEditEvent price">
-                <label htmlFor="EventPrice">EventPrice</label>
+                <label htmlFor="EventPrice">What is the price?</label>
+                {error !== "no error" ? (
+                  <div className="error">{error.EventPrice}</div>
+                ) : null}
+                ${EventInfo.EventPrice}
                 <input
-                  type="number"
-                  className="form-control"
+                  type="range"
+                  className="form-range"
+                  min={0}
+                  max={300}
                   name="EventPrice"
                   placeholder="Enter EventPrice"
                   onChange={handleChange}
@@ -181,7 +202,10 @@ function EventEdit() {
                 />
               </div>
               <div className="myFormEditEvent">
-                <label htmlFor="EventMinimumAge">EventMinimumAge</label>
+                <label htmlFor="EventMinimumAge">How old should your guests be to be able to enter?</label>
+                {error !== "no error" ? (
+                  <div className="error">{error.EventMinimumAge}</div>
+                ) : null}
                 <input
                   type="number"
                   className="form-control"
@@ -189,17 +213,6 @@ function EventEdit() {
                   placeholder="Enter EventMinimumAge"
                   onChange={handleChange}
                   value={EventInfo.EventMinimumAge}
-                />
-              </div>
-              <div className="myFormEditEvent">
-                <label htmlFor="EventIsCancelled">EventIsCancelled</label>
-                <input
-                  type="checkbox"
-                  className="form-check-input"
-                  name="EventIsCancelled"
-                  placeholder="Enter EventIsCancelled"
-                  onChange={handleChange}
-                  value={EventInfo.EventIsCancelled}
                 />
               </div>
               <button type="submit" className="btn btn-primary">
@@ -210,145 +223,9 @@ function EventEdit() {
           <div className="heightmaker"></div>
         </div>
       ) : (
-        <>
-          {Status === "Event edited" ? (
-            <div className="Success">{Status}</div>
-          ) : (
-            <div>
-              <div className="Error">{Status}</div>
-              <div className="container-flex EditEventContainer">
-                <form onSubmit={handleSubmit} className="myFormGroupEvent">
-                  <div className="">
-                    <label htmlFor="EventTitle">EventTitle</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      name="EventTitle"
-                      placeholder="Enter EventTitle"
-                      onChange={handleChange}
-                      value={EventInfo.EventTitle}
-                    />
-                  </div>
-                  <div className="">
-                    <label htmlFor="EventDescription">EventDescription</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      name="EventDescription"
-                      placeholder="Enter EventDescription"
-                      onChange={handleChange}
-                      value={EventInfo.EventDescription}
-                    />
-                  </div>
-                  <div className="myFormGroupRegister">
-                    <label htmlFor="date_of_birth">Date of Event</label>
-                    <input
-                      type="date"
-                      className="form-control"
-                      name="EventDate"
-                      placeholder="Date of Event"
-                      onChange={handleChange}
-                      value={EventInfo.EventDate}
-                    />
-                  </div>
-                  <div className="myFormEditEvent">
-                    <label htmlFor="EventLocation">EventLocation</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      name="EventLocation"
-                      placeholder="Enter EventLocation"
-                      onChange={handleChange}
-                      value={EventInfo.EventLocation}
-                    />
-                  </div>
-                  <div className="myFormEditEvent">
-                    <label htmlFor="EventMaxGuests">EventMaxGuests</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      name="EventMaxGuests"
-                      placeholder="Enter EventMaxGuests"
-                      onChange={handleChange}
-                      value={EventInfo.EventMaxGuests}
-                    />
-                  </div>
-                  <div className="myFormEditEvent">
-                    <label htmlFor="EventOrganizer">EventOrganizer</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      name="EventOrganizer"
-                      placeholder="Enter EventOrganizer"
-                      onChange={handleChange}
-                      value={EventInfo.EventOrganizer}
-                    />
-                  </div>
-                  <div className="myFormEditEvent">
-                    <label htmlFor="EventTimeStart">EventTimeStart</label>
-                    <input
-                      type="time"
-                      className="form-control"
-                      name="EventTimeStart"
-                      placeholder="Enter EventTimeStart"
-                      onChange={handleChange}
-                      value={EventInfo.EventTimeStart}
-                    />
-                  </div>
-                  <div className="myFormEditEvent">
-                    <label htmlFor="EventTimeEnd">EventTimeEnd</label>
-                    <input
-                      type="time"
-                      className="form-control"
-                      name="EventTimeEnd"
-                      placeholder="Enter EventTimeEnd"
-                      onChange={handleChange}
-                      value={EventInfo.EventTimeEnd}
-                    />
-                  </div>
-                  <div className="myFormEditEvent">
-                    <label htmlFor="EventPrice">EventPrice</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      name="EventPrice"
-                      placeholder="Enter EventPrice"
-                      onChange={handleChange}
-                      value={EventInfo.EventPrice}
-                    />
-                  </div>
-                  <div className="myFormEditEvent">
-                    <label htmlFor="EventMinimumAge">EventMinimumAge</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      name="EventMinimumAge"
-                      placeholder="Enter EventMinimumAge"
-                      onChange={handleChange}
-                      value={EventInfo.EventMinimumAge}
-                    />
-                  </div>
-                  <div className="myFormEditEvent">
-                    <label htmlFor="EventIsCancelled">EventIsCancelled</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      name="EventIsCancelled"
-                      placeholder="Enter EventIsCancelled"
-                      onChange={handleChange}
-                      value={EventInfo.EventIsCancelled}
-                    />
-                  </div>
-                  <button type="submit" className="btn btn-primary">
-                    Edit Event
-                  </button>
-                  <div className="Error">{Status}</div>
-                </form>
-              </div>
-              <div className="heightmaker"></div>
-            </div>
-          )}
-        </>
+        <div>
+        {Status === "Event edited" ? (<div>Event Edited</div>) : (null)}
+        </div>
       )}
     </>
   );

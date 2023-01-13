@@ -39,7 +39,7 @@
 }
 .EventTitle{
     font-family: 'Courier New', Courier, monospace;
-    font-size: 3vh;
+    font-size: 3.5vh;
 }
 .EventBanner{
     text-align: center;
@@ -52,12 +52,13 @@
         color: white;
         width: 40vh;
         min-width: 30vh;
-        height: 20vh;
+        height: 30vh;
         margin: auto;
         border: 1px solid #2c2c2c;
         border-radius: 3%;
         opacity: 95%;
         margin-top: 5vh;
+        font-size: 2.1vh;
 }
 .BackButton{
     position: fixed;
@@ -73,23 +74,27 @@
     border-radius: 100%;
 }
 .EventInfoButton{
-    width: 7vh;
-    height: 5vh;
-    margin-left: 10vh;
+    width: 9vh;
+    height: 6vh;
+    margin-left: 16vh;
 }
 .EventInviteButton{
-    width: 7vh;
+    width: 5vh;
     height: 5vh;
 }
 .EventDeleteButton{
-    width: 7vh;
+    width: 5vh;
     height: 5vh;
     color: rgb(200, 46, 46);
+}
+.EventEditButton{
+    width: 5vh;
+    height: 5vh;
 }
 .heightmaker{
     min-height: 20vh;
 }
 .price{
-    width: 35%;
+    width: 75%;
     margin: auto;
 }

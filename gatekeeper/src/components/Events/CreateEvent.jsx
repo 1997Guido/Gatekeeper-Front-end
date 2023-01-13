@@ -10,6 +10,7 @@ import * as TbIcons from "react-icons/tb";
 function CreateEvent() {
   let csrftoken = useCookies(["csrftoken"]);
   const [Success, setSuccess] = useState(false);
+  const [error, setError] = useState("no error");
   const [EventInfo, setEventInfo] = useState({
     EventTitle: "",
     EventDescription: "",
@@ -42,9 +43,15 @@ function CreateEvent() {
         { headers: { "X-CSRFToken": csrftoken[0].csrftoken } }
       )
       .then(function (response) {
+        console.log("Error", response);
+        setError(response.data);
         console.log(EventInfo);
         console.log(response);
         setSuccess(true);
+      })
+      .catch(function (error) {
+        console.log("Error", error);
+        setError(error.response.data);
       });
   };
   return (
@@ -61,6 +68,9 @@ function CreateEvent() {
             <form onSubmit={handleSubmit} className="myFormEvent">
               <div className="myFormGroupEvent">
                 <label htmlFor="EventTitle">EventTitle</label>
+                {error !== "no error" ? (
+                  <div className="error">{error.EventTitle}</div>
+                ) : null}
                 <input
                   type="text"
                   className="form-control"
@@ -72,6 +82,9 @@ function CreateEvent() {
               </div>
               <div className="myFormGroupEvent">
                 <label htmlFor="EventDescription">EventDescription</label>
+                {error !== "no error" ? (
+                  <div className="error">{error.EventDescription}</div>
+                ) : null}
                 <input
                   type="text"
                   className="form-control"
@@ -83,6 +96,9 @@ function CreateEvent() {
               </div>
               <div className="myFormGroupRegister">
                 <label htmlFor="date_of_birth">Date of Event</label>
+                {error !== "no error" ? (
+                  <div className="error">{error.EventDate}</div>
+                ) : null}
                 <input
                   type="date"
                   className="form-control"
@@ -94,6 +110,9 @@ function CreateEvent() {
               </div>
               <div className="myFormGroupEvent">
                 <label htmlFor="EventLocation">EventLocation</label>
+                {error !== "no error" ? (
+                  <div className="error">{error.EventLocation}</div>
+                ) : null}
                 <input
                   type="text"
                   className="form-control"
@@ -105,6 +124,9 @@ function CreateEvent() {
               </div>
               <div className="myFormGroupEvent">
                 <label htmlFor="EventMaxGuests">EventMaxGuests</label>
+                {error !== "no error" ? (
+                  <div className="error">{error.EventMaxGuests}</div>
+                ) : null}
                 <input
                   type="text"
                   className="form-control"
@@ -116,6 +138,9 @@ function CreateEvent() {
               </div>
               <div className="myFormGroupEvent">
                 <label htmlFor="EventOrganizer">EventOrganizer</label>
+                {error !== "no error" ? (
+                  <div className="error">{error.EventOrganizer}</div>
+                ) : null}
                 <input
                   type="text"
                   className="form-control"
@@ -127,6 +152,9 @@ function CreateEvent() {
               </div>
               <div className="myFormGroupEvent">
                 <label htmlFor="EventTimeStart">EventTimeStart</label>
+                {error !== "no error" ? (
+                  <div className="error">{error.EventTimeStart}</div>
+                ) : null}
                 <input
                   type="time"
                   className="form-control"
@@ -138,6 +166,9 @@ function CreateEvent() {
               </div>
               <div className="myFormGroupEvent">
                 <label htmlFor="EventTimeEnd">EventTimeEnd</label>
+                {error !== "no error" ? (
+                  <div className="error">{error.EventTimeEnd}</div>
+                ) : null}
                 <input
                   type="time"
                   className="form-control"

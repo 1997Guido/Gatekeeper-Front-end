@@ -1,7 +1,7 @@
 import './../css/GlobalStyle.css'
 import "./../css/mNav.css";
 import "bootstrap/dist/css/bootstrap.css";
-import logo from "./../images/torri3.png";
+import logo from "./../images/gate2.png";
 import * as HiIcons from "react-icons/hi";
 import * as TbIcons from "react-icons/tb";
 import React, { Component } from "react";

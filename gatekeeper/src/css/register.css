@@ -12,9 +12,9 @@
         background-color: #2c2c2c;
         text-align: center;
         color: white;
-        width: 40vh;
+        width: 85%;
         min-width: 30vh;
-        height: 100vh;
+        height: 145vh;
         margin: auto;
         border: 1px solid #2c2c2c;
         border-radius: 3%;
@@ -38,4 +38,13 @@
     color:antiquewhite;
     margin-top: 2vh;
     font-size: 2.5vh;
+}
+.error{
+    color: red;
+    font-size: 2vh;
+}
+.genderradio{
+    width: 3vh;
+    height: 3vh;
+    margin: 0.5vh;
 }

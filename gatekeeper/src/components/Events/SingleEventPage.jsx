@@ -77,10 +77,10 @@ function SingleEvent() {
                   )}
                   <br />
                   Free:
-                  {event.EventIsFree === false ? (
-                    <TbIcons.TbCheck className="EventIcon"/>
-                  ) : (
+                  {event.EventPrice > 0 ? (
                     <TbIcons.TbCircleX className="EventIcon"/>
+                  ) : (
+                    <TbIcons.TbCheck className="EventIcon"/>
                   )}
                   {event.EventIsFree}
                   <br />
@@ -107,7 +107,7 @@ function SingleEvent() {
                   <div className="col">
                     <TbIcons.TbEdit
                       onClick={() => seteditmode("edit")}
-                      className="EventInfoButton"
+                      className="EventEditButton"
                     />
                   </div>
                   <div className="col">
