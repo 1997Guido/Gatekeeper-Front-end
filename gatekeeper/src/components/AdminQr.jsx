@@ -58,12 +58,12 @@ function AdminQr() {
           result = "";
           console.log("QR Verified!");
           console.log("Response Check: " , response.data.check);
-          console.log("response" , response)
+          console.log("Response: " , response)
           console.log("Response Userdata: " , response.data.userdata);
           console.log("Selected Option: " , selectedOption);
-          if (response.data.check === "True") {
-            setuserdata(response.data.userdata);
-          }
+          console.log("Guestlist: ", response.data.guestlist)
+            setuserdata(response.data);
+            console.log("Userdata: ", userdata);
           //console.log(response);
         });
     } else {
