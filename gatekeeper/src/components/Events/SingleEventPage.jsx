@@ -77,11 +77,10 @@ function SingleEvent() {
                   )}
                   {event.EventIsPrivate}
                   <br />
-                  Free:
                   {event.EventIsFree === true ? (
-                    <TbIcons.TbCross className="EventIcon" />
+                    null
                   ) : (
-                    <TbIcons.TbCheck className="EventIcon" />
+                    <TbIcons.TbCheck className="EventIcon">Free:</TbIcons.TbCheck>
                   )}
                   {event.EventIsFree}
                   <br />
@@ -96,7 +95,7 @@ function SingleEvent() {
                   )}
                   <br />
                   {event.EventIsFree === false ? null : (
-                    <div>{event.EventPrice}</div>
+                    <div>${event.EventPrice}</div>
                   )}
                 </div>
               </div>
@@ -143,7 +142,7 @@ function SingleEvent() {
       ) : (
         <TbIcons.TbArrowBackUp
           className="BackButton"
-          onClick={() => seteditmode("false")}
+          onClick={function() {seteditmode("false"); getSingleEvent();}}
         />
       )}
     </>
