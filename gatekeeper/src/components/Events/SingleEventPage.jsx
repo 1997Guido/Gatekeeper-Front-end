@@ -70,33 +70,28 @@ function SingleEvent() {
                   {event.EventDescription}
                   <br />
                   Private:
-                  {event.EventIsPrivate === true ? (
-                    <TbIcons.TbCross className="EventIcon" />
+                  {event.EventIsPrivate === false ? (
+                    <TbIcons.TbCircleX className="EventIcon" />
                   ) : (
                     <TbIcons.TbCheck className="EventIcon" />
                   )}
-                  {event.EventIsPrivate}
                   <br />
-                  {event.EventIsFree === true ? (
-                    null
+                  Free:
+                  {event.EventIsFree === false ? (
+                    <TbIcons.TbCheck className="EventIcon"/>
                   ) : (
-                    <TbIcons.TbCheck className="EventIcon">Free:</TbIcons.TbCheck>
+                    <TbIcons.TbCircleX className="EventIcon"/>
                   )}
                   {event.EventIsFree}
                   <br />
                   Event Max Capacity:
                   {event.EventCurrentGuests}/{event.EventMaxGuests}
                   <br />
-                  Guests currently at event:
-                  {event.EventCurrentGuests}
-                  <br />
                   {event.EventMinimumAge === 0 ? null : (
                     <div>Minimum Age:{event.EventMinimumAge}</div>
                   )}
                   <br />
-                  {event.EventIsFree === false ? null : (
-                    <div>${event.EventPrice}</div>
-                  )}
+                  {event.EventPrice}
                 </div>
               </div>
             </div>

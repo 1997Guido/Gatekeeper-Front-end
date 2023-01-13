@@ -89,3 +89,7 @@
 .heightmaker{
     min-height: 20vh;
 }
+.price{
+    width: 35%;
+    margin: auto;
+}
