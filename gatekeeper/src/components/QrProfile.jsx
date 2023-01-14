@@ -25,18 +25,18 @@ function QrProfile(userdata) {
           <div className="row">
             <div className="col Userprofile">
               <p>
-                {userdata.userdata.first_name} {userdata.userdata.last_name}
+                {userdata.first_name} {userdata.last_name}
               </p>
             </div>
           </div>
           <div className="row">
             <div className="col Userprofile">
-              <p>{userdata.userdata.date_of_birth}</p>
+              <p>{userdata.date_of_birth}</p>
             </div>
           </div>
           <div className="row">
             <div className="col Userprofile">
-              <p>{userdata.userdata.gender}</p>
+              <p>{userdata.gender}</p>
             </div>
           </div>
           <button className="btn btn-primray buttonscan" onClick={() => setScan(true)}>Scan Again</button>
