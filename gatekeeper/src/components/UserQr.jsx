@@ -1,4 +1,4 @@
-import './../css/style.css'
+import './../css/GlobalStyle.css'
 import './../css/userqr.css'
 import 'bootstrap/dist/css/bootstrap.css';
 import {motion} from "framer-motion";

@@ -5,7 +5,6 @@ import './css/style.css'
 import './css/mNav.css'
 import HeaderFooter from "./components/HeaderFooter";
 import { useEffect, useState } from "react";
-import Nav from "./components/NavBar";
 import validateUserLoggedIn from "./api/ValidateUserLoggedIn";
 
 
