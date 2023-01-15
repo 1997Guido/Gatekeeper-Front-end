@@ -1,6 +1,6 @@
 import { Route, Routes, useLocation} from 'react-router-dom';
 import Home from './Home';
-import UserProfile from './UserProfile';
+import UserProfile from '../components/Profile/UserProfile';
 import UserQr from './UserQr';
 import CreateEvent from '../components/Events/CreateEvent';
 import Events from '../components/Events/Events'

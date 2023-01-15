@@ -32,7 +32,8 @@ function Home() {
             <div className="col text">
             <p>Welcome {username}</p>
               <p>
-                to our event planning webapp! We make it easy to create and
+                to our event planning webapp!<br/>
+                We make it easy to create and
                 manage beautiful event pages, customize with all the necessary
                 details, and invite your guests with ease. Plus, our unique QR
                 code scanning feature allows you to easily check guests in and

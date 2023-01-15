@@ -217,13 +217,15 @@ function EventEdit() {
                   value={EventInfo.EventPrice}
                 />
               </div>
-              <div className="myFormEditEvent">
-                <label htmlFor="EventMinimumAge">How old should your guests be?</label>
+              <div className="myFormEditEvent price">
+                <label htmlFor="EventMinimumAge">How old should your guests be?<br/>
+                {EventInfo.EventMinimumAge} years old
+                </label>
                 {error !== "no error" ? (
                   <div className="error">{error.EventMinimumAge}</div>
                 ) : null}
                 <input
-                  type="number"
+                  type="range"
                   className="form-range"
                   name="EventMinimumAge"
                   placeholder="Enter EventMinimumAge"

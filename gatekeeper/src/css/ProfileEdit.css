@@ -1,0 +1,40 @@
+.myFormProfile{
+    background-color: #2c2c2c;
+    text-align: center;
+    color: white;
+    margin: auto;
+    border: 1px solid #2c2c2c;
+    border-radius: 3%;
+    width: 85%;
+    height: 150%;
+    min-height: 100%;
+    box-shadow: 0 0 10px #2c2c2c;
+    opacity: 95%;
+    margin-top: 5vh;
+}
+.myFormGroupProfile{
+margin-top: 2vh;
+margin-bottom: 2vh;
+margin-left: 5vh;
+margin-right: 5vh;
+}
+.btn{
+color: #2c2c2c;
+background-color: #2e6255;
+border: #2e6255;
+width: 10vh;
+}
+.ProfileButton{
+color:antiquewhite;
+margin-top: 2vh;
+font-size: 2.5vh;
+}
+.error{
+color: red;
+font-size: 2vh;
+}
+.genderradio{
+width: 3vh;
+height: 3vh;
+margin: 0.5vh;
+}
