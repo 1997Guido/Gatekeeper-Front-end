@@ -65,10 +65,6 @@ function SingleEvent() {
                   <TbIcons.TbLocation className="EventIcon" />
                   {event.EventLocation}
                   <br />
-                  <TbIcons.TbInfoCircle className="EventIcon" />
-                  <br />
-                  {event.EventDescription}
-                  <br />
                   Private:
                   {event.EventIsPrivate === false ? (
                     <TbIcons.TbCircleX className="EventIcon" />
@@ -84,14 +80,19 @@ function SingleEvent() {
                   )}
                   {event.EventIsFree}
                   <br />
-                  Event Max Capacity:
+                  Max Capacity:
                   {event.EventCurrentGuests}/{event.EventMaxGuests}
                   <br />
                   {event.EventMinimumAge === 0 ? null : (
                     <div>Minimum Age:{event.EventMinimumAge}</div>
                   )}
                   <br />
-                  {event.EventPrice}
+                  ${event.EventPrice}
+                </div>
+                <div className="col">
+                <TbIcons.TbInfoCircle className="EventIcon" />
+                  <br />
+                  {event.EventDescription}
                 </div>
               </div>
             </div>
