@@ -38,6 +38,13 @@ function UserProfile() {
               </div>
             </div>
             <div className="row">
+              <div className="col Userprofile ProfilePicture">
+                <p>
+                  {data.profilepicture}
+                </p>
+              </div>
+            </div>
+            <div className="row">
               <div className="col Userprofile">
                 <p>
                   {data.first_name} {data.last_name}
