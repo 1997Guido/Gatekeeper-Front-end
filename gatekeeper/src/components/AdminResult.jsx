@@ -26,7 +26,7 @@ transition= {{ duration: 1 }}
     </div>
     <div className='row'>
         <div className='col Userprofile'>
-            <p></p>
+            <p>data.userdata.first_name</p>
         </div>
     </div>
     <div className='row'>
