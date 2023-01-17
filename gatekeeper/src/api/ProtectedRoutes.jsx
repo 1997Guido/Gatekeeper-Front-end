@@ -23,11 +23,12 @@ const PrivateRoutes = () => {
             }).catch(error => {
                 if (!error.response) {
                     // network error
+                    alert('Network Error');
                     localStorage.setItem('Auth', 'false');
-                    this.errorStatus = 'Error: Network Error';
+                    setIsAuth(false);
                 } else {
                     localStorage.setItem('Auth', 'false');
-                    this.errorStatus = error.response.data.message;
+                    setIsAuth(false);
                 }
               })
         }

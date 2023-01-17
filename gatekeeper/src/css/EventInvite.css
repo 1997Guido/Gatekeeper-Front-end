@@ -11,6 +11,8 @@
     opacity: 95%;
     margin-top: 2vh;
     margin-bottom: 10vh;
+    box-shadow: 0 0 10px #2c2c2c;
+    opacity: 95%;
 }
 .GuestList{
     text-align: left;

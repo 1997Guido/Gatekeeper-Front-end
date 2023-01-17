@@ -32,6 +32,7 @@
     font-size: 5vh;
     font-family: 'Courier New', Courier, monospace;
 }
+@media only screen and (max-width: 1360px) {
 .SingleEventContainer{
         background-color: #2c2c2c;
         text-align: left;
@@ -61,6 +62,38 @@
     box-shadow: 0 0 10px #2c2c2c;
     font-size: 2vh;
 }
+}
+@media only screen and (min-width: 1360px) {
+    .SingleEventContainer{
+            background-color: #2c2c2c;
+            text-align: left;
+            color: white;
+            width: 40%;
+            height: 150%;
+            min-height: 100%;
+            margin: auto;
+            border: 1px solid #2c2c2c;
+            border-radius: 3%;
+            opacity: 95%;
+            margin-top: 5vh;
+            box-shadow: 0 0 10px #2c2c2c;
+            font-size: 2vh;
+    }
+    .SingleEventContainer2{
+        background-color: #2c2c2c;
+        text-align: left;
+        color: white;
+        width: 40%;
+        height: 150%;
+        margin: auto;
+        border: 1px solid #2c2c2c;
+        border-radius: 3%;
+        opacity: 95%;
+        margin-top: 2vh;
+        box-shadow: 0 0 10px #2c2c2c;
+        font-size: 2vh;
+    }
+    }
 .EventIcon{
     font-size: 3vh;
     margin-right: 0.5vh;

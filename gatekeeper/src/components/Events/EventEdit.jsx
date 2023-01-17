@@ -8,6 +8,7 @@ import "./../../css/EventEdit.css";
 function EventEdit() {
   let singleevent = JSON.parse(localStorage.getItem("singleevent"));
   let csrftoken = useCookies(["csrftoken"]);
+  const [checked, setChecked] = useState(false);
   const [Status, setStatus] = useState("ready");
   const [error , setError] = useState("no error");
   const [EventInfo, setEventInfo] = useState({
@@ -20,15 +21,15 @@ function EventEdit() {
     EventMaxGuests: singleevent.EventMaxGuests,
     EventOrganizer: singleevent.EventOrganizer,
     EventIsCancelled: singleevent.EventIsCancelled,
-    EventIsPrivate: singleevent.EventIsPrivate,
+    EventIsPrivate: checked,
     EventPrice: singleevent.EventPrice,
     EventMinimumAge: singleevent.EventMinimumAge,
   });
   const handleChange = (event) => {
+    console.log(EventInfo.EventIsPrivate);
     setEventInfo({ ...EventInfo, [event.target.name]: event.target.value });
   };
   const handleSubmit = (event) => {
-    console.log(EventInfo);
     event.preventDefault();
     axiosInstance
       .put(
@@ -54,9 +55,11 @@ function EventEdit() {
         console.log(response);
         if (response.status === 200) {
           if (response.data === "Event edited") {
+            setError("no error")
             setStatus("Event edited");
             window.scrollTo(0, 0);
           } else {
+            window.scrollTo(0, 0);
             setError(response.data)
           }
         } 
@@ -233,6 +236,17 @@ function EventEdit() {
                   value={EventInfo.EventMinimumAge}
                 />
               </div>
+              <div className="myFormEditEvent">
+                              <label htmlFor="agree">
+                Do you want your event to be private?
+              </label>
+              <input
+                className="form-check-input"
+                type="checkbox"
+                defaultChecked={checked}
+                onChange={() => setChecked(!checked)}
+              />
+            </div>
               <button type="submit" className="btn btn-primary">
                 Edit Event
               </button>
