@@ -48,10 +48,12 @@ function CreateEvent() {
         console.log(EventInfo);
         console.log(response);
         setSuccess(true);
+        window.scrollTo(0, 0)
       })
       .catch(function (error) {
         console.log("Error", error);
         setError(error.response.data);
+        window.scrollTo(0, 0)
       });
   };
   return (
@@ -61,13 +63,11 @@ function CreateEvent() {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8 }}
       >
-        {Success ? (
-          <div>Successs</div>
-        ) : (
-          <div className="container-flex CreateEventContainer">
+          <div onClick={() => setSuccess(false)} className="container-flex CreateEventContainer">
             <form onSubmit={handleSubmit} className="myFormEvent">
               <div className="myFormGroupEvent">
-                <label htmlFor="EventTitle">EventTitle</label>
+              {Success ? (<div className="success">Event Created</div>) : (null)}
+                <label htmlFor="EventTitle">Event Title</label>
                 {error !== "no error" ? (
                   <div className="error">{error.EventTitle}</div>
                 ) : null}
@@ -75,27 +75,28 @@ function CreateEvent() {
                   type="text"
                   className="form-control"
                   name="EventTitle"
-                  placeholder="Enter EventTitle"
+                  placeholder="What is the title of your event?"
                   onChange={handleChange}
                   value={EventInfo.EventTitle}
                 />
               </div>
               <div className="myFormGroupEvent">
-                <label htmlFor="EventDescription">EventDescription</label>
+                <label htmlFor="EventDescription">Description</label>
                 {error !== "no error" ? (
                   <div className="error">{error.EventDescription}</div>
                 ) : null}
-                <input
-                  type="text"
+                <textarea
                   className="form-control"
                   name="EventDescription"
-                  placeholder="Enter EventDescription"
+                  placeholder="What is the description of your event?"
                   onChange={handleChange}
                   value={EventInfo.EventDescription}
-                />
+                  rows="4"
+                  maxLength={100}
+                ></textarea>
               </div>
               <div className="myFormGroupRegister">
-                <label htmlFor="date_of_birth">Date of Event</label>
+                <label htmlFor="date_of_birth">Date</label>
                 {error !== "no error" ? (
                   <div className="error">{error.EventDate}</div>
                 ) : null}
@@ -109,7 +110,7 @@ function CreateEvent() {
                 />
               </div>
               <div className="myFormGroupEvent">
-                <label htmlFor="EventLocation">EventLocation</label>
+                <label htmlFor="EventLocation">Location</label>
                 {error !== "no error" ? (
                   <div className="error">{error.EventLocation}</div>
                 ) : null}
@@ -117,27 +118,37 @@ function CreateEvent() {
                   type="text"
                   className="form-control"
                   name="EventLocation"
-                  placeholder="Enter EventLocation"
+                  placeholder="Where is your event located?"
                   onChange={handleChange}
                   value={EventInfo.EventLocation}
                 />
               </div>
               <div className="myFormGroupEvent">
-                <label htmlFor="EventMaxGuests">EventMaxGuests</label>
+                <label htmlFor="EventMaxGuests">Event Capacity</label>
                 {error !== "no error" ? (
                   <div className="error">{error.EventMaxGuests}</div>
                 ) : null}
+                  <input
+                  type="range"
+                  className="form-range"
+                  min={0}
+                  max={1000}
+                  name="EventMaxGuests"
+                  placeholder="Enter Capacity"
+                  onChange={handleChange}
+                  value={EventInfo.EventMaxGuests}
+                />
                 <input
                   type="text"
                   className="form-control"
                   name="EventMaxGuests"
-                  placeholder="Enter EventMaxGuests"
+                  placeholder="Event Capacity"
                   onChange={handleChange}
                   value={EventInfo.EventMaxGuests}
                 />
               </div>
               <div className="myFormGroupEvent">
-                <label htmlFor="EventOrganizer">EventOrganizer</label>
+                <label htmlFor="EventOrganizer">Who or what is organizing this event?</label>
                 {error !== "no error" ? (
                   <div className="error">{error.EventOrganizer}</div>
                 ) : null}
@@ -145,13 +156,13 @@ function CreateEvent() {
                   type="text"
                   className="form-control"
                   name="EventOrganizer"
-                  placeholder="Enter EventOrganizer"
+                  placeholder="Tell me i'm curious:)"
                   onChange={handleChange}
                   value={EventInfo.EventOrganizer}
                 />
               </div>
               <div className="myFormGroupEvent">
-                <label htmlFor="EventTimeStart">EventTimeStart</label>
+                <label htmlFor="EventTimeStart">When does your event start?</label>
                 {error !== "no error" ? (
                   <div className="error">{error.EventTimeStart}</div>
                 ) : null}
@@ -165,7 +176,7 @@ function CreateEvent() {
                 />
               </div>
               <div className="myFormGroupEvent">
-                <label htmlFor="EventTimeEnd">EventTimeEnd</label>
+                <label htmlFor="EventTimeEnd">When does your event end?</label>
                 {error !== "no error" ? (
                   <div className="error">{error.EventTimeEnd}</div>
                 ) : null}
@@ -178,12 +189,44 @@ function CreateEvent() {
                   value={EventInfo.EventTimeEnd}
                 />
               </div>
+              <div className="myFormEditEvent price">
+                <label htmlFor="EventPrice">What is the price?</label><br/>
+                {error !== "no error" ? (
+                  <div className="error">{error.EventPrice}</div>
+                ) : null}
+                ${EventInfo.EventPrice}
+                <input
+                  type="range"
+                  className="form-range"
+                  min={0}
+                  max={300}
+                  name="EventPrice"
+                  placeholder="Enter EventPrice"
+                  onChange={handleChange}
+                  value={EventInfo.EventPrice}
+                />
+              </div>
+              <div className="myFormEditEvent price">
+                <label htmlFor="EventMinimumAge">What is the minimum age for this event?</label><br/>
+                {error !== "no error" ? (
+                  <div className="error">{error.EventMinimumAge}</div>
+                ) : null}
+                {EventInfo.EventMinimumAge} years old
+                <input
+                  type="range"
+                  className="form-range"
+                  name="EventMinimumAge"
+                  placeholder="Enter EventMinimumAge"
+                  onChange={handleChange}
+                  value={EventInfo.EventMinimumAge}
+                />
+              </div>
               <button type="submit" className="btn btn-primary">
                 Create Event
               </button>
             </form>
           </div>
-        )}
+          <div className="heightmaker"></div>
       </motion.div>
       <Link to="/events">
         <TbIcons.TbArrowBackUp className="BackButton" />

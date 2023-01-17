@@ -8,8 +8,10 @@ import { Navigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { Link } from "react-router-dom";
 import * as TbIcons from "react-icons/tb";
+import TermsOfUse from "./TermsOfUse";
 function Register() {
   const [Success, setSuccess] = useState(false);
+  const [Terms, setTerms] = useState(false);
   const [error, setError] = useState("no error");
   const csrftoken = useCookies(["csrftoken"]);
   const [RegisterInfo, setRegisterInfo] = useState({
@@ -34,7 +36,9 @@ function Register() {
     let maxdate = new Date("2012-01-01");
     if (date > maxdate) {
       alert("You must be at least 10 years old to register");
+      window.scrollTo(0, 0);
     } else {
+      window.scrollTo(0, 0);
       event.preventDefault();
       console.log(RegisterInfo.gender);
       axiosinstance
@@ -212,17 +216,24 @@ function Register() {
                 value={RegisterInfo.password2}
               />
             </div>
-            <input
-                className="form-check-input genderradio"
-                type="radio"
-                id="Female"
-                name="gender"
-                value="Female"
+            <div className="myFormGroupProfile">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                id="agree"
+                name="agree"
+                value="Yes"
                 checked={RegisterInfo.agree === "Yes"}
+                unchecked={RegisterInfo.agree === "No"}
+                onClick={RegisterInfo.agree === "Yes" ? "No" : "Yes"}
                 onChange={handleChange}
               />
-            <div>
-              <p>I agree to the Terms of Service and Privacy Policy</p>
+              <label htmlFor="agree">
+                I agree to the Terms of Service and Privacy Policy
+              </label>
+              <div>
+              {Terms ? ("Hallo") : (null)}
+              </div>
             </div>
 
             <button type="registerButton" className="btn btn-primary">
@@ -230,9 +241,13 @@ function Register() {
             </button>
           </form>
           <div className="heightmaker"></div>
+          {Terms ? (
+            <TbIcons.TbArrowBackUp onClick={setTerms(false)} className="BackButton" />
+          ) : (
           <Link to="/login">
             <TbIcons.TbArrowBackUp className="BackButton" />
           </Link>
+          )}
         </div>
       )}
     </motion.div>

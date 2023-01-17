@@ -5,7 +5,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import Select from "react-select";
 import "./../../css/EventInvite.css";
 import { useCookies } from "react-cookie";
-
+import { motion } from "framer-motion";
 function EventInvite(event) {
   let csrftoken = useCookies(["csrftoken"]);
   const [userlist, setuserlist] = useState([{}]);
@@ -75,6 +75,11 @@ function EventInvite(event) {
   }, []);
   return (
     <>
+    <motion.div
+      initial={{ opacity: 0, scale: 0.7 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.8 }}
+    >
       <div className="container-fluid">
         <div className="row">
           <div className="col EventBanner">Invite</div>
@@ -107,6 +112,7 @@ function EventInvite(event) {
           </div>
         </div>
       </div>
+      </motion.div>
     </>
   );
 }

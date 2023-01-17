@@ -55,6 +55,7 @@ function EventEdit() {
         if (response.status === 200) {
           if (response.data === "Event edited") {
             setStatus("Event edited");
+            window.scrollTo(0, 0);
           } else {
             setError(response.data)
           }
@@ -65,11 +66,16 @@ function EventEdit() {
   };
   return (
     <>
-    {Status === "ready" ? (
+      <motion.div
+        initial={{ opacity: 0, scale: 0.7 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8 }}
+      >
         <div>
-          <div className="container-flex EditEventContainer">
+          <div onClick={() => setStatus("ready")} className="container-flex EditEventContainer">
             <form onSubmit={handleSubmit} className="myFormGroupEvent">
               <div className="">
+              {Status === "Event edited" ? (<div className="success">Event Edited</div>) : (null)}
                 <label htmlFor="EventTitle">Event Title</label>
                 {error !== "no error" ? (
                   <div className="error">{error.EventTitle}</div>
@@ -133,6 +139,16 @@ function EventEdit() {
                 {error !== "no error" ? (
                   <div className="error">{error.EventMaxGuests}</div>
                 ) : null}
+                <input
+                  type="range"
+                  className="form-range"
+                  min={0}
+                  max={1000}
+                  name="EventMaxGuests"
+                  placeholder="Enter EventPrice"
+                  onChange={handleChange}
+                  value={EventInfo.EventMaxGuests}
+                />
                 <input
                   type="text"
                   className="form-control"
@@ -201,14 +217,16 @@ function EventEdit() {
                   value={EventInfo.EventPrice}
                 />
               </div>
-              <div className="myFormEditEvent">
-                <label htmlFor="EventMinimumAge">How old should your guests be to be able to enter?</label>
+              <div className="myFormEditEvent price">
+                <label htmlFor="EventMinimumAge">How old should your guests be?<br/>
+                {EventInfo.EventMinimumAge} years old
+                </label>
                 {error !== "no error" ? (
                   <div className="error">{error.EventMinimumAge}</div>
                 ) : null}
                 <input
-                  type="number"
-                  className="form-control"
+                  type="range"
+                  className="form-range"
                   name="EventMinimumAge"
                   placeholder="Enter EventMinimumAge"
                   onChange={handleChange}
@@ -222,12 +240,9 @@ function EventEdit() {
           </div>
           <div className="heightmaker"></div>
         </div>
-      ) : (
-        <div>
-        {Status === "Event edited" ? (<div>Event Edited</div>) : (null)}
-        </div>
-      )}
+      </motion.div>
     </>
+
   );
 }
 
