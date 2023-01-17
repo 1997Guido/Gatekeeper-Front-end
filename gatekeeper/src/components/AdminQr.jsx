@@ -124,12 +124,8 @@ function AdminQr() {
                     }}
                     style={{ width: "100%" }}
                   />
-                  <div className="result"></div>
                 </div>
               </div>
-            </div>
-            <div className="result">
-              <p className="encryptedqrdata"> {encryptedqrdata} </p>
             </div>
             <Select
               defaultValue={selectedOption}

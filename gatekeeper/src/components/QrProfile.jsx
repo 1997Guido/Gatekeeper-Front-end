@@ -6,7 +6,6 @@ import AdminQr from "./AdminQr";
 import { motion } from "framer-motion";
 function QrProfile(userdata) {
   console.log("userdata" , userdata)
-  console.log("Check" , userdata.userdata.check);
   const [scan, setScan] = useState(false);
   return (
     <div>
