@@ -1,5 +1,5 @@
 @media only screen and (max-width: 1360px) {
-.QRContainer {
+  .QRContainer {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,23 +14,25 @@
     border: #2c2c2c 5px solid;
     box-shadow: 0 0 10px #2c2c2c;
     opacity: 95%;
-}
+  }
 }
 @media only screen and (min-width: 1360px) {
-    .QRContainer {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: white;
-        padding: 6px;
-        margin: auto;
-        max-width: auto;
-        max-height: auto;
-        width: 40%;
-        height: 150%;
-        min-height: 100%;
-        border: #2c2c2c 5px solid;
-        box-shadow: 0 0 10px #2c2c2c;
-        opacity: 95%;
-    }
-    }
+  .QRContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    padding: 6px;
+    margin: auto;
+    width: 30%;
+    height: 130%;
+    min-height: 100%;
+    border: #2c2c2c 5px solid;
+    box-shadow: 0 0 10px #2c2c2c;
+    opacity: 95%;
+  }
+  .QrTitle{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 5vh;
+  }
+}

@@ -4,6 +4,7 @@ import RouterGate from './components/RouterGate';
 import './css/style.css'
 import './css/mNav.css'
 import HeaderFooter from "./components/HeaderFooter";
+import Footer from "./components/Footer";
 import { useEffect, useState } from "react";
 import validateUserLoggedIn from "./api/ValidateUserLoggedIn";
 
@@ -26,7 +27,8 @@ function App() {
     <div className="App">
     <Router>
       <HeaderFooter/>
-      <RouterGate/>      
+      <RouterGate/>  
+      <Footer/>
     </Router>
     </div>
   );

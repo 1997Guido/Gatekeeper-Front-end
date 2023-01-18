@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import * as TbIcons from "react-icons/tb";
 import TermsOfUse from "./TermsOfUse";
 function Register() {
+  const [TermsChecked, setTermsChecked] = useState(false);
   const [Success, setSuccess] = useState(false);
   const [Terms, setTerms] = useState(false);
   const [error, setError] = useState("no error");
@@ -23,14 +24,16 @@ function Register() {
     lastname: "",
     date_of_birth: "",
     gender: "",
-    agree: "no",
+    agree: TermsChecked,
   });
   const handleChange = (event) => {
     setRegisterInfo({
       ...RegisterInfo,
       [event.target.name]: event.target.value,
     });
+    console.log(RegisterInfo.agree);
   };
+  console.log(Terms);
   const handleSubmit = (event) => {
     let date = new Date(RegisterInfo.date_of_birth);
     let maxdate = new Date("2012-01-01");
@@ -53,7 +56,7 @@ function Register() {
             last_name: RegisterInfo.lastname,
             date_of_birth: RegisterInfo.date_of_birth,
             gender: RegisterInfo.gender,
-            agree: RegisterInfo.agree,
+            agree: TermsChecked,
           },
           { headers: { "X-CSRFToken": csrftoken[0].csrftoken } }
         )
@@ -217,39 +220,30 @@ function Register() {
               />
             </div>
             <div className="myFormGroupProfile">
-              <input
-                className="form-check-input"
-                type="checkbox"
-                id="agree"
-                name="agree"
-                value="Yes"
-                checked={RegisterInfo.agree === "Yes"}
-                unchecked={RegisterInfo.agree === "No"}
-                onClick={RegisterInfo.agree === "Yes" ? "No" : "Yes"}
-                onChange={handleChange}
-              />
-              <label htmlFor="agree">
-                I agree to the Terms of Service and Privacy Policy
+            <label htmlFor="agree">
+                I read the Terms of Service and Privacy Policy on the bottom of this page. And i agree to them.
               </label>
-              <div>
-              {Terms ? ("Hallo") : (null)}
-              </div>
+            <input
+                className="form-check-input CheckBox"
+                type="checkbox"
+                checked={TermsChecked}
+                onChange={() => setTermsChecked(!TermsChecked)}
+              />
             </div>
 
-            <button type="registerButton" className="btn btn-primary">
+            <button type="submit" className="btn btn-primary">
               Register
             </button>
           </form>
-          <div className="heightmaker"></div>
-          {Terms ? (
-            <TbIcons.TbArrowBackUp onClick={setTerms(false)} className="BackButton" />
-          ) : (
           <Link to="/login">
             <TbIcons.TbArrowBackUp className="BackButton" />
           </Link>
-          )}
         </div>
       )}
+      <div>
+        {TermsChecked ? (null) : (<TermsOfUse />)}
+      </div>
+      <div className="heightmaker"></div>
     </motion.div>
   );
 }

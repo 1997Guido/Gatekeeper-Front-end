@@ -28,7 +28,7 @@ function UserQr() {
       >
         <div className="row UserProfileContainer">
           <div className="col">
-            <div className="ProfileTitle">Your QR-Code</div>
+            <div className="QrTitle">Your QR-Code</div>
           </div>
         </div>
         <div className="QRContainer">

@@ -1,9 +1,15 @@
+import "./../css/TermsOfUse.css";
+
+
 function TermsOfUse() {
   return (
+    <div className="row TermsOfUseContainer">
+    <div className="TermsOfUseTitle">Terms of Service</div>
+      <div className="col">
     <ol>
       <li>
         <p>
-          Introduction By using our event planning webapp (the "Service"), you
+          Introduction<br/> By using our event planning webapp (GateKeeper), you
           agree to provide us with your name, date of birth, last name, and
           email address and you agree to be bound by the following terms and
           conditions. If you do not accept these terms, you are not authorized
@@ -12,7 +18,7 @@ function TermsOfUse() {
       </li>
       <li>
         <p>
-          Description of Service The Service provides users the ability to
+          Description of Service<br/> The Service provides users the ability to
           create event pages, invite guests, and check them in through QR code
           scanning. The Service is provided "as is" and we do not guarantee that
           it will be uninterrupted or error-free.
@@ -20,7 +26,7 @@ function TermsOfUse() {
       </li>
       <li>
         <p>
-          User Conduct You agree to only use the service for lawful purposes and
+          User Conduct<br/> You agree to only use the service for lawful purposes and
           that you will not use the Service to transmit any material that is
           offensive, abusive, defamatory, obscene, or otherwise illegal.
           Additionally, You will not use the Service to transmit any material
@@ -31,7 +37,7 @@ function TermsOfUse() {
       </li>
       <li>
         <p>
-          Proprietary Rights All content and materials included on the Service,
+          Proprietary Rights<br/> All content and materials included on the Service,
           such as text, graphics, logos, images, and software, are the property
           of us or our licensors and are protected by copyright, trademark, and
           other intellectual property laws. You are granted a limited,
@@ -41,7 +47,7 @@ function TermsOfUse() {
       </li>
       <li>
         <p>
-          Disclaimer of Warranties The Service is provided "as is" and we do not
+          Disclaimer of Warranties<br/> The Service is provided "as is" and we do not
           make any warranties, express or implied, including, but not limited
           to, the implied warranties of merchantability, fitness for a
           particular purpose, or non-infringement. We do not guarantee that the
@@ -51,7 +57,7 @@ function TermsOfUse() {
       </li>
       <li>
         <p>
-          Limitation of Liability We will not be liable to you or any third
+          Limitation of Liability<br/> We will not be liable to you or any third
           party for any damages arising out of or in connection with your use of
           the Service. This includes, but is not limited to, damages for loss of
           profits, goodwill, use, data, or other intangible losses.
@@ -59,7 +65,7 @@ function TermsOfUse() {
       </li>
       <li>
         <p>
-          Indemnification You agree to indemnify and hold us and our affiliates,
+          Indemnification<br/> You agree to indemnify and hold us and our affiliates,
           officers, agents, and employees harmless from any claim or demand,
           including reasonable attorneys' fees, made by any third party due to
           or arising out of your use of the Service, your violation of these
@@ -77,7 +83,7 @@ function TermsOfUse() {
       </li>
       <li>
         <p>
-          Governing Law These Terms of Use shall be governed by and construed in
+          Governing Law<br/> These Terms of Use shall be governed by and construed in
           accordance with the laws of the jurisdiction in which our company is
           headquartered, without giving effect to any principles of conflicts of
           law.
@@ -85,7 +91,7 @@ function TermsOfUse() {
       </li>
       <li>
         <p>
-          Contact If you have any questions about these Terms of Use, please
+          Contact<br/> If you have any questions about these Terms of Use, please
           contact us at support@gatekeeper.com. Please note that you
           should have these terms of use reviewed by a lawyer to ensure that it
           covers everything you need and that the terms are written in a way
@@ -93,6 +99,8 @@ function TermsOfUse() {
         </p>
       </li>
     </ol>
+    </div>
+    </div>
   );
 }
 

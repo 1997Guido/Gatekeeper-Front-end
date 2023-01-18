@@ -35,7 +35,6 @@ function MyEvents() {
       >
         {event.map((event, index) => (
           <>
-            {event.EventIsPrivate === false ? (
               <div className="row EventContainer" key={index}>
                 <div className="col EventTitle">{event.EventTitle}</div>
                 <div className="">
@@ -57,7 +56,6 @@ function MyEvents() {
                   />
                 </div>
               </div>
-            ) : null}
           </>
         ))}
         <div className="heightmaker"></div>

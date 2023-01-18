@@ -41,29 +41,37 @@ function Events() {
             <div className="col"></div>
             <div className="col"></div>
           </div>
-          {event.map((event, index) => (
-            <div className="row EventContainer" key={index}>
-              <div className="col EventTitle">{event.EventTitle}</div>
-              <div className="">
-                <div className="col">
-                  Organized by:
-                  <br />
-                  {event.EventOrganizer}
-                  <br />
-                  {event.EventDate}
-                  <br />
-                  {event.EventLocation}
-                  <br />
+          <div>
+            {event.map((event, index) => {
+              return (
+                <div>
+                  {event.EventIsPrivate ? null : (
+                    <div className="row EventContainer" key={index}>
+                      <div className="col EventTitle">{event.EventTitle}</div>
+                      <div className="">
+                        <div className="col">
+                          Organized by:
+                          <br />
+                          {event.EventOrganizer}
+                          <br />
+                          {event.EventDate}
+                          <br />
+                          {event.EventLocation}
+                          <br />
+                        </div>
+                      </div>
+                      <div className="col">
+                        <TbIcons.TbFileInfo
+                          className="EventInfoButton"
+                          onClick={() => navigateToSingleEvent(event.pk)}
+                        />
+                      </div>
+                    </div>
+                  )}
                 </div>
-              </div>
-              <div className="col">
-                <TbIcons.TbFileInfo
-                  className="EventInfoButton"
-                  onClick={() => navigateToSingleEvent(event.pk)}
-                />
-              </div>
-            </div>
-          ))}
+              );
+            })}
+          </div>
         </div>
         <div className="heightmaker"></div>
       </motion.div>

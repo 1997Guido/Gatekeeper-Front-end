@@ -5,28 +5,26 @@ import { motion } from "framer-motion";
 import { useCookies } from "react-cookie";
 import "./../../css/EventEdit.css";
 
-function EventEdit() {
-  let singleevent = JSON.parse(localStorage.getItem("singleevent"));
+function EventEdit(event) {
   let csrftoken = useCookies(["csrftoken"]);
-  const [checked, setChecked] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
   const [Status, setStatus] = useState("ready");
   const [error , setError] = useState("no error");
   const [EventInfo, setEventInfo] = useState({
-    EventTitle: singleevent.EventTitle,
-    EventDescription: singleevent.EventDescription,
-    EventDate: singleevent.EventDate,
-    EventTimeStart: singleevent.EventTimeStart,
-    EventTimeEnd: singleevent.EventTimeEnd,
-    EventLocation: singleevent.EventLocation,
-    EventMaxGuests: singleevent.EventMaxGuests,
-    EventOrganizer: singleevent.EventOrganizer,
-    EventIsCancelled: singleevent.EventIsCancelled,
-    EventIsPrivate: checked,
-    EventPrice: singleevent.EventPrice,
-    EventMinimumAge: singleevent.EventMinimumAge,
+    EventTitle: event.eventdata.EventTitle,
+    EventDescription: event.eventdata.EventDescription,
+    EventDate: event.eventdata.EventDate,
+    EventTimeStart: event.eventdata.EventTimeStart,
+    EventTimeEnd: event.eventdata.EventTimeEnd,
+    EventLocation: event.eventdata.EventLocation,
+    EventMaxGuests: event.eventdata.EventMaxGuests,
+    EventOrganizer: event.eventdata.EventOrganizer,
+    EventIsCancelled: event.eventdata.EventIsCancelled,
+    EventIsPrivate: event.eventdata.EventIsPrivate,
+    EventPrice: event.eventdata.EventPrice,
+    EventMinimumAge: event.eventdata.EventMinimumAge,
   });
   const handleChange = (event) => {
-    console.log(EventInfo.EventIsPrivate);
     setEventInfo({ ...EventInfo, [event.target.name]: event.target.value });
   };
   const handleSubmit = (event) => {
@@ -44,10 +42,10 @@ function EventEdit() {
           EventMaxGuests: EventInfo.EventMaxGuests,
           EventOrganizer: EventInfo.EventOrganizer,
           EventIsCancelled: EventInfo.EventIsCancelled,
-          EventIsPrivate: EventInfo.EventIsPrivate,
+          EventIsPrivate: isChecked,
           EventPrice: EventInfo.EventPrice,
           EventMinimumAge: EventInfo.EventMinimumAge,
-          pk: singleevent.pk,
+          pk: event.eventdata.pk,
         },
         { headers: { "X-CSRFToken": csrftoken[0].csrftoken } }
       )
@@ -243,8 +241,8 @@ function EventEdit() {
               <input
                 className="form-check-input"
                 type="checkbox"
-                defaultChecked={checked}
-                onChange={() => setChecked(!checked)}
+                checked={isChecked}
+                onChange={() => setIsChecked(!isChecked)}
               />
             </div>
               <button type="submit" className="btn btn-primary">
