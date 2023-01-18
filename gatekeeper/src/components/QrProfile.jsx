@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import AdminQr from "./AdminQr";
 import { motion } from "framer-motion";
 function QrProfile(userdata) {
+  console.log("userdata" , userdata)
   const [scan, setScan] = useState(false);
   return (
     <div>
@@ -25,18 +26,18 @@ function QrProfile(userdata) {
           <div className="row">
             <div className="col Userprofile">
               <p>
-                {userdata.first_name} {userdata.last_name}
+                {userdata.userdata.first_name} {userdata.userdata.last_name}
               </p>
             </div>
           </div>
           <div className="row">
             <div className="col Userprofile">
-              <p>{userdata.date_of_birth}</p>
+              <p>{userdata.userdata.date_of_birth}</p>
             </div>
           </div>
           <div className="row">
             <div className="col Userprofile">
-              <p>{userdata.gender}</p>
+              <p>{userdata.userdata.gender}</p>
             </div>
           </div>
           <button className="btn btn-primray buttonscan" onClick={() => setScan(true)}>Scan Again</button>
