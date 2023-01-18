@@ -47,23 +47,23 @@ function UserProfile() {
             <div className="row">
               <div className="col Userprofile">
                 <p>
-                  {data.first_name} {data.last_name}
+                  Full name: {data.first_name} {data.last_name}
                 </p>
               </div>
             </div>
             <div className="row">
               <div className="col Userprofile">
-                <p>{data.date_of_birth}</p>
+                <p>Date of Birth: {data.date_of_birth}</p>
               </div>
             </div>
             <div className="row">
               <div className="col Userprofile">
-                <p>{data.gender}</p>
+                <p>Gender: {data.gender}</p>
               </div>
             </div>
             <div className="row">
               <div className="col Userprofile">
-                <p>{data.email}</p>
+                <p>Email: {data.email}</p>
               </div>
             </div>
             <div className="row">

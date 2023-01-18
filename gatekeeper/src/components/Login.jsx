@@ -69,6 +69,11 @@ function Login(){
           Don't have an account? click <Link to='/register'> here</Link> to register.
         </div>
           </form>
+
+      <div className="Copyright">
+        <p>Copyright &copy; {new Date().getFullYear()} Guido Erdtsieck and Mike Vermeer</p>
+      </div>
+      
       </div>
           )}
     </motion.div>

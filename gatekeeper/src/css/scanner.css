@@ -2,7 +2,16 @@
     margin-top: 15vh;
     max-width: 40vh;
     border: solid 10px;
-    box-shadow: 5px 5px 5px black;
+    box-shadow: 5px 5px 5px #2c2c2c;
+    display: none;
+}
+.temptext {
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    text-align: center;
+    font-family: kirsty;
+    font-size: 3vh;
+    color: #2c2c2c;
 }
 .result{
     font-family: kirsty;
@@ -21,6 +30,17 @@
     background-color: aqua;
     height: 5vh;
 
+}
+.select {
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    text-align: center;
+    font-family: kirsty;
+    font-size: 2vh;
+    color: #2c2c2c;
+    max-width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
 }
 .qrdata {
     font-family: kirsty;

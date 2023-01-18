@@ -15,12 +15,14 @@
         font-size: 2vh;
     }
     .ProfileDeleteButton{
+        margin-top: 2vh;
         width: 5vh;
         height: 5vh;
         color: rgb(200, 46, 46);
         margin-left: 60%;
     }
     .ProfileEditButton{
+        margin-top: 2vh;
         width: 5vh;
         height: 5vh;
         margin-left: 40%;
@@ -42,12 +44,14 @@
         opacity: 95%;
 }
 .ProfileDeleteButton{
+    margin-top: 2vh;
     width: 5vh;
     height: 5vh;
     color: rgb(200, 46, 46);
     margin-left: 25%;
 }
 .ProfileEditButton{
+    margin-top: 2vh;
     width: 5vh;
     height: 5vh;
     margin-left: 25%;

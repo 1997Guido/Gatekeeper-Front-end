@@ -12,6 +12,8 @@ import { useEffect } from "react";
 import Select from "react-select";
 import QrProfile from "./QrProfile";
 
+// This is the component that is used to scan QR codes
+
 function AdminQr() {
   const [selectedOption, setSelectedOption] = useState(null);
   let csrftoken = useCookies(["csrftoken"]);
@@ -28,6 +30,8 @@ function AdminQr() {
   const handleChange = (selectedOption) => {
     setSelectedOption(selectedOption);
     console.log(`Option selected:`, selectedOption);
+    document.querySelector(".scanner").style.display = "block";
+    document.querySelector(".temptext").style.display = "none";
   };
 
   const getPersonalEvents = async () => {
@@ -100,6 +104,7 @@ function AdminQr() {
     getPersonalEvents();
     result = "";
   }, [encryptedqrdata]);
+
   return (
     <div>
       {encryptedqrdata !== "Scan a QR Code" ? (<QrProfile userdata={data} />) : (
@@ -110,7 +115,7 @@ function AdminQr() {
         >
           <>
             <div className="container-fluid">
-              <div className="row justify-content-center">
+              <div className="row justify-content-center"> 
                 <div className="col scanner">
                   <QrReader
                     facingMode="environment"
@@ -127,7 +132,12 @@ function AdminQr() {
                 </div>
               </div>
             </div>
-            <Select
+
+            <div className="temptext">
+              <p>Choose one of your personal events you want to start scanning for</p>
+            </div>
+
+            <Select className="select"
               defaultValue={selectedOption}
               onChange={handleChange}
               options={eventlist}

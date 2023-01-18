@@ -45,6 +45,10 @@ function Home() {
             </div>
           </div>
         </div>
+
+        <div className="Copyright">
+          <p>Copyright &copy; {new Date().getFullYear()} Guido Erdtsieck and Mike Vermeer</p>
+        </div>
       </motion.div>
     </>
   );

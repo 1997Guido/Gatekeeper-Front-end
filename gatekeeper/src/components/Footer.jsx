@@ -8,7 +8,6 @@ function Footer() {
         <footer>
           <div className="footer-container">
             <div className="footer-content">
-              <p>Copyright &copy; {new Date().getFullYear()} Guido and Mike</p>
               <div className="footer-links">
               </div>
             </div>
