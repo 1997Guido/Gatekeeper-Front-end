@@ -3,7 +3,7 @@ import axiosinstance from "../../api/axiosApi";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useCookies } from "react-cookie";
-import "./../../css/CreateEvent.css";
+import "./../../css/Events/CreateEvent.css";
 import { Link } from "react-router-dom";
 import * as TbIcons from "react-icons/tb";
 

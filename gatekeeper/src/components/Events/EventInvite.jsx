@@ -3,7 +3,7 @@ import axiosInstance from "../../api/axiosApi";
 import { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import Select from "react-select";
-import "./../../css/EventInvite.css";
+import "./../../css/Events/EventInvite.css";
 import { useCookies } from "react-cookie";
 import { motion } from "framer-motion";
 function EventInvite(event) {

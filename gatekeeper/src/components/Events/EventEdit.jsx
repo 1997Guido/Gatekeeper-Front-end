@@ -3,11 +3,11 @@ import axiosInstance from "../../api/axiosApi";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useCookies } from "react-cookie";
-import "./../../css/EventEdit.css";
+import "./../../css/Events/EventEdit.css";
 
 function EventEdit(event) {
   let csrftoken = useCookies(["csrftoken"]);
-  const [isChecked, setIsChecked] = useState(false);
+  const [isChecked, setIsChecked] = useState(event.eventdata.EventIsPrivate);
   const [Status, setStatus] = useState("ready");
   const [error , setError] = useState("no error");
   const [EventInfo, setEventInfo] = useState({
@@ -23,6 +23,7 @@ function EventEdit(event) {
     EventIsPrivate: event.eventdata.EventIsPrivate,
     EventPrice: event.eventdata.EventPrice,
     EventMinimumAge: event.eventdata.EventMinimumAge,
+    pk: event.eventdata.pk,
   });
   const handleChange = (event) => {
     setEventInfo({ ...EventInfo, [event.target.name]: event.target.value });
@@ -45,7 +46,7 @@ function EventEdit(event) {
           EventIsPrivate: isChecked,
           EventPrice: EventInfo.EventPrice,
           EventMinimumAge: EventInfo.EventMinimumAge,
-          pk: event.eventdata.pk,
+          pk: EventInfo.pk,
         },
         { headers: { "X-CSRFToken": csrftoken[0].csrftoken } }
       )

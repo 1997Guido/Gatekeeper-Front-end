@@ -1,4 +1,4 @@
-import "./../../css/Events.css";
+import "./../../css/Events/Events.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";

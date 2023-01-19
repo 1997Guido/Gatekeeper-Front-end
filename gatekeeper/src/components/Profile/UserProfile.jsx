@@ -8,20 +8,30 @@ import { Link } from "react-router-dom";
 import * as TbIcons from "react-icons/tb";
 import ProfileEdit from "./ProfileEdit";
 import ProfileDelete from "./ProfileDelete";
+import ImageUpload from "../ImageUpload";
 
 function UserProfile() {
   const [editmode, seteditmode] = useState("false");
   const [data, setData] = useState([]);
+  const [picture, setPicture] = useState([{}]);
 
   const getProfile = () => {
     axiosinstance.get(`api/profileapi?allusers=me`).then(function (response) {
       const Actualdata = response.data[0];
       setData(Actualdata);
-      console.log(data);
     });
+  };
+  const getProfilePicture = () => {
+    axiosinstance
+      .get(`api/profileapi?allusers=picture`)
+      .then(function (response) {
+        console.log(response);
+        setPicture(response.data);
+      });
   };
   useEffect(() => {
     getProfile();
+    getProfilePicture();
   }, []);
   return (
     <>
@@ -40,7 +50,16 @@ function UserProfile() {
             <div className="row">
               <div className="col Userprofile ProfilePicture">
                 <p>
-                  {data.profilepicture}
+                  {data.ProfilePicture === null ? (
+                    <button
+                      className="btn btn-primary"
+                      onClick={() => seteditmode("picture")}
+                    >
+                      Upload Profile Picture
+                    </button>
+                  ) : (
+                    <div>{data.ProfilePicture}</div>
+                  )}
                 </p>
               </div>
             </div>
@@ -91,14 +110,17 @@ function UserProfile() {
         </motion.div>
       ) : (
         <div>
+          {editmode !== "false" ? (
+            <TbIcons.TbArrowBackUp
+              onClick={() => seteditmode("false")}
+              className="BackButton"
+            />
+          ) : null}
           {editmode === "edit" ? <ProfileEdit data={data} /> : null}
           {editmode === "delete" ? <ProfileDelete data={data} /> : null}
+          {editmode === "picture" ? <ImageUpload data={"profilepic"} /> : null}
         </div>
       )}
-      <TbIcons.TbArrowBackUp
-        onClick={() => seteditmode("false")}
-        className="BackButton"
-      />
     </>
   );
 }
