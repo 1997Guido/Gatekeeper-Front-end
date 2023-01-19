@@ -5,6 +5,25 @@
     box-shadow: 5px 5px 5px #2c2c2c;
     display: none;
 }
+.buttonscan {
+    margin-bottom: 5vh;
+}
+.InvalidContainer {
+    align-self: center;
+    background-color: #2c2c2c;
+    text-align: center;
+    color: red;
+    margin: auto;
+    border: 5px solid;
+    box-shadow: 5px 5px 5px black;
+    border-radius: 3%;
+    width: 85%;
+    height: 150%;
+    min-height: 100%;
+    box-shadow: 0 0 10px #2c2c2c;
+    opacity: 95%;
+    margin-top: 5vh;
+}
 .temptext {
     margin-top: 5vh;
     margin-bottom: 5vh;
@@ -52,11 +71,11 @@
     text-align: center;
     color: white;
     margin: auto;
-    border: 7px solid;
+    border: 5px solid;
     box-shadow: 5px 5px 5px black;
     border-radius: 3%;
     width: 85%;
-    height: 150%;
+    height: 160%;
     min-height: 100%;
     box-shadow: 0 0 10px #2c2c2c;
     opacity: 95%;

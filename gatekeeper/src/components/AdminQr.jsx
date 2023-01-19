@@ -21,10 +21,11 @@ function AdminQr() {
   const [data, setdata] = useState("");
   const [event, setevent] = useState("");
   const [eventlist, seteventlist] = useState([{}]);
-  const [check, setcheck] = useState(false);
+  //const [check, setcheck] = useState();
   const [error, setError] = useState("no error");
   const tempList = [{}];
   let result = "";
+  let check = "";
 
 
   const handleChange = (selectedOption) => {
@@ -65,6 +66,7 @@ function AdminQr() {
         )
         .then(function (response) {
           console.log("Response: " , response)
+          check = "";
           if (response.status === 200) {
           if (response.data.check === 'true') {
             result = "";
@@ -77,11 +79,12 @@ function AdminQr() {
             setdata(response.data.userdata, response.data.check);
             //console.log("UseState Userdata: " , data);
           } else {
+            setencryptedqrdata("Scan a QR Code");
             console.log("QR not Verified!");
             console.log("Response Check: ", response.data.check);
             console.log("Invalid QR Code");
             if (response.data.check === 'false') {
-              setcheck(false);
+              check = false;
             }
           }
         }})
@@ -145,7 +148,6 @@ function AdminQr() {
             />
 
             <div>
-              {check === true ? (<div>"U are not invited"</div>) : (null)}
               {error === "Internal Server Error" ? (<div>"Invalid QR Code"</div>) : (null)}
               {error === "Network Error" ? (<div>"Network Error"</div>) : (null)}
             </div>
