@@ -14,7 +14,7 @@ import QrProfile from "./QrProfile";
 
 // This is the component that is used to scan QR codes
 
-function AdminQr() {
+function AdminQr(props) {
   const [selectedOption, setSelectedOption] = useState(null);
   let csrftoken = useCookies(["csrftoken"]);
   const [encryptedqrdata, setencryptedqrdata] = useState("Scan a QR Code");
@@ -27,6 +27,7 @@ function AdminQr() {
   let result = "";
   let check = "";
 
+  console.log("Props: " , props.selectedOptionreturn)
 
   const handleChange = (selectedOption) => {
     setSelectedOption(selectedOption);
@@ -39,7 +40,7 @@ function AdminQr() {
     await axiosinstance.get('/api/eventviewapipersonal')
       .then(function (response) {
         setevent(response.data);
-        console.log(response.data)
+        console.log("Fetched personal events: " , response.data)
         for (let i = 0; i < response.data.length; i++) {
           if (tempList.includes(response.data[i].id) === false) {
             tempList.push({
@@ -65,15 +66,15 @@ function AdminQr() {
           { headers: { "X-CSRFToken": csrftoken[0].csrftoken } }
         )
         .then(function (response) {
-          console.log("Response: " , response)
+          //console.log("Response: " , response)
           check = "";
           if (response.status === 200) {
           if (response.data.check === 'true') {
             result = "";
             console.log("QR Verified!");
-            console.log("Response Check: ", response.data.check);
+            //console.log("Response Check: ", response.data.check);
             //console.log("Response: " , response)
-            console.log("Userdata: ", response.data.userdata);
+            //console.log("Userdata: ", response.data.userdata);
             //console.log("Selected Option: " , selectedOption);
             //console.log("Guestlist: ", response.data.guestlist)
             setdata(response.data.userdata, response.data.check);
@@ -110,7 +111,7 @@ function AdminQr() {
 
   return (
     <div>
-      {encryptedqrdata !== "Scan a QR Code" ? (<QrProfile userdata={data} />) : (
+      {encryptedqrdata !== "Scan a QR Code" ? (<QrProfile userdata={data} selectedoption={selectedOption} />) : (
         <motion.div
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
