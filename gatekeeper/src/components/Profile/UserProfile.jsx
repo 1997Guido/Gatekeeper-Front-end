@@ -18,12 +18,14 @@ function UserProfile() {
   const getProfile = () => {
     axiosinstance.get(`api/profileapi?allusers=me`).then(function (response) {
       const Actualdata = response.data[0];
+      console.log(response);
       setData(Actualdata);
+      getProfilePicture();
     });
   };
   const getProfilePicture = () => {
     axiosinstance
-      .get(`api/profileapi?allusers=picture`)
+      .get(`api/imageview?allmypictures=profilepicture`)
       .then(function (response) {
         console.log(response);
         setPicture(response.data);
@@ -31,8 +33,8 @@ function UserProfile() {
   };
   useEffect(() => {
     getProfile();
-    getProfilePicture();
   }, []);
+  const url = "http://localhost:8000";
   return (
     <>
       {editmode === "false" ? (
@@ -58,7 +60,13 @@ function UserProfile() {
                       Upload Profile Picture
                     </button>
                   ) : (
-                    <div>{data.ProfilePicture}</div>
+                    <div>
+                      <img
+                        className="Image"
+                        src={url + picture.Image}
+                        alt={picture.Title}
+                      />
+                    </div>
                   )}
                 </p>
               </div>
@@ -104,6 +112,12 @@ function UserProfile() {
                   onClick={() => seteditmode("edit")}
                   className="ProfileEditButton"
                 />
+                <button
+                  className="btn btn-primary"
+                  onClick={() => seteditmode("picture")}
+                >
+                  Upload Profile Picture
+                </button>
               </div>
             </div>
           </div>
@@ -112,7 +126,7 @@ function UserProfile() {
         <div>
           {editmode !== "false" ? (
             <TbIcons.TbArrowBackUp
-              onClick={() => seteditmode("false")}
+              onClick={function() {seteditmode("false"); getProfile()}}
               className="BackButton"
             />
           ) : null}

@@ -35,10 +35,6 @@
   color: antiquewhite;
   border-radius: 100%;
 }
-.Image {
-  width: 50%;
-  height: 50%;
-}
 .ImageTitle {
   font-family: "Courier New", Courier, monospace;
   font-size: 3.5vh;
