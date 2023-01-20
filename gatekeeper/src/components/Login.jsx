@@ -31,7 +31,7 @@ function Login(){
     };
     const handleSubmit = (e) => {
       e.preventDefault()
-      axios.post('http://localhost:8000/auth/login/',{
+      axios.post('http://gatekeeper.uksouth.cloudapp.azure.com/auth/login/',{
         username: LoginInfo.username,
         password: LoginInfo.password,
           },{withCredentials: true})
