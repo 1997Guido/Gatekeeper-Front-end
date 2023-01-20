@@ -12,7 +12,7 @@ function QrProfile(userdata, option) {
   const [scan, setScan] = useState(false);
   const [picture, setPicture] = useState([{}]);
 
-  const url = "http://localhost:8000";
+  const url = "http://gatekeeper.uksouth.cloudapp.azure.com/";
 
   const getProfilePicture = () => {
     axiosinstance
