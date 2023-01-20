@@ -1,27 +1,17 @@
-@media screen and (min-width: 600px) {
-    .myFormRegister{
-        background-color: #2c2c2c;
-        text-align: center;
-        border-radius: 50% 50% black;
-        color: white;
-        max-width: 40vh;
-    }
-}
-@media screen and (max-width: 599px) {
     .myFormRegister{
         background-color: #2c2c2c;
         text-align: center;
         color: white;
-        width: 40vh;
-        min-width: 30vh;
-        height: 80vh;
         margin: auto;
         border: 1px solid #2c2c2c;
         border-radius: 3%;
+        width: 85%;
+        height: 150%;
+        min-height: 100%;
+        box-shadow: 0 0 10px #2c2c2c;
         opacity: 95%;
         margin-top: 5vh;
     }
-}
 .myFormGroupRegister{
     margin-top: 2vh;
     margin-bottom: 2vh;
@@ -38,4 +28,18 @@
     color:antiquewhite;
     margin-top: 2vh;
     font-size: 2.5vh;
+}
+.error{
+    color: red;
+    font-size: 2vh;
+}
+.genderradio{
+    width: 3vh;
+    height: 3vh;
+    margin: 0.5vh;
+}
+.CheckBox{
+    width: 3vh;
+    height: 3vh;
+    margin: 0.5vh;
 }

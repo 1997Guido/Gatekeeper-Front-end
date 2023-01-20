@@ -1,0 +1,22 @@
+.TermsOfUseContainer {
+  background-color: #2c2c2c;
+  text-align: left;
+  color: white;
+  width: 40vh;
+  max-width: 82%;
+  min-height: 30vh;
+  margin: auto;
+  border: 1px solid #2c2c2c;
+  border-radius: 3%;
+  max-width: 85%;
+  height: 150%;
+  min-height: 100%;
+  box-shadow: 0 0 10px #2c2c2c;
+  opacity: 95%;
+  margin-top: 5vh;
+}
+.TermsOfUseTitle{
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 3vh;
+  text-align: center;
+}

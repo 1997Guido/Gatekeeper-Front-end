@@ -2,7 +2,34 @@
     margin-top: 15vh;
     max-width: 40vh;
     border: solid 10px;
+    box-shadow: 5px 5px 5px #2c2c2c;
+}
+.buttonscan {
+    margin-bottom: 5vh;
+}
+.InvalidContainer {
+    align-self: center;
+    background-color: #2c2c2c;
+    text-align: center;
+    color: red;
+    margin: auto;
+    border: 5px solid;
     box-shadow: 5px 5px 5px black;
+    border-radius: 3%;
+    width: 85%;
+    height: 150%;
+    min-height: 100%;
+    box-shadow: 0 0 10px #2c2c2c;
+    opacity: 95%;
+    margin-top: 5vh;
+}
+.temptext {
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    text-align: center;
+    font-family: kirsty;
+    font-size: 3vh;
+    color: #2c2c2c;
 }
 .result{
     font-family: kirsty;
@@ -22,7 +49,46 @@
     height: 5vh;
 
 }
+.select {
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    text-align: center;
+    font-family: kirsty;
+    font-size: 2vh;
+    color: #2c2c2c;
+    max-width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
 .qrdata {
     font-family: kirsty;
     word-wrap: break-word;
+}
+.QRProfileContainer {
+    align-self: center;
+    background-color: #2c2c2c;
+    text-align: center;
+    color: white;
+    margin: auto;
+    border: 5px solid;
+    box-shadow: 5px 5px 5px black;
+    border-radius: 3%;
+    width: 85%;
+    height: 160%;
+    min-height: 100%;
+    box-shadow: 0 0 10px #2c2c2c;
+    opacity: 95%;
+    margin-top: 5vh;
+}
+.buttonscan {
+    background-color: #2c2c2c;
+    color: white;
+    border: 2px solid;
+    border-radius: 3px 5px 5px;
+    box-shadow: 1px 1px 1px black;
+    margin: auto;
+    width: 30vh;
+    height: 10vh;
+    font-family: kirsty;
+    font-size: 2vh;
 }

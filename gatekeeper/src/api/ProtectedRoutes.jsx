@@ -10,6 +10,7 @@ const PrivateRoutes = () => {
     useEffect(() => {
         const validateUserLoggedIn = async () => {
             await axiosinstance.get('api/authcheck').then(function(response){
+            if (response.status === 200) {
                 if (response.data === false) {
                     localStorage.setItem('Auth', 'false');
                     setIsAuth(false);
@@ -18,7 +19,18 @@ const PrivateRoutes = () => {
                     localStorage.setItem('Auth', 'true');
                     setIsAuth(true);
                 }
-            });
+            }
+            }).catch(error => {
+                if (!error.response) {
+                    // network error
+                    alert('Network Error');
+                    localStorage.setItem('Auth', 'false');
+                    setIsAuth(false);
+                } else {
+                    localStorage.setItem('Auth', 'false');
+                    setIsAuth(false);
+                }
+              })
         }
         validateUserLoggedIn();    
     })
