@@ -5,14 +5,9 @@ import React, { useState } from "react";
 import AdminQr from "./AdminQr";
 import { motion } from "framer-motion";
 
-function QrProfile(userdata, selectedoption) {
-
-  //console.log("userdata profile page: " , userdata)
+function QrProfile(userdata, option) {
 
   const [scan, setScan] = useState(false);
-  const selectedOptionToReturn = selectedoption.selectedoption
-
-  console.log("Received Selected option: " , selectedOptionToReturn)
 
   // if (userdata.userdata.invited === 'false') {
   //   if (scan === false) {
@@ -66,7 +61,7 @@ function QrProfile(userdata, selectedoption) {
   return (
     <div>
       {scan ? (
-        <AdminQr selectedOptionreturn={selectedOptionToReturn} />
+        <AdminQr ReturnedOption={option} />
       ) : (
         <motion.div
         initial={{ opacity: 0, scale: 0.5 }}

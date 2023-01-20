@@ -15,31 +15,26 @@ import QrProfile from "./QrProfile";
 // This is the component that is used to scan QR codes
 
 function AdminQr(props) {
-  const [selectedOption, setSelectedOption] = useState(null);
+  const [selectedOption, setSelectedOption] = useState(localStorage.getItem("selectedOption") ? JSON.parse(localStorage.getItem("selectedOption")) : null);
   let csrftoken = useCookies(["csrftoken"]);
   const [encryptedqrdata, setencryptedqrdata] = useState("Scan a QR Code");
   const [data, setdata] = useState("");
-  const [event, setevent] = useState("");
   const [eventlist, seteventlist] = useState([{}]);
-  //const [check, setcheck] = useState();
   const [error, setError] = useState("no error");
   const tempList = [{}];
   let result = "";
   let check = "";
 
-  console.log("Props: " , props.selectedOptionreturn)
-
   const handleChange = (selectedOption) => {
     setSelectedOption(selectedOption);
-    console.log(`Option selected:`, selectedOption);
-    document.querySelector(".scanner").style.display = "block";
-    document.querySelector(".temptext").style.display = "none";
+    console.log(`Option Selected:`, selectedOption);
+    // document.querySelector(".scanner").style.display = "block";
+    // document.querySelector(".temptext").style.display = "none";
   };
 
   const getPersonalEvents = async () => {
     await axiosinstance.get('/api/eventviewapipersonal')
       .then(function (response) {
-        setevent(response.data);
         console.log("Fetched personal events: " , response.data)
         for (let i = 0; i < response.data.length; i++) {
           if (tempList.includes(response.data[i].id) === false) {
@@ -66,6 +61,7 @@ function AdminQr(props) {
           { headers: { "X-CSRFToken": csrftoken[0].csrftoken } }
         )
         .then(function (response) {
+          localStorage.setItem("selectedOption", JSON.stringify(selectedOption));
           //console.log("Response: " , response)
           check = "";
           if (response.status === 200) {
@@ -111,53 +107,67 @@ function AdminQr(props) {
 
   return (
     <div>
-      {encryptedqrdata !== "Scan a QR Code" ? (<QrProfile userdata={data} selectedoption={selectedOption} />) : (
-        <motion.div
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1 }}
-        >
-          <>
-            <div className="container-fluid">
-              <div className="row justify-content-center"> 
-                <div className="col scanner">
-                  <QrReader
-                    facingMode="environment"
-                    onResult={(result, error) => {
-                      if (!!result) {
-                        setencryptedqrdata(result?.text);
-                      }
-                      if (!!error) {
-                        //console.info(error);
-                      }
-                    }}
-                    style={{ width: "100%" }}
-                  />
-                </div>
+    {selectedOption !== null ? (
+    <div>
+    {encryptedqrdata !== "Scan a QR Code" ? (<QrProfile userdata={data} option={selectedOption} />) : (
+      <motion.div
+        initial={{ opacity: 0, scale: 0.5 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1 }}
+      >
+        <>
+          <div className="container-fluid">
+            <div className="row justify-content-center"> 
+              <div className="col scanner">
+                <QrReader
+                  facingMode="environment"
+                  onResult={(result, error) => {
+                    if (!!result) {
+                      setencryptedqrdata(result?.text);
+                    }
+                    if (!!error) {
+                      //console.info(error);
+                    }
+                  }}
+                  style={{ width: "100%" }}
+                />
               </div>
             </div>
+          </div>
 
-            <div className="temptext">
-              <p>Choose one of your personal events you want to start scanning for</p>
-            </div>
+          <Select className="select"
+            defaultValue={selectedOption}
+            onChange={function() {handleChange(); }}
+            options={eventlist}
+            isMulti={false}
+          />
 
-            <Select className="select"
-              defaultValue={selectedOption}
-              onChange={handleChange}
-              options={eventlist}
-              isMulti={false}
-            />
+          <div>
+            {error === "Internal Server Error" ? (<div>"Invalid QR Code"</div>) : (null)}
+            {error === "Network Error" ? (<div>"Network Error"</div>) : (null)}
+          </div>
+        </>
+      </motion.div>
+    )
+    };
+  </div>
+    ) : (
+    <div>
 
-            <div>
-              {error === "Internal Server Error" ? (<div>"Invalid QR Code"</div>) : (null)}
-              {error === "Network Error" ? (<div>"Network Error"</div>) : (null)}
-            </div>
-          </>
-        </motion.div>
-      )
-      };
+    <div className="temptext">
+      <p>Choose one of your personal events you want to start scanning for</p>
     </div>
-  )
+
+    <Select className="select"
+      defaultValue={selectedOption}
+      onChange={handleChange}
+      options={eventlist}
+      isMulti={false}
+    />
+    </div>
+    )}
+  </div>
+  );
 };
 
 export default AdminQr;
