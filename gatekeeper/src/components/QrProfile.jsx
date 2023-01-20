@@ -5,9 +5,7 @@ import React, { useState } from "react";
 import AdminQr from "./AdminQr";
 import { motion } from "framer-motion";
 
-function QrProfile(userdata) {
-
-  console.log("userdata profile page: " , userdata)
+function QrProfile(userdata, option) {
 
   const [scan, setScan] = useState(false);
 
@@ -63,7 +61,7 @@ function QrProfile(userdata) {
   return (
     <div>
       {scan ? (
-        <AdminQr />
+        <AdminQr ReturnedOption={option} />
       ) : (
         <motion.div
         initial={{ opacity: 0, scale: 0.5 }}
