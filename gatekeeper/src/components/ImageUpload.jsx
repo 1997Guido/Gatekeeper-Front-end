@@ -71,7 +71,7 @@ function ImageUpload() {
   useEffect(() => {
     GetPersonalImages();
   }, []);
-  const url = "http://localhost:8000";
+  const url = "http://gatekeeper.uksouth.cloudapp.azure.com/";
   return (
     <>
       <div className="container-fluid">
