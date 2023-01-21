@@ -23,7 +23,6 @@ function AdminQr(props) {
   const [error, setError] = useState("no error");
   const tempList = [{}];
   let result = "";
-  let check = "";
 
   const handleChange = (selectedOption) => {
     setSelectedOption(selectedOption);
@@ -63,9 +62,7 @@ function AdminQr(props) {
         .then(function (response) {
           localStorage.setItem("selectedOption", JSON.stringify(selectedOption));
           //console.log("Response: " , response)
-          check = "";
           if (response.status === 200) {
-          if (response.data.check === 'true') {
             result = "";
             console.log("QR Verified!");
             //console.log("Response Check: ", response.data.check);
@@ -80,14 +77,12 @@ function AdminQr(props) {
             console.log("QR not Verified!");
             console.log("Response Check: ", response.data.check);
             console.log("Invalid QR Code");
-            if (response.data.check === 'false') {
-              check = false;
-            }
           }
-        }})
+        })
         .catch(function (error) {
-          setencryptedqrdata("Scan a QR Code");
+          // setencryptedqrdata("Scan a QR Code");
           if (error.response.status === 500) {
+            //<QrProfile userdata={undefined} />
             setError("Internal Server Error");
           } else if(!error.response) {
             // network error
@@ -143,7 +138,7 @@ function AdminQr(props) {
           />
 
           <div>
-            {error === "Internal Server Error" ? (<div>"Invalid QR Code"</div>) : (null)}
+            {/* {error === "Internal Server Error" ? (<div>"Invalid QR Code"</div>) : (null)} */}
             {error === "Network Error" ? (<div>"Network Error"</div>) : (null)}
           </div>
         </>
