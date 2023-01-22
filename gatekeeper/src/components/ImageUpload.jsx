@@ -102,10 +102,10 @@ function ImageUpload() {
           </div>
         </div>
       </div>
-      <div className="row ImageContainer">
-        <div className="col">
           {PersonalImages.map((image) => {
             return (
+              <div className="row ImageContainer">
+              <div className="col">
               <div key={image.id}>
                 <img
                   className="Image"
@@ -116,10 +116,10 @@ function ImageUpload() {
                 <p>Description:{image.Description}</p>
                 <button className="btn btn-primary" onClick={() => setProfilePicture(image.id)}>Set ProfilePicture</button>
               </div>
+              </div>
+              </div>
             );
           })}
-        </div>
-      </div>
       <div className="heightmaker"></div>
     </>
   );

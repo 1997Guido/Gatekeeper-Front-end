@@ -20,7 +20,6 @@ function UserProfile() {
       const Actualdata = response.data[0];
       console.log(response);
       setData(Actualdata);
-      getProfilePicture();
     });
   };
   const getProfilePicture = () => {
@@ -33,6 +32,7 @@ function UserProfile() {
   };
   useEffect(() => {
     getProfile();
+    getProfilePicture();
   }, []);
   const url = "http://localhost:8000";
   return (
