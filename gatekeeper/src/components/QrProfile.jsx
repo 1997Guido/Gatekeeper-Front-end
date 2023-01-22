@@ -4,10 +4,28 @@ import "bootstrap/dist/css/bootstrap.css";
 import React, { useState } from "react";
 import AdminQr from "./AdminQr";
 import { motion } from "framer-motion";
+import axiosinstance from "../api/axiosApi";
+import { useEffect } from "react";
 
 function QrProfile(userdata, option) {
 
   const [scan, setScan] = useState(false);
+  const [picture, setPicture] = useState([{}]);
+
+  const url = "http://localhost:8000";
+
+  const getProfilePicture = () => {
+    axiosinstance
+      .get(`api/imageview?allmypictures=profilepicture`)
+      .then(function (response) {
+        console.log(response);
+        setPicture(response.data);
+      });
+  };
+
+  useEffect(() => {
+    getProfilePicture();
+  }, []);
 
   // if (userdata.userdata.invited === 'false') {
   //   if (scan === false) {
@@ -74,6 +92,22 @@ function QrProfile(userdata, option) {
               <p className="ProfileTitle">Scanned Profile</p>
             </div>
           </div>
+          <div className="row">
+            <div className="col Userprofile">
+            {picture.Image === null ? (
+                      <p>No Profile Picture</p>
+                  ) : (
+                    <div>
+                      <img
+                        className="Image"
+                        src={url + picture.Image}
+                        alt={picture.Title}
+                      />
+                    </div>
+                  )}
+            </div>
+          </div>
+
           <div className="row">
             <div className="col Userprofile">
               <p>
