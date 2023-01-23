@@ -91,7 +91,7 @@ function EventEdit(event) {
                   value={EventInfo.EventTitle}
                 />
               </div>
-              <div class="form-group">
+              <div className="form-group">
                 <label for="EventDescription">
                   Event Description
                 </label>

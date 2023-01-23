@@ -1,17 +1,21 @@
 import './../css/GlobalStyle.css'
 import "./../css/mNav.css";
 import "bootstrap/dist/css/bootstrap.css";
-import logo from "./../images/torri3.png";
+import logo from "./../images/gatepng.png";
 import * as HiIcons from "react-icons/hi";
 import * as TbIcons from "react-icons/tb";
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
-import { useState } from "react";
-import HeaderFooter from "./HeaderFooter";
-import { motion } from "framer-motion";
 import selectNav from "../functions/selectNav";
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom'
 
 function Nav() {
+  const loca = useLocation().pathname.substring(1)
+  console.log(loca)
+useEffect(() => {
+    selectNav(loca);
+  }, []);
   return (
     <div>
       <nav className="mobile-nav">

@@ -81,6 +81,9 @@ function Register() {
       ) : (
         <div className="container-flex RegisterContainer">
           <form onSubmit={handleSubmit} className="myFormRegister">
+          {error !== "no error" ? (
+                <div className="error">{error.non_field_errors}</div>
+              ) : null}
             <div className="myFormGroupRegister">
               <label htmlFor="firstname">Firstname</label>
               {error !== "no error" ? (
