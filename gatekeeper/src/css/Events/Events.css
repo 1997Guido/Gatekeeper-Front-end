@@ -61,6 +61,7 @@
         opacity: 95%;
         margin-top: 5vh;
         font-size: 2.1vh;
+        text-shadow: black 2px 2px 2px;
 }
 }
 @media only screen and (max-width: 1360px) {
@@ -78,6 +79,7 @@
             opacity: 95%;
             margin-top: 5vh;
             font-size: 2.1vh;
+            text-shadow: black 2px 2px 2px;
     }
     }
 .BackButton{
