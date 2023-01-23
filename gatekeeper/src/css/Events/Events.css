@@ -101,6 +101,7 @@
 .EventInviteButton{
     width: 5vh;
     height: 5vh;
+    margin-left: 8vw
 }
 .EventDeleteButton{
     width: 5vh;

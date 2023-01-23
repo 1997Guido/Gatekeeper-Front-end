@@ -4,7 +4,6 @@ import "./../../css/userprofile.css";
 import { useEffect, useState } from "react";
 import axiosinstance from "../../api/axiosApi";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
 import * as TbIcons from "react-icons/tb";
 import ProfileEdit from "./ProfileEdit";
 import ProfileDelete from "./ProfileDelete";
@@ -43,24 +42,22 @@ function UserProfile() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1 }}
         >
-          <div className="UserProfileContainer">
+          <div className="container-fluid UserProfileContainer">
             <div className="row">
               <div className="col Userprofile">
                 <p className="ProfileTitle">Your Profile</p>
               </div>
             </div>
             <div className="row">
-              <div className="col Userprofile ProfilePicture">
+              <div className="col Userprofile">
                 <p>
                   {data.ProfilePicture === null ? (
-                    <button
-                      className="btn btn-primary"
+                    <TbIcons.TbCamera
+                      className="ProfilePictureIcon"
                       onClick={() => seteditmode("picture")}
-                    >
-                      Upload Profile Picture
-                    </button>
+                    ></TbIcons.TbCamera>
                   ) : (
-                    <div>
+                    <div className="col">
                       <img
                         className="Image"
                         src={url + picture.Image}
@@ -74,23 +71,23 @@ function UserProfile() {
             <div className="row">
               <div className="col Userprofile">
                 <p>
-                  Full name: {data.first_name} {data.last_name}
+                  {data.first_name} {data.last_name}
                 </p>
               </div>
             </div>
             <div className="row">
               <div className="col Userprofile">
-                <p>Date of Birth: {data.date_of_birth}</p>
+                <p>{data.date_of_birth}</p>
               </div>
             </div>
             <div className="row">
               <div className="col Userprofile">
-                <p>Gender: {data.gender}</p>
+                <p>{data.gender}</p>
               </div>
             </div>
             <div className="row">
               <div className="col Userprofile">
-                <p>Email: {data.email}</p>
+                <p>{data.email}</p>
               </div>
             </div>
             <div className="row">
@@ -101,23 +98,23 @@ function UserProfile() {
           </div>
           <div className="container-fluid">
             <div className="row">
-              <div className="col">
+              <div className="col" align="center">
                 <TbIcons.TbTrash
                   onClick={() => seteditmode("delete")}
                   className="ProfileDeleteButton"
                 />
               </div>
-              <div className="col">
+              <div className="col" align="center">
+                <TbIcons.TbCamera
+                  className="ProfilePictureButton"
+                  onClick={() => seteditmode("picture")}
+                />
+              </div>
+              <div className="col" align="center">
                 <TbIcons.TbEdit
                   onClick={() => seteditmode("edit")}
                   className="ProfileEditButton"
                 />
-                <button
-                  className="btn btn-primary"
-                  onClick={() => seteditmode("picture")}
-                >
-                  Upload Profile Picture
-                </button>
               </div>
             </div>
           </div>
@@ -126,7 +123,11 @@ function UserProfile() {
         <div>
           {editmode !== "false" ? (
             <TbIcons.TbArrowBackUp
-              onClick={function() {seteditmode("false"); getProfile()}}
+              onClick={function () {
+                seteditmode("false");
+                getProfile();
+                getProfilePicture();
+              }}
               className="BackButton"
             />
           ) : null}

@@ -26,7 +26,7 @@ function UserQr() {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1 }}
       >
-        <div className="row UserProfileContainer">
+        <div className="container-fluid UserProfileContainer">
           <div className="col">
             <div className="QrTitle">Your QR-Code</div>
           </div>

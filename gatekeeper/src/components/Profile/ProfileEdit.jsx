@@ -157,7 +157,7 @@ function ProfileEdit(data) {
             <div className="form-group myFormGroupProfile">
               <label htmlFor="username">Username</label>
               {error !== "no error" ? (
-                <div className="error">{error.email}</div>
+                <div className="error">{error.username}</div>
               ) : null}
               <input
                 type="text"

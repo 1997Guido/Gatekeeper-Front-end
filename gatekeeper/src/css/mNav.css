@@ -30,7 +30,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color:#2e6255;
+            background-color:#15517fc7;
             border-radius: 15%;
             transition: 1.5s;
         }
@@ -46,7 +46,7 @@
             display: flex;
             gap: 1vh;
             color: white;
-            background-color:#2e6255;
+            background-color:#15517fc7;
             height: 7vh;
             width: 8vh;
             transition: 1.5s;
@@ -102,7 +102,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color:#2e6255;
+    background-color:#15517fc7;
     border-radius: 5%;
     transition: 1.5s;
 }
@@ -118,7 +118,7 @@
     display: flex;
     gap: 1vh;
     color: white;
-    background-color:#2e6255;
+    background-color:#15517fc7;
     height: 7vh;
     width: 8vh;
     transition: 1.5s;
