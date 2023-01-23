@@ -87,7 +87,7 @@
     align-items: center;
 }
 .bloc-logo img {
-    margin-top: 1vh;
+    margin-top: 1.5vh;
     margin-bottom: 1vh;
     width: 8vh;
     display: flex;
@@ -103,7 +103,7 @@
     justify-content: center;
     align-items: center;
     background-color:#2e6255;
-    border-radius: 50%;
+    border-radius: 5%;
     transition: 1.5s;
 }
 .icons{

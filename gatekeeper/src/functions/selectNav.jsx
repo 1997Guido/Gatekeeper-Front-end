@@ -1,4 +1,10 @@
+
+import {useHistory} from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
+
+
 function selectNav(pagy){
+  const loca = window.location.pathname;
     if(pagy !== "home"){
       document.getElementById("home").classList.remove("logosel")
       document.getElementById("qrpage").classList.remove("iconsel")
