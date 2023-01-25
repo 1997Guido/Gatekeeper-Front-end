@@ -67,8 +67,8 @@
 }
 .Image{
     object-fit: contain;
-    width: 75%;
-    height: 75%;
+    width: 60%;
+    height: 60%;
     border-radius: 50%;
     border: 4px solid #15517fc7;
 }

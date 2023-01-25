@@ -76,7 +76,7 @@ function Events() {
         <div className="heightmaker"></div>
       </motion.div>
       <Link to="/myevents">
-        <button className="EventButton">My events</button>
+        <TbIcons.TbListDetails className="EventButton"/>
       </Link>
       <Link to="/eventcreate">
         <TbIcons.TbPlus className="EventButton2" />

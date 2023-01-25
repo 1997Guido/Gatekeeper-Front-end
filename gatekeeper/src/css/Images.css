@@ -138,7 +138,12 @@
   width: 5vh;
   height: 5vh;
   color: rgb(200, 46, 46);
-  margin-left: 4vw;
+  margin-left: 8vw;
+}
+.SetProfilePictureButton{
+  width: 5vh;
+  height: 5vh;
+  margin-left: 8vw;
 }
 .heightmaker {
   min-height: 20vh;

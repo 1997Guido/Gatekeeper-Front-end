@@ -35,6 +35,7 @@ function MyEvents() {
       >
         {event.map((event, index) => (
           <>
+                        <div className="col SingleEventBanner">Your Events</div>
               <div className="row EventContainer" key={index}>
                 <div className="col EventTitle">{event.EventTitle}</div>
                 <div className="">

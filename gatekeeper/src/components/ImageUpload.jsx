@@ -6,6 +6,7 @@ import "./../css/Images.css";
 import { useCookies } from "react-cookie";
 import { motion } from "framer-motion";
 import * as TbIcons from "react-icons/tb";
+import * as HiIcons from "react-icons/hi";
 function ImageUpload() {
   const [PictureEdit, setPictureEdit] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
@@ -130,66 +131,79 @@ function ImageUpload() {
             </div>
           </div>
         </div>
-        {PictureEdit === "PictureSet" ? (<div className="success">Profile Picture Set</div>) : (null)}
-        {edit ? (        <motion.div
-          initial={{ opacity: 0, scale: 0.7 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8 }}
-        >
-          <div className="container-fluid UserProfileContainer">
-            <div>Are you sure u want to delete?</div>
-            {selectedImage.Title}
-            <br />
-            <img
-              className="Image"
-              src={url + selectedImage.Image}
-              alt={selectedImage.Title}
-            />
-            <TbIcons.TbTrash
-              className="ProfileDeleteButton"
-              onClick={function() {deleteImage(); setEdit(false)}}
-            >
-              YES
-            </TbIcons.TbTrash>
-            <button className="btn btn-primary" onClick={() => setEdit(false)}>
-              NO
-            </button>
-          </div>
-        </motion.div>) : null}
+        {PictureEdit === "PictureSet" ? (
+          <div className="success">Profile Picture Set</div>
+        ) : null}
         <div>
           {PersonalImages.map((image) => {
             return (
               <motion.div
-              initial={{ opacity: 0, scale: 0.7 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8 }}
-            >
-              <div className="row ImageContainer">
-                <div className="col">
-                  <div key={image.id}>
-                    <img
-                      className="Image"
-                      src={url + image.Image}
-                      alt={image.Title}
-                    />
-                    <p>Title:{image.Title}</p>
-                    <p>Description:{image.Description}</p>
-                    <button
-                      className="btn btn-primary"
-                      onClick={function() {setProfilePicture(image.id); setPictureEdit("PictureSet");}}
-                    >
-                      Set Profile Picture
-                    </button>
-                    <TbIcons.TbTrash
-                      className="ProfileDeleteButton"
-                      onClick={function () {
-                        setEdit(true);
-                        setSelectedImage(image);
-                      }}
-                    ></TbIcons.TbTrash>
+                initial={{ opacity: 0, scale: 0.7 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8 }}
+              >
+                <div className="container-fluid">
+                  <div className="row ImageContainer">
+                    <div className="col">
+                      <div key={image.id}>
+                        <img
+                          className="Image"
+                          src={url + image.Image}
+                          alt={image.Title}
+                        />
+                        <p>Title:{image.Title}</p>
+                        <p>Description:{image.Description}</p>
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="col">
+                        <HiIcons.HiOutlineUserCircle
+                          className="SetProfilePictureButton"
+                          onClick={function () {
+                            setProfilePicture(image.id);
+                            setPictureEdit("PictureSet");
+                            window.scroll(0, 0)
+                          }}
+                        ></HiIcons.HiOutlineUserCircle>
+                        <TbIcons.TbTrash
+                          className="ImageDeleteButton"
+                          onClick={function () {
+                            setEdit(true);
+                            setSelectedImage(image);
+                          }}
+                        ></TbIcons.TbTrash>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
+                {edit ? (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.7 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.8 }}
+                  >
+                    <div className="container-fluid UserProfileContainer">
+                      <div>Are you sure u want to delete?</div>
+                      {selectedImage.Title}
+                      <br />
+                      <button
+                        className="btn btn-primary"
+                        onClick={function () {
+                          deleteImage();
+                          setEdit(false);
+                        }}
+                      >
+                        YES
+                      </button>
+                      <button
+                        className="btn btn-primary"
+                        onClick={() => setEdit(false)}
+                      >
+                        NO
+                      </button>
+                    </div>
+                  </motion.div>
+                ) : null}
               </motion.div>
             );
           })}

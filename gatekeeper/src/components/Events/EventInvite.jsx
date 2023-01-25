@@ -75,43 +75,49 @@ function EventInvite(event) {
   }, []);
   return (
     <>
-    <motion.div
-      initial={{ opacity: 0, scale: 0.7 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.8 }}
-    >
-      <div className="container-fluid">
-        <div className="row">
-          <div className="col EventBanner">Invite</div>
-        </div>
-        <Select
-          defaultValue={selectedOption}
-          onChange={handleChange}
-          options={userlist}
-          isMulti={true}
-        />
-        <div className="EventInviteContainer">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.7 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8 }}
+      >
+        <div className="container-fluid">
           <div className="row">
-            <div className="col">
-              <button
-                className="btn btn-primary"
-                onClick={() => Invite("Invite")}
-              >
-                Invite
-              </button>
-              <button
-                className="btn btn-primary"
-                onClick={() => Invite("Uninvite")}
-              >
-                Uninvite
-              </button>
-              {currentInvitedUsers.map((user, index) => (
-                <div key={index}>{user.username}</div>
-              ))}
+            <div className="col EventBanner">Invite</div>
+          </div>
+          <Select
+            defaultValue={selectedOption}
+            onChange={handleChange}
+            options={userlist}
+            isMulti={true}
+          />
+          <div className="EventInviteContainer">
+            <div className="row">
+              <div className="col">
+                <button
+                  className="btn btn-primary"
+                  onClick={() => Invite("Invite")}
+                >
+                  Invite
+                </button>
+                <button
+                  className="btn btn-primary"
+                  onClick={() => Invite("Uninvite")}
+                >
+                  Uninvite
+                </button>
+                  <div className="col InvitedUsersTitle">Invited Users:</div>
+                  <div className="row">
+                  <div className="col InvitedUsers">{currentInvitedUsers.map((user, index) => (
+                    <div key={index}>
+                      {index}: {user.username}
+                    </div>
+                  ))}
+                  </div>
+                  </div>
+                </div>
             </div>
           </div>
         </div>
-      </div>
       </motion.div>
     </>
   );
