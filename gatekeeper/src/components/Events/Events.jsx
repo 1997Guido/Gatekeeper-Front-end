@@ -46,20 +46,24 @@ function Events() {
               return (
                 <div>
                   {event.EventIsPrivate ? null : (
-                    <div className="row EventContainer" key={index}>
+                    <div className="EventContainer" key={index}>
                       <div className="col EventTitle">{event.EventTitle}</div>
-                      <div className="">
+                      <div className="row">
                         <div className="col">
                           Organized by:
                           <br />
                           {event.EventOrganizer}
-                          <div className="col">
-                            <TbIcons.TbCalendarEvent className="EventIcon" />
-                            {event.EventDate}
-                            <TbIcons.TbLocation className="EventIcon" />
-                            {event.EventLocation}
-                          </div>
                         </div>
+                      </div>
+                      <div className="row">
+                        <div className="col" align="left">
+                          <TbIcons.TbCalendarEvent className="EventIcon" />
+                          {event.EventDate}
+                          </div>
+                          <div className="col" align="left">
+                          <TbIcons.TbLocation className="EventIcon" />
+                          {event.EventLocation}
+                          </div>
                       </div>
                       <div className="col">
                         <TbIcons.TbFileInfo

@@ -1,38 +1,70 @@
-@media only screen and (max-width: 1360px) {
+@media only screen and (max-width: 900px) {
   .QRContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: white;
-    padding: 6px;
-    margin: auto;
-    max-width: auto;
-    max-height: auto;
-    width: 85%;
-    height: 150%;
-    min-height: 100%;
-    border: #2c2c2c 5px solid;
-    box-shadow: 0 0 10px #2c2c2c;
+    border-radius: 3%;
+    text-align: center;
+    margin-top: 5vh;
+    margin-top: 5vh;
+    box-shadow: 1 1 10px #2c2c2c;
     opacity: 95%;
+    border-radius: 3%;
+  }
+  .QRTitle{
+    box-shadow: 0 0 10px #2c2c2c;
+    margin: auto;
+    width: 90%;
+    margin-top: 5vh;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 5vh;
+    background-color: #2c2c2c;
+    color: #ffffff;
+    text-align: center;
+  }
+  .QRCode{
+    box-shadow: 0 0 10px #2c2c2c;
+    width: 90%;
+    margin: auto;
+    border: 5px solid #2c2c2c;
   }
 }
 @media only screen and (min-width: 1360px) {
   .QRContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: white;
-    padding: 6px;
-    margin: auto;
+    background-color: #2c2c2c;
+    text-align: center;
+    margin-bottom: 0vh;
+    border: 1px solid #2c2c2c;
+    border-radius: 3%;
+    margin-top: 5vh;
     width: 30%;
-    height: 130%;
-    min-height: 100%;
-    border: #2c2c2c 5px solid;
+    height: 150%;
+    min-height: 50vh;
     box-shadow: 0 0 10px #2c2c2c;
     opacity: 95%;
   }
-  .QrTitle{
+  .QRTitle{
+    color: #ffffff;
     font-family: 'Courier New', Courier, monospace;
     font-size: 5vh;
+    background-color: #2c2c2c;
+  }
+}
+@media only screen and (max-width: 1300px) and (min-width: 900px) {
+  .QRContainer {
+    background-color: #2c2c2c;
+    text-align: center;
+    margin-bottom: 0vh;
+    border: 1px solid #2c2c2c;
+    border-radius: 3%;
+    margin-top: 5vh;
+    width: 40%;
+    height: 150%;
+    min-height: 50vh;
+    box-shadow: 0 0 10px #2c2c2c;
+    opacity: 95%;
+  }
+  .QRTitle{
+    color: #ffffff;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 5vh;
+    background-color: #2c2c2c;
   }
 }

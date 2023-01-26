@@ -135,9 +135,10 @@ function ImageUpload() {
           <div className="success">Profile Picture Set</div>
         ) : null}
         <div>
-          {PersonalImages.map((image) => {
+          {PersonalImages.map((image, index) => {
             return (
               <motion.div
+                key={index}
                 initial={{ opacity: 0, scale: 0.7 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.8 }}
@@ -145,7 +146,7 @@ function ImageUpload() {
                 <div className="container-fluid">
                   <div className="row ImageContainer">
                     <div className="col">
-                      <div key={image.id}>
+                      <div>
                         <img
                           className="Image"
                           src={url + image.Image}
@@ -162,7 +163,7 @@ function ImageUpload() {
                           onClick={function () {
                             setProfilePicture(image.id);
                             setPictureEdit("PictureSet");
-                            window.scroll(0, 0)
+                            window.scroll(0, 0);
                           }}
                         ></HiIcons.HiOutlineUserCircle>
                         <TbIcons.TbTrash
