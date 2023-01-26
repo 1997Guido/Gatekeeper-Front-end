@@ -1,4 +1,4 @@
-import "./../css/TermsOfUse.css";
+import "./../../css/Miscellaneous/GlobalStyle.css";
 
 
 function TermsOfUse() {

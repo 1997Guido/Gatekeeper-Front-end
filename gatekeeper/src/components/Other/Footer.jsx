@@ -1,5 +1,5 @@
-import "./../css/GlobalStyle.css";
-import "./../css/HeaderFooter.css";
+import "./../../css/Miscellaneous/GlobalStyle.css";
+import "./../../css/Miscellaneous/HeaderFooter.css";
 import "bootstrap/dist/css/bootstrap.css";
 
 function Footer() {

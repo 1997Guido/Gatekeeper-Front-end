@@ -3,10 +3,7 @@ import axiosinstance from "../../api/axiosApi";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useCookies } from "react-cookie";
-import "./../../css/ProfileEdit.css";
-import { Navigate } from "react-router-dom";
-import { Link } from "react-router-dom";
-import * as TbIcons from "react-icons/tb";
+import "./../../css/Profile/ProfileEdit.css";
 import UserProfile from "./UserProfile";
 
 function ProfileEdit(data) {

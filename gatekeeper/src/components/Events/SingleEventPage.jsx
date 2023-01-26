@@ -1,4 +1,4 @@
-import "./../../css/SingleEvent.css";
+import "./../../css/Events/SingleEvent.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
@@ -9,7 +9,6 @@ import * as TbIcons from "react-icons/tb";
 import EventEdit from "./EventEdit";
 import EventInvite from "./EventInvite";
 import EventDelete from "./EventDelete";
-import { atcb_action, atcb_init } from 'add-to-calendar-button';
 function SingleEvent() {
   const [currentInvitedUsers, setcurrentInvitedUsers] = useState([{}]);
   const csrftoken = useCookies(["csrftoken"]);

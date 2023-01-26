@@ -53,11 +53,12 @@ function Events() {
                           Organized by:
                           <br />
                           {event.EventOrganizer}
-                          <br />
-                          {event.EventDate}
-                          <br />
-                          {event.EventLocation}
-                          <br />
+                          <div className="col">
+                            <TbIcons.TbCalendarEvent className="EventIcon" />
+                            {event.EventDate}
+                            <TbIcons.TbLocation className="EventIcon" />
+                            {event.EventLocation}
+                          </div>
                         </div>
                       </div>
                       <div className="col">
@@ -76,7 +77,7 @@ function Events() {
         <div className="heightmaker"></div>
       </motion.div>
       <Link to="/myevents">
-        <TbIcons.TbListDetails className="EventButton"/>
+        <TbIcons.TbListDetails className="EventButton" />
       </Link>
       <Link to="/eventcreate">
         <TbIcons.TbPlus className="EventButton2" />

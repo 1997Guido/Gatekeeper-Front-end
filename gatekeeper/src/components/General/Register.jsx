@@ -1,14 +1,14 @@
 import "bootstrap/dist/css/bootstrap.css";
-import "./../css/register.css";
-import "./../css/GlobalStyle.css";
+import "./../../css/General/register.css";
+import "./../../css/Miscellaneous/GlobalStyle.css";
 import { useState } from "react";
-import axiosinstance from "./../api/axiosApi";
+import axiosinstance from "../../api/axiosApi";
 import { motion } from "framer-motion";
 import { Navigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { Link } from "react-router-dom";
 import * as TbIcons from "react-icons/tb";
-import TermsOfUse from "./TermsOfUse";
+import TermsOfUse from "../Other/TermsOfUse";
 function Register() {
   const [TermsChecked, setTermsChecked] = useState(false);
   const [Success, setSuccess] = useState(false);

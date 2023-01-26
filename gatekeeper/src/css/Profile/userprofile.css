@@ -43,7 +43,6 @@
         min-height: 100%;
         box-shadow: 0 0 10px #2c2c2c;
         opacity: 95%;
-        text-shadow: black 2px 2px 2px;
 }
 .ProfileDeleteButton{
     margin-top: 2vh;
@@ -66,6 +65,7 @@
 .ProfileTitle{
     font-family: 'Courier New', Courier, monospace;
     font-size: 4.5vh;
+    text-shadow: black 2px 2px 2px;
 }
 .Image{
     object-fit: contain;

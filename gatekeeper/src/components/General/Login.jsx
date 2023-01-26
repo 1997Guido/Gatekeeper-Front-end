@@ -1,28 +1,17 @@
-import "./../css/GlobalStyle.css";
+import "./../../css/Miscellaneous/GlobalStyle.css";
 import "bootstrap/dist/css/bootstrap.css";
-import "./../css/login.css";
+import "./../../css/General/login.css";
 import { useState, useEffect } from "react";
-import axiosInstance from "../api/axiosApi";
+import axiosInstance from "../../api/axiosApi";
 import { Navigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import validateUserLoggedIn from "../api/ValidateUserLoggedIn";
+import validateUserLoggedIn from "../../api/ValidateUserLoggedIn";
 import { Link } from "react-router-dom";
 
 function Login() {
   let [isAuth, setIsAuth] = useState(
     localStorage.getItem("Auth") === "true" ? true : false
   );
-  useEffect(() => {
-    validateUserLoggedIn().then((res) => {
-      if (res.data === "true") {
-        setIsAuth(true);
-        localStorage.setItem("Auth", true);
-      } else {
-        setIsAuth(false);
-        localStorage.setItem("Auth", false);
-      }
-    });
-  });
   const [Success, setSucces] = useState(false);
   const [LoginInfo, setLoginInfo] = useState({
     username: "",
@@ -55,7 +44,7 @@ function Login() {
         <Navigate replace to="/" />
       ) : (
         <div className="container-flex loginContainer">
-          <form onClick={handleSubmit} className="myForm">
+          <form onSubmit={handleSubmit} className="myForm">
             <div className="form-group myFormGroup">
               <label htmlFor="username">Username</label>
               <input
