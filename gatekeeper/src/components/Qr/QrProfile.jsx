@@ -1,10 +1,10 @@
-import "./../css/GlobalStyle.css";
-import "./../css/scanner.css";
+import "../../css/GlobalStyle.css";
+import "../../css/Qr/scanner.css";
 import "bootstrap/dist/css/bootstrap.css";
 import React, { useState } from "react";
-import AdminQr from "./AdminQr";
+import Scanner from "./Scanner";
 import { motion } from "framer-motion";
-import axiosinstance from "../api/axiosApi";
+import axiosinstance from "../../api/axiosApi";
 import { useEffect } from "react";
 
 function QrProfile(userdata, option) {
@@ -46,7 +46,7 @@ function QrProfile(userdata, option) {
   return (
     <div>
       {scan ? (
-        <AdminQr ReturnedOption={option} />
+        <Scanner ReturnedOption={option} />
       ) : (
         <motion.div
         initial={{ opacity: 0, scale: 0.5 }}

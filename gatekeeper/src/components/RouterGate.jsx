@@ -1,10 +1,10 @@
 import { Route, Routes, useLocation} from 'react-router-dom';
 import Home from './Home';
 import UserProfile from '../components/Profile/UserProfile';
-import UserQr from './UserQr';
+import UserQr from './Qr/UserQr';
 import CreateEvent from '../components/Events/CreateEvent';
 import Events from '../components/Events/Events'
-import AdminQr from './AdminQr'
+import Scanner from './Qr/Scanner'
 import Register from './Register';
 import Login from './Login';
 import {AnimatePresence} from "framer-motion";
@@ -25,7 +25,7 @@ function RouterGate() {
             <Route element={<PrivateRoutes/>}>
                 <Route path="*" element={<Home />}></Route>
                 <Route path="/" element={<Home />}></Route>
-                <Route path="/admin" element={<AdminQr />}></Route>
+                <Route path="/scanner" element={<Scanner />}></Route>
                 <Route path="/qrpage" element={<UserQr/>}/>
                 <Route path="/userprofile" element={<UserProfile />}></Route>
                 <Route path="/events" element={<Events />}></Route>

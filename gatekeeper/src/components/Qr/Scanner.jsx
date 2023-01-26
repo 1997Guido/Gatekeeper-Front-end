@@ -1,11 +1,11 @@
-import "./../css/GlobalStyle.css";
+import "./../../css/GlobalStyle.css";
 import * as TbIcons from "react-icons/tb";
-import "./../css/scanner.css";
+import "./../../css/Qr/scanner.css";
 import "bootstrap/dist/css/bootstrap.css";
 import React, { useState } from "react";
 import { QrReader } from "react-qr-reader";
 import axios from "axios";
-import axiosinstance from "./../api/axiosApi";
+import axiosinstance from "../../api/axiosApi";
 import { motion } from "framer-motion";
 import { useCookies } from "react-cookie";
 import { useEffect } from "react";
@@ -14,7 +14,7 @@ import QrProfile from "./QrProfile";
 
 // This is the component that is used to scan QR codes
 
-function AdminQr(props) {
+function Scanner(props) {
   const [selectedOption, setSelectedOption] = useState(localStorage.getItem("selectedOption") ? JSON.parse(localStorage.getItem("selectedOption")) : null);
   let csrftoken = useCookies(["csrftoken"]);
   const [encryptedqrdata, setencryptedqrdata] = useState("Scan a QR Code");
@@ -170,4 +170,4 @@ function AdminQr(props) {
   );
 };
 
-export default AdminQr;
+export default Scanner;
