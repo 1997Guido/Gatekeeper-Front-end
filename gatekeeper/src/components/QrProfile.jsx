@@ -14,42 +14,9 @@ function QrProfile(userdata, option) {
 
   const url = "http://localhost:8000";
 
-  const getProfilePicture = () => {
-    axiosinstance
-      .get(`api/imageview?allmypictures=profilepicture`)
-      .then(function (response) {
-        console.log(response);
-        setPicture(response.data);
-      });
-  };
-
   useEffect(() => {
-    getProfilePicture();
-  }, []);
-
-  // if (userdata.userdata.invited === 'false') {
-  //   if (scan === false) {
-  //     return (
-  //         <div>
-  //           <motion.div
-  //             initial={{ opacity: 0, scale: 0.5 }}
-  //             animate={{ opacity: 1, scale: 1 }}
-  //             transition={{ duration: 1 }}
-  //           >
-  //             <div className="InvalidContainer">
-  //               <div className="row">
-  //                 <div className="col">
-  //                   <p className="InvalidTitle">Invalid QR Code</p>
-  //                   <p className="InvalidText">This user was not invited to this event!</p>
-  //                 </div>
-  //                 </div>
-  //                   <button className="btn btn-primray buttonscan" onClick={() => setScan(true)}>Scan Again</button>
-  //               </div>
-  //           </motion.div>
-  //         </div>
-  //       );
-  //     }
-  //   }
+    setPicture(userdata.userdata.imageurl);
+  }, [userdata]);
 
   if (userdata.userdata === undefined) {
     if (scan === false) {
@@ -94,14 +61,13 @@ function QrProfile(userdata, option) {
           </div>
           <div className="row">
             <div className="col Userprofile">
-            {picture.Image === null ? (
+            {picture === null ? (
                       <p>No Profile Picture</p>
                   ) : (
                     <div>
                       <img
                         className="Image"
-                        src={url + picture.Image}
-                        alt={picture.Title}
+                        src={url + userdata.userdata.imageurl}
                       />
                     </div>
                   )}

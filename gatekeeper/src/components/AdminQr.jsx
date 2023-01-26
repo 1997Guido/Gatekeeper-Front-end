@@ -138,7 +138,6 @@ function AdminQr(props) {
           />
 
           <div>
-            {/* {error === "Internal Server Error" ? (<div>"Invalid QR Code"</div>) : (null)} */}
             {error === "Network Error" ? (<div>"Network Error"</div>) : (null)}
           </div>
         </>
