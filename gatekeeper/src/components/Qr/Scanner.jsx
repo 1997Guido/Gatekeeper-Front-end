@@ -1,11 +1,11 @@
-import "./../css/GlobalStyle.css";
+import "./../../css/GlobalStyle.css";
 import * as TbIcons from "react-icons/tb";
-import "./../css/scanner.css";
+import "./../../css/Qr/scanner.css";
 import "bootstrap/dist/css/bootstrap.css";
 import React, { useState } from "react";
 import { QrReader } from "react-qr-reader";
 import axios from "axios";
-import axiosinstance from "./../api/axiosApi";
+import axiosinstance from "../../api/axiosApi";
 import { motion } from "framer-motion";
 import { useCookies } from "react-cookie";
 import { useEffect } from "react";
@@ -14,7 +14,7 @@ import QrProfile from "./QrProfile";
 
 // This is the component that is used to scan QR codes
 
-function AdminQr(props) {
+function Scanner(props) {
   const [selectedOption, setSelectedOption] = useState(localStorage.getItem("selectedOption") ? JSON.parse(localStorage.getItem("selectedOption")) : null);
   let csrftoken = useCookies(["csrftoken"]);
   const [encryptedqrdata, setencryptedqrdata] = useState("Scan a QR Code");
@@ -27,8 +27,6 @@ function AdminQr(props) {
   const handleChange = (selectedOption) => {
     setSelectedOption(selectedOption);
     console.log(`Option Selected:`, selectedOption);
-    // document.querySelector(".scanner").style.display = "block";
-    // document.querySelector(".temptext").style.display = "none";
   };
 
   const getPersonalEvents = async () => {
@@ -65,13 +63,7 @@ function AdminQr(props) {
           if (response.status === 200) {
             result = "";
             console.log("QR Verified!");
-            //console.log("Response Check: ", response.data.check);
-            //console.log("Response: " , response)
-            //console.log("Userdata: ", response.data.userdata);
-            //console.log("Selected Option: " , selectedOption);
-            //console.log("Guestlist: ", response.data.guestlist)
             setdata(response.data.userdata, response.data.check);
-            //console.log("UseState Userdata: " , data);
           } else {
             setencryptedqrdata("Scan a QR Code");
             console.log("QR not Verified!");
@@ -80,9 +72,7 @@ function AdminQr(props) {
           }
         })
         .catch(function (error) {
-          // setencryptedqrdata("Scan a QR Code");
           if (error.response.status === 500) {
-            //<QrProfile userdata={undefined} />
             setError("Internal Server Error");
           } else if(!error.response) {
             // network error
@@ -138,7 +128,6 @@ function AdminQr(props) {
           />
 
           <div>
-            {/* {error === "Internal Server Error" ? (<div>"Invalid QR Code"</div>) : (null)} */}
             {error === "Network Error" ? (<div>"Network Error"</div>) : (null)}
           </div>
         </>
@@ -171,4 +160,4 @@ function AdminQr(props) {
   );
 };
 
-export default AdminQr;
+export default Scanner;

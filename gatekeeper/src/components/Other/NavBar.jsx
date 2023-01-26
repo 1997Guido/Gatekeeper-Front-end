@@ -26,11 +26,11 @@ useEffect(() => {
             onClick={() => selectNav("qrpage")}
           />
         </Link>
-        <Link to="/admin" className="bloc-icon">
+        <Link to="/scanner" className="bloc-icon">
           <HiIcons.HiLogin
-            id="admin"
+            id="scanner"
             className="icons"
-            onClick={() => selectNav("admin")}
+            onClick={() => selectNav("scanner")}
           />
         </Link>
         <Link to="/" className="bloc-logo">

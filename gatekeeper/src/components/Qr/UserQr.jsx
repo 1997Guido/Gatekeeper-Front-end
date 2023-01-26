@@ -1,9 +1,9 @@
-import "./../css/GlobalStyle.css";
-import "./../css/userqr.css";
+import "../../css/GlobalStyle.css";
+import "../../css/Qr/userqr.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { motion } from "framer-motion";
 import React from "react";
-import axiosinstance from "./../api/axiosApi";
+import axiosinstance from "../../api/axiosApi";
 import QRCode from "react-qr-code";
 import { useEffect, useState } from "react";
 
@@ -12,11 +12,10 @@ function UserQr() {
   const getProfile = () => {
     axiosinstance.get("api/qrcodegeneratorapi").then(function (response) {
       setQrData(response.data);
-      console.log(QrData);
     });
   };
   useEffect(() => {
-    getProfile();
+    getProfile();;
   }, []);
 
   return (
