@@ -28,7 +28,7 @@ useEffect(() => {
         </Link>
         <Link to="/scanner" className="bloc-icon">
           <HiIcons.HiLogin
-            id="admin"
+            id="scanner"
             className="icons"
             onClick={() => selectNav("scanner")}
           />

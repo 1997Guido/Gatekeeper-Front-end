@@ -6,7 +6,7 @@ function selectNav(loca){
     if(loca !== "home"){
       document.getElementById("home").classList.remove("logosel")
       document.getElementById("qrpage").classList.remove("iconsel")
-      document.getElementById("admin").classList.remove("iconsel")
+      document.getElementById("scanner").classList.remove("iconsel")
       document.getElementById("userprofile").classList.remove("iconsel")
       document.getElementById("events").classList.remove("iconsel")
       let id = document.getElementById(loca)
@@ -15,7 +15,7 @@ function selectNav(loca){
     else{
       document.getElementById("home").classList.remove("logosel")
       document.getElementById("qrpage").classList.remove("iconsel")
-      document.getElementById("admin").classList.remove("iconsel")
+      document.getElementById("scanner").classList.remove("iconsel")
       document.getElementById("userprofile").classList.remove("iconsel")
       document.getElementById("events").classList.remove("iconsel")
       let id = document.getElementById(loca)

@@ -27,8 +27,6 @@ function Scanner(props) {
   const handleChange = (selectedOption) => {
     setSelectedOption(selectedOption);
     console.log(`Option Selected:`, selectedOption);
-    // document.querySelector(".scanner").style.display = "block";
-    // document.querySelector(".temptext").style.display = "none";
   };
 
   const getPersonalEvents = async () => {
@@ -65,13 +63,7 @@ function Scanner(props) {
           if (response.status === 200) {
             result = "";
             console.log("QR Verified!");
-            //console.log("Response Check: ", response.data.check);
-            //console.log("Response: " , response)
-            //console.log("Userdata: ", response.data.userdata);
-            //console.log("Selected Option: " , selectedOption);
-            //console.log("Guestlist: ", response.data.guestlist)
             setdata(response.data.userdata, response.data.check);
-            //console.log("UseState Userdata: " , data);
           } else {
             setencryptedqrdata("Scan a QR Code");
             console.log("QR not Verified!");
@@ -80,9 +72,7 @@ function Scanner(props) {
           }
         })
         .catch(function (error) {
-          // setencryptedqrdata("Scan a QR Code");
           if (error.response.status === 500) {
-            //<QrProfile userdata={undefined} />
             setError("Internal Server Error");
           } else if(!error.response) {
             // network error

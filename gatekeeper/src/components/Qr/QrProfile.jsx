@@ -10,13 +10,14 @@ import { useEffect } from "react";
 function QrProfile(userdata, option) {
 
   const [scan, setScan] = useState(false);
-  const [picture, setPicture] = useState([{}]);
+  // const [picture, setPicture] = useState([{}]);
 
   const url = "http://localhost:8000";
 
-  useEffect(() => {
-    setPicture(userdata.userdata.imageurl);
-  }, [userdata]);
+  // useEffect(() => {
+  //   if (userdata.userdata.imageurl !== null) {
+  //   setPicture(userdata.userdata.imageurl);
+  // }, [userdata]);
 
   if (userdata.userdata === undefined) {
     if (scan === false) {
@@ -61,7 +62,7 @@ function QrProfile(userdata, option) {
           </div>
           <div className="row">
             <div className="col Userprofile">
-            {picture === null ? (
+            {userdata.userdata.imageurl === null ? (
                       <p>No Profile Picture</p>
                   ) : (
                     <div>

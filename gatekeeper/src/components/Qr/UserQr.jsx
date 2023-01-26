@@ -12,11 +12,10 @@ function UserQr() {
   const getProfile = () => {
     axiosinstance.get("api/qrcodegeneratorapi").then(function (response) {
       setQrData(response.data);
-      console.log(QrData);
     });
   };
   useEffect(() => {
-    getProfile();
+    getProfile();;
   }, []);
 
   return (

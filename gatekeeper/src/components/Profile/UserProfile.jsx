@@ -50,7 +50,6 @@ function UserProfile() {
             </div>
             <div className="row">
               <div className="col Userprofile">
-                <p>
                   {data.ProfilePicture === null ? (
                     <TbIcons.TbCamera
                       className="ProfilePictureIcon"
@@ -65,7 +64,6 @@ function UserProfile() {
                       />
                     </div>
                   )}
-                </p>
               </div>
             </div>
             <div className="row">
