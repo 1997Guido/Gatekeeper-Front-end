@@ -1,55 +1,23 @@
-import "./../css/GlobalStyle.css";
-import "./../css/scanner.css";
+import "./../../css/Miscellaneous/GlobalStyle.css";
+import "./../../css/QR/scanner.css";
 import "bootstrap/dist/css/bootstrap.css";
 import React, { useState } from "react";
-import AdminQr from "./AdminQr";
+import Scanner from "./Scanner";
 import { motion } from "framer-motion";
-import axiosinstance from "../api/axiosApi";
+import axiosinstance from "../../api/axiosApi";
 import { useEffect } from "react";
 
 function QrProfile(userdata, option) {
 
   const [scan, setScan] = useState(false);
-  const [picture, setPicture] = useState([{}]);
+  // const [picture, setPicture] = useState([{}]);
 
   const url = "http://gatekeeper.uksouth.cloudapp.azure.com/";
 
-  const getProfilePicture = () => {
-    axiosinstance
-      .get(`api/imageview?allmypictures=profilepicture`)
-      .then(function (response) {
-        console.log(response);
-        setPicture(response.data);
-      });
-  };
-
-  useEffect(() => {
-    getProfilePicture();
-  }, []);
-
-  // if (userdata.userdata.invited === 'false') {
-  //   if (scan === false) {
-  //     return (
-  //         <div>
-  //           <motion.div
-  //             initial={{ opacity: 0, scale: 0.5 }}
-  //             animate={{ opacity: 1, scale: 1 }}
-  //             transition={{ duration: 1 }}
-  //           >
-  //             <div className="InvalidContainer">
-  //               <div className="row">
-  //                 <div className="col">
-  //                   <p className="InvalidTitle">Invalid QR Code</p>
-  //                   <p className="InvalidText">This user was not invited to this event!</p>
-  //                 </div>
-  //                 </div>
-  //                   <button className="btn btn-primray buttonscan" onClick={() => setScan(true)}>Scan Again</button>
-  //               </div>
-  //           </motion.div>
-  //         </div>
-  //       );
-  //     }
-  //   }
+  // useEffect(() => {
+  //   if (userdata.userdata.imageurl !== null) {
+  //   setPicture(userdata.userdata.imageurl);
+  // }, [userdata]);
 
   if (userdata.userdata === undefined) {
     if (scan === false) {
@@ -79,7 +47,7 @@ function QrProfile(userdata, option) {
   return (
     <div>
       {scan ? (
-        <AdminQr ReturnedOption={option} />
+        <Scanner ReturnedOption={option} />
       ) : (
         <motion.div
         initial={{ opacity: 0, scale: 0.5 }}
@@ -94,14 +62,13 @@ function QrProfile(userdata, option) {
           </div>
           <div className="row">
             <div className="col Userprofile">
-            {picture.Image === null ? (
+            {userdata.userdata.imageurl === null ? (
                       <p>No Profile Picture</p>
                   ) : (
                     <div>
                       <img
                         className="Image"
-                        src={url + picture.Image}
-                        alt={picture.Title}
+                        src={url + userdata.userdata.imageurl}
                       />
                     </div>
                   )}

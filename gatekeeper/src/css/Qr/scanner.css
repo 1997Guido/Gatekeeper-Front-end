@@ -25,6 +25,8 @@
 }
 .temptext {
     margin-top: 5vh;
+    border: 1px solid #2c2c2c;
+    border-radius: 3%;
     max-width: 90%;
     margin-left: 5%;
     margin-right: 5%;
@@ -35,6 +37,7 @@
     font-family: kirsty;
     font-size: 3vh;
     color: #fff;
+    box-shadow: 4px 4px 4px black;
 }
 .result{
     font-family: kirsty;

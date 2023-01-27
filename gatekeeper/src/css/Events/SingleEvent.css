@@ -96,7 +96,8 @@
     }
 .EventIcon{
     font-size: 3vh;
-    margin-right: 0.5vh;
+    margin-right: 0.5%;
+    margin-left: 3vh;
 }
 .EventTextDiv{
     margin-left: 5vh;

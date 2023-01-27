@@ -46,19 +46,24 @@ function Events() {
               return (
                 <div>
                   {event.EventIsPrivate ? null : (
-                    <div className="row EventContainer" key={index}>
+                    <div className="EventContainer" key={index}>
                       <div className="col EventTitle">{event.EventTitle}</div>
-                      <div className="">
+                      <div className="row">
                         <div className="col">
                           Organized by:
                           <br />
                           {event.EventOrganizer}
-                          <br />
-                          {event.EventDate}
-                          <br />
-                          {event.EventLocation}
-                          <br />
                         </div>
+                      </div>
+                      <div className="row">
+                        <div className="col" align="left">
+                          <TbIcons.TbCalendarEvent className="EventIcon" />
+                          {event.EventDate}
+                          </div>
+                          <div className="col" align="left">
+                          <TbIcons.TbLocation className="EventIcon" />
+                          {event.EventLocation}
+                          </div>
                       </div>
                       <div className="col">
                         <TbIcons.TbFileInfo
@@ -76,7 +81,7 @@ function Events() {
         <div className="heightmaker"></div>
       </motion.div>
       <Link to="/myevents">
-        <button className="EventButton">My events</button>
+        <TbIcons.TbListDetails className="EventButton" />
       </Link>
       <Link to="/eventcreate">
         <TbIcons.TbPlus className="EventButton2" />

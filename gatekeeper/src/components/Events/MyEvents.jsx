@@ -1,4 +1,4 @@
-import "./../../css/MyEvents.css";
+import "./../../css/Miscellaneous/GlobalStyle.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
@@ -11,7 +11,6 @@ function MyEvents() {
   const [event, setevent] = useState([]);
   const navigate = useNavigate();
   const navigateToSingleEvent = (singleventpk) => {
-    localStorage.setItem("singleventpk", singleventpk);
     navigate("/singleeventview");
   };
   const getPersonalEvents = async () => {
@@ -34,29 +33,32 @@ function MyEvents() {
         transition={{ duration: 0.8 }}
       >
         {event.map((event, index) => (
-          <>
-              <div className="row EventContainer" key={index}>
-                <div className="col EventTitle">{event.EventTitle}</div>
-                <div className="">
-                  <div className="col">
-                    Organized by:
-                    <br />
-                    {event.EventOrganizer}
-                    <br />
-                    {event.EventDate}
-                    <br />
-                    {event.EventLocation}
-                    <br />
-                  </div>
-                </div>
-                <div className="col">
-                  <TbIcons.TbFileInfo
-                    className="EventInfoButton"
-                    onClick={() => navigateToSingleEvent(event.pk)}
-                  />
-                </div>
+          <div className="EventContainer" key={index}>
+            <div className="col EventTitle">{event.EventTitle}</div>
+            <div className="row">
+              <div className="col">
+                Organized by:
+                <br />
+                {event.EventOrganizer}
               </div>
-          </>
+            </div>
+            <div className="row">
+              <div className="col" align="left">
+                <TbIcons.TbCalendarEvent className="EventIcon" />
+                {event.EventDate}
+                </div>
+                <div className="col" align="left">
+                <TbIcons.TbLocation className="EventIcon" />
+                {event.EventLocation}
+                </div>
+            </div>
+            <div className="col">
+              <TbIcons.TbFileInfo
+                className="EventInfoButton"
+                onClick={() => navigateToSingleEvent(event.pk)}
+              />
+            </div>
+          </div>
         ))}
         <div className="heightmaker"></div>
       </motion.div>

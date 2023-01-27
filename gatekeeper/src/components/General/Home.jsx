@@ -1,23 +1,23 @@
-import "./../css/GlobalStyle.css";
-import "./../css/home.css";
+import "./../../css/Miscellaneous/GlobalStyle.css";
+import "./../../css/General/home.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import axiosInstance from "./../api/axiosApi";
+import axiosInstance from "../../api/axiosApi";
 import { useEffect } from "react";
 
 function Home() {
-  const [username, setusername] = useState("");
-  const getUserNames = async () => {
-    await axiosInstance
-      .get(`/api/usernameviewapi?allusers=me`)
-      .then(function (response) {
-        console.log("response:", response);
-        setusername(response.data[0].username);
-      });
+  const [data, setData] = useState([]);
+
+  const getProfile = () => {
+    axiosInstance.get(`api/profileapi?allusers=me`).then(function (response) {
+      const Actualdata = response.data[0];
+      console.log(response);
+      setData(Actualdata);
+    });
   };
   useEffect(() => {
-    getUserNames();
+    getProfile();
   }, []);
   return (
     <>
@@ -27,12 +27,12 @@ function Home() {
         transition={{ duration: 1 }}
       >
         <div className="container-fluid HomeContainer">
-          <h1>Home</h1>
+        <div className="HomeTitle">Welcome</div>
           <div className="row">
             <div className="col text">
-              <p>Welcome {username}</p>
+              <p className="UserName">{data.first_name}</p>
               <p>
-                to our event planning webapp!
+                To our event planning webapp!
                 <br />
                 We make it easy to create and manage beautiful event pages,
                 customize with all the necessary details, and invite your guests

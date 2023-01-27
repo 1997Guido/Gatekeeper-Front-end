@@ -13,7 +13,7 @@
 }
 @font-face {
     font-family: 'kirsty';
-    src: local('kirsty'), url(./../fonts/kirstybd.otf) format('opentype');
+    src: local('kirsty'), url(./../../fonts/kirstybd.otf) format('opentype');
     /* other formats include: 'woff2', 'truetype, 'opentype',
                               'embedded-opentype', and 'svg' */
   }
