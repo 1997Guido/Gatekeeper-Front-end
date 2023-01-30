@@ -105,7 +105,11 @@ function Scanner(props) {
             <div className="row justify-content-center"> 
               <div className="col scanner">
                 <QrReader
-                  facingMode="environment"
+                key="environment"
+                constraints={{
+                  facingMode: 'environment',
+                  key: "environment"
+              }}
                   onResult={(result, error) => {
                     if (!!result) {
                       setencryptedqrdata(result?.text);

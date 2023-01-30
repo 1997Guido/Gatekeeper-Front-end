@@ -20,6 +20,7 @@
     text-align: center;
   }
   .QRCode{
+    padding: 6px;
     box-shadow: 0 0 10px #2c2c2c;
     width: 90%;
     margin: auto;
