@@ -10,6 +10,9 @@ import EventEdit from "./EventEdit";
 import EventInvite from "./EventInvite";
 import EventDelete from "./EventDelete";
 import { atcb_action, atcb_init } from 'add-to-calendar-button';
+
+//© 2023 Mike Vermeer & Guido Erdtsieck. All rights reserved.
+
 function SingleEvent() {
   const [currentInvitedUsers, setcurrentInvitedUsers] = useState([{}]);
   const csrftoken = useCookies(["csrftoken"]);

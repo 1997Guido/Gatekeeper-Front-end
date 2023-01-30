@@ -9,6 +9,8 @@ import { Link } from "react-router-dom";
 import * as TbIcons from "react-icons/tb";
 import UserProfile from "./UserProfile";
 
+//© 2023 Mike Vermeer & Guido Erdtsieck. All rights reserved.
+
 function ProfileEdit(data) {
   const [Success, setSuccess] = useState(false);
   const [error, setError] = useState("no error");

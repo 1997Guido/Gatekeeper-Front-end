@@ -1,5 +1,6 @@
 import axiosinstance from './axiosApi';
 
+//© 2023 Mike Vermeer & Guido Erdtsieck. All rights reserved.
 
 const validateUserLoggedIn = async () => {
     const response = await axiosinstance.get('api/authcheck');

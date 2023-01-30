@@ -7,6 +7,8 @@ import axiosinstance from "../../api/axiosApi";
 import QRCode from "react-qr-code";
 import { useEffect, useState } from "react";
 
+// © 2023 Mike Vermeer & Guido Erdtsieck. All rights reserved.
+
 function UserQr() {
   const [QrData, setQrData] = useState([]);
   const getProfile = () => {

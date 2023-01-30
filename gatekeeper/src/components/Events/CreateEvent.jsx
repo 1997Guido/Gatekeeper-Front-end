@@ -7,6 +7,8 @@ import "./../../css/Events/CreateEvent.css";
 import { Link } from "react-router-dom";
 import * as TbIcons from "react-icons/tb";
 
+//© 2023 Mike Vermeer & Guido Erdtsieck. All rights reserved.
+
 function CreateEvent() {
   let csrftoken = useCookies(["csrftoken"]);
   const [Success, setSuccess] = useState(false);

@@ -10,6 +10,8 @@ import selectNav from "../functions/selectNav";
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom'
 
+//© 2023 Mike Vermeer & Guido Erdtsieck. All rights reserved.
+
 function Nav() {
   const loca = useLocation().pathname.substring(1)
   console.log(loca)

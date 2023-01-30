@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 
+//© 2023 Mike Vermeer & Guido Erdtsieck. All rights reserved.
+
 function EventDelete(event) {
   const navigate = useNavigate();
   console.log(event.eventdata.pk);

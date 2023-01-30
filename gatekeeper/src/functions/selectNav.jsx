@@ -1,3 +1,4 @@
+//© 2023 Mike Vermeer & Guido Erdtsieck. All rights reserved.
 
 function selectNav(loca){
   if (loca === ""){

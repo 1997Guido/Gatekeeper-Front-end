@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import { useCookies } from "react-cookie";
 import "./../../css/Events/EventEdit.css";
 
+//© 2023 Mike Vermeer & Guido Erdtsieck. All rights reserved.
+
 function EventEdit(event) {
   let csrftoken = useCookies(["csrftoken"]);
   const [isChecked, setIsChecked] = useState(event.eventdata.EventIsPrivate);

@@ -9,6 +9,8 @@ import ProfileEdit from "./ProfileEdit";
 import ProfileDelete from "./ProfileDelete";
 import ImageUpload from "../ImageUpload";
 
+//© 2023 Mike Vermeer & Guido Erdtsieck. All rights reserved.
+
 function UserProfile() {
   const [editmode, seteditmode] = useState("false");
   const [data, setData] = useState([]);

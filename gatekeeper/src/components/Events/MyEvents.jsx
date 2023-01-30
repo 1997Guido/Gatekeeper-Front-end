@@ -7,6 +7,9 @@ import { useCookies } from "react-cookie";
 import { Link } from "react-router-dom";
 import * as TbIcons from "react-icons/tb";
 import { useNavigate } from "react-router-dom";
+
+//© 2023 Mike Vermeer & Guido Erdtsieck. All rights reserved.
+
 function MyEvents() {
   const [event, setevent] = useState([]);
   const navigate = useNavigate();

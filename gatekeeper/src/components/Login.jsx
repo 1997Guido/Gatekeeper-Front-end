@@ -8,6 +8,8 @@ import { motion } from "framer-motion";
 import validateUserLoggedIn from "../api/ValidateUserLoggedIn";
 import { Link } from "react-router-dom";
 
+//© 2023 Mike Vermeer & Guido Erdtsieck. All rights reserved.
+
 function Login() {
   let [isAuth, setIsAuth] = useState(
     localStorage.getItem("Auth") === "true" ? true : false

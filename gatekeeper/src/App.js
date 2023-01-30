@@ -8,7 +8,7 @@ import Footer from "./components/Footer";
 import { useEffect, useState } from "react";
 import validateUserLoggedIn from "./api/ValidateUserLoggedIn";
 
-
+//© 2023 Mike Vermeer & Guido Erdtsieck. All rights reserved.
 
 function App() {
   let [isAuth, setIsAuth] = useState(localStorage.getItem('Auth') === 'true' ? true : false);

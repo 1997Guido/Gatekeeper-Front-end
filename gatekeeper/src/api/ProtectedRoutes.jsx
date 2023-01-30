@@ -3,7 +3,7 @@ import axiosinstance from './axiosApi';
 import { useState, useEffect } from 'react';
 import validateUserLoggedIn from './ValidateUserLoggedIn';
 
-
+//© 2023 Mike Vermeer & Guido Erdtsieck. All rights reserved.
 
 const PrivateRoutes = () => {
     let [isAuth, setIsAuth] = useState(localStorage.getItem('Auth') === 'true' ? true : false);

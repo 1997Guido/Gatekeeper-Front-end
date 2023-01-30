@@ -6,6 +6,9 @@ import Select from "react-select";
 import "./../../css/Events/EventInvite.css";
 import { useCookies } from "react-cookie";
 import { motion } from "framer-motion";
+
+//© 2023 Mike Vermeer & Guido Erdtsieck. All rights reserved.
+
 function EventInvite(event) {
   let csrftoken = useCookies(["csrftoken"]);
   const [userlist, setuserlist] = useState([{}]);

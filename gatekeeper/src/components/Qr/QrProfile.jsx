@@ -7,17 +7,12 @@ import { motion } from "framer-motion";
 import axiosinstance from "../../api/axiosApi";
 import { useEffect } from "react";
 
+//© 2023 Mike Vermeer & Guido Erdtsieck. All rights reserved.
+
 function QrProfile(userdata, option) {
 
   const [scan, setScan] = useState(false);
-  // const [picture, setPicture] = useState([{}]);
-
   const url = "http://localhost:8000";
-
-  // useEffect(() => {
-  //   if (userdata.userdata.imageurl !== null) {
-  //   setPicture(userdata.userdata.imageurl);
-  // }, [userdata]);
 
   if (userdata.userdata === undefined) {
     if (scan === false) {

@@ -12,6 +12,8 @@ import { useEffect } from "react";
 import Select from "react-select";
 import QrProfile from "./QrProfile";
 
+//© 2023 Mike Vermeer & Guido Erdtsieck. All rights reserved.
+
 // This is the component that is used to scan QR codes
 
 function Scanner(props) {

@@ -7,6 +7,9 @@ import { useCookies } from "react-cookie";
 import { motion } from "framer-motion";
 import * as TbIcons from "react-icons/tb";
 import * as HiIcons from "react-icons/hi";
+
+//© 2023 Mike Vermeer & Guido Erdtsieck. All rights reserved.
+
 function ImageUpload() {
   const [PictureEdit, setPictureEdit] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);

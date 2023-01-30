@@ -9,6 +9,9 @@ import { useCookies } from "react-cookie";
 import { Link } from "react-router-dom";
 import * as TbIcons from "react-icons/tb";
 import TermsOfUse from "./TermsOfUse";
+
+//© 2023 Mike Vermeer & Guido Erdtsieck. All rights reserved.
+
 function Register() {
   const [TermsChecked, setTermsChecked] = useState(false);
   const [Success, setSuccess] = useState(false);

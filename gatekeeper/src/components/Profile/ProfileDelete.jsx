@@ -3,7 +3,7 @@ import axiosInstance from '../../api/axiosApi'
 import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 
-
+//© 2023 Mike Vermeer & Guido Erdtsieck. All rights reserved.
 
 function ProfileDelete(data) {
     const navigate = useNavigate()

@@ -6,6 +6,8 @@ import { useState } from "react";
 import axiosInstance from "./../api/axiosApi";
 import { useEffect } from "react";
 
+//© 2023 Mike Vermeer & Guido Erdtsieck. All rights reserved.
+
 function Home() {
   const [username, setusername] = useState("");
   const getUserNames = async () => {

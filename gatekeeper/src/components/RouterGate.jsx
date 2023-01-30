@@ -15,6 +15,8 @@ import MyEvents from '../components/Events/MyEvents';
 import SingleEvent from '../components/Events/SingleEventPage';
 import validateUserLoggedIn from '../api/ValidateUserLoggedIn';
 
+//© 2023 Mike Vermeer & Guido Erdtsieck. All rights reserved.
+
 function RouterGate() {
     const location = useLocation();
     return (
