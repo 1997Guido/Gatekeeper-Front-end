@@ -4,7 +4,7 @@ import UserProfile from './Profile/UserProfile';
 import UserQr from './QR/UserQr';
 import CreateEvent from './Events/CreateEvent';
 import Events from './Events/Events'
-import Scanner from '../components/QR/Scanner'
+import Scanner from './QR/Scanner'
 import Register from './General/Register';
 import Login from './General/Login';
 import {AnimatePresence} from "framer-motion";
