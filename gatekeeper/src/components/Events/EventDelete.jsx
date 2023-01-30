@@ -34,7 +34,7 @@ function EventDelete(event) {
             className="btn btn-primary"
             onClick={function () {
               deleteEvent();
-              navigate("/event");
+              navigate("/events");
             }}
           >
             YES

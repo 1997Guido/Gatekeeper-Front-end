@@ -7,7 +7,7 @@
 .SingleEventButton{
     color:antiquewhite;
     font-size: 2.5vh;
-    background-color: #2c2c2c;
+    background-color: #343434;
 }
 .SingleEvent{
     margin-top: 5vh;
@@ -32,65 +32,96 @@
     font-size: 5vh;
     font-family: 'Courier New', Courier, monospace;
 }
-@media only screen and (max-width: 1360px) {
+@media only screen and (max-width: 700px) {
 .SingleEventContainer{
-        background-color: #2c2c2c;
+        background-color: #343434;
         text-align: left;
         color: white;
         width: 85%;
         height: 150%;
         min-height: 100%;
         margin: auto;
-        border: 1px solid #2c2c2c;
+        border: 1px solid #343434;
         border-radius: 3%;
         opacity: 95%;
         margin-top: 5vh;
-        box-shadow: 0 0 10px #2c2c2c;
+        box-shadow: 0 0 10px #343434;
         font-size: 2vh;
 }
 .SingleEventContainer2{
-    background-color: #2c2c2c;
+    background-color: #343434;
     text-align: left;
     color: white;
     width: 85%;
     height: 150%;
     margin: auto;
-    border: 1px solid #2c2c2c;
+    border: 1px solid #343434;
     border-radius: 3%;
     opacity: 95%;
     margin-top: 2vh;
-    box-shadow: 0 0 10px #2c2c2c;
+    box-shadow: 0 0 10px #343434;
     font-size: 2vh;
 }
 }
-@media only screen and (min-width: 1360px) {
+@media only screen and (min-width: 700px) and (max-width: 1300px) {
     .SingleEventContainer{
-            background-color: #2c2c2c;
+            background-color: #343434;
             text-align: left;
             color: white;
-            width: 40%;
+            width: 85%;
             height: 150%;
             min-height: 100%;
             margin: auto;
-            border: 1px solid #2c2c2c;
+            border: 1px solid #343434;
             border-radius: 3%;
             opacity: 95%;
             margin-top: 5vh;
-            box-shadow: 0 0 10px #2c2c2c;
+            box-shadow: 0 0 10px #343434;
             font-size: 2vh;
     }
     .SingleEventContainer2{
-        background-color: #2c2c2c;
+        background-color: #343434;
         text-align: left;
         color: white;
-        width: 40%;
+        width: 85%;
         height: 150%;
         margin: auto;
-        border: 1px solid #2c2c2c;
+        border: 1px solid #343434;
         border-radius: 3%;
         opacity: 95%;
         margin-top: 2vh;
-        box-shadow: 0 0 10px #2c2c2c;
+        box-shadow: 0 0 10px #343434;
+        font-size: 2vh;
+    }
+    }
+@media only screen and (min-width: 1300px) {
+    .SingleEventContainer{
+            background-color: #343434;
+            text-align: left;
+            color: white;
+            width: 30%;
+            height: 150%;
+            min-height: 100%;
+            margin: auto;
+            border: 1px solid #343434;
+            border-radius: 3%;
+            opacity: 95%;
+            margin-top: 5vh;
+            box-shadow: 0 0 10px #343434;
+            font-size: 2vh;
+    }
+    .SingleEventContainer2{
+        background-color: #343434;
+        text-align: left;
+        color: white;
+        width: 30%;
+        height: 150%;
+        margin: auto;
+        border: 1px solid #343434;
+        border-radius: 3%;
+        opacity: 95%;
+        margin-top: 2vh;
+        box-shadow: 0 0 10px #343434;
         font-size: 2vh;
     }
     }

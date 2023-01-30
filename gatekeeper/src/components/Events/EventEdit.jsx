@@ -78,7 +78,7 @@ function EventEdit(event) {
             <form onSubmit={handleSubmit} className="myFormGroupEvent">
               <div className="">
               {Status === "Event edited" ? (<div className="success">Event Edited</div>) : (null)}
-                <label htmlFor="EventTitle">Event Title</label>
+                <label htmlFor="EventTitle">Title</label>
                 {error !== "no error" ? (
                   <div className="error">{error.EventTitle}</div>
                 ) : null}
@@ -93,7 +93,7 @@ function EventEdit(event) {
               </div>
               <div className="form-group">
                 <label for="EventDescription">
-                  Event Description
+                  Description
                 </label>
                 {error !== "no error" ? (
                   <div className="error">{error.EventDescription}</div>
@@ -109,7 +109,7 @@ function EventEdit(event) {
                 ></textarea>
               </div>
               <div className="myFormGroupRegister">
-                <label htmlFor="date_of_birth">Date of Event</label>
+                <label htmlFor="date_of_birth">Date</label>
                 {error !== "no error" ? (
                   <div className="error">{error.EventDate}</div>
                 ) : null}

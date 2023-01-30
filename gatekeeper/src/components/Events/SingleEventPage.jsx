@@ -105,20 +105,20 @@ function SingleEvent() {
             </div>
             {eventowner ? (
               <div className="container-fluid">
-                <div className="row">
-                  <div className="col">
+                <div className="row ButtonBar">
+                  <div className="col" align="center">
                     <TbIcons.TbTrash
                       onClick={() => seteditmode("delete")}
                       className="EventDeleteButton"
                     />
                   </div>
-                  <div className="col">
+                  <div className="col" align="center">
                     <TbIcons.TbEdit
                       onClick={() => seteditmode("edit")}
                       className="EventEditButton"
                     />
                   </div>
-                  <div className="col">
+                  <div className="col" align="center">
                     <TbIcons.TbAddressBook
                       onClick={() => seteditmode("invite")}
                       className="EventInviteButton"

@@ -44,7 +44,6 @@ function CreateEvent() {
       )
       .then(function (response) {
         console.log("Error", response);
-        setError(response.data);
         console.log(EventInfo);
         console.log(response);
         setSuccess(true);
@@ -73,7 +72,7 @@ function CreateEvent() {
               <label htmlFor="EventTitle">Event Title</label>
               {error !== "no error" ? (
                 <div className="error">{error.EventTitle}</div>
-              ) : null}
+              ) : (null)}
               <input
                 type="text"
                 className="form-control"

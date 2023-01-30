@@ -4,7 +4,6 @@ import "./../../css/QR/scanner.css";
 import "bootstrap/dist/css/bootstrap.css";
 import React, { useState } from "react";
 import { QrReader } from "react-qr-reader";
-import axios from "axios";
 import axiosinstance from "../../api/axiosApi";
 import { motion } from "framer-motion";
 import { useCookies } from "react-cookie";
@@ -137,7 +136,7 @@ function Scanner(props) {
         </>
       </motion.div>
     )
-    };
+    }
   </div>
     ) : (
       <motion.div
@@ -161,7 +160,7 @@ function Scanner(props) {
     </motion.div>
     )}
   </div>
-  );
-};
+  )
+}
 
 export default Scanner;
