@@ -1,4 +1,4 @@
-import "./../../css/Events.css";
+import "./../../css/Events/Events.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
@@ -41,34 +41,43 @@ function Events() {
             <div className="col"></div>
             <div className="col"></div>
           </div>
-          {event.map((event, index) => (
-            <div className="row EventContainer" key={index}>
-              <div className="col EventTitle">{event.EventTitle}</div>
-              <div className="">
-                <div className="col">
-                  Organized by:
-                  <br />
-                  {event.EventOrganizer}
-                  <br />
-                  {event.EventDate}
-                  <br />
-                  {event.EventLocation}
-                  <br />
+          <div>
+            {event.map((event, index) => {
+              return (
+                <div>
+                  {event.EventIsPrivate ? null : (
+                    <div className="row EventContainer" key={index}>
+                      <div className="col EventTitle">{event.EventTitle}</div>
+                      <div className="">
+                        <div className="col">
+                          Organized by:
+                          <br />
+                          {event.EventOrganizer}
+                          <div className="col">
+                            <TbIcons.TbCalendarEvent className="EventIcon" />
+                            {event.EventDate}
+                            <TbIcons.TbLocation className="EventIcon" />
+                            {event.EventLocation}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col">
+                        <TbIcons.TbFileInfo
+                          className="EventInfoButton"
+                          onClick={() => navigateToSingleEvent(event.pk)}
+                        />
+                      </div>
+                    </div>
+                  )}
                 </div>
-              </div>
-              <div className="col">
-                <TbIcons.TbFileInfo
-                  className="EventInfoButton"
-                  onClick={() => navigateToSingleEvent(event.pk)}
-                />
-              </div>
-            </div>
-          ))}
+              );
+            })}
+          </div>
         </div>
         <div className="heightmaker"></div>
       </motion.div>
       <Link to="/myevents">
-        <button className="EventButton">My events</button>
+        <TbIcons.TbListDetails className="EventButton" />
       </Link>
       <Link to="/eventcreate">
         <TbIcons.TbPlus className="EventButton2" />

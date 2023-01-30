@@ -3,32 +3,32 @@ import axiosInstance from "../../api/axiosApi";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useCookies } from "react-cookie";
-import "./../../css/EventEdit.css";
+import "./../../css/Events/EventEdit.css";
 
-function EventEdit() {
-  let singleevent = JSON.parse(localStorage.getItem("singleevent"));
+function EventEdit(event) {
   let csrftoken = useCookies(["csrftoken"]);
+  const [isChecked, setIsChecked] = useState(event.eventdata.EventIsPrivate);
   const [Status, setStatus] = useState("ready");
   const [error , setError] = useState("no error");
   const [EventInfo, setEventInfo] = useState({
-    EventTitle: singleevent.EventTitle,
-    EventDescription: singleevent.EventDescription,
-    EventDate: singleevent.EventDate,
-    EventTimeStart: singleevent.EventTimeStart,
-    EventTimeEnd: singleevent.EventTimeEnd,
-    EventLocation: singleevent.EventLocation,
-    EventMaxGuests: singleevent.EventMaxGuests,
-    EventOrganizer: singleevent.EventOrganizer,
-    EventIsCancelled: singleevent.EventIsCancelled,
-    EventIsPrivate: singleevent.EventIsPrivate,
-    EventPrice: singleevent.EventPrice,
-    EventMinimumAge: singleevent.EventMinimumAge,
+    EventTitle: event.eventdata.EventTitle,
+    EventDescription: event.eventdata.EventDescription,
+    EventDate: event.eventdata.EventDate,
+    EventTimeStart: event.eventdata.EventTimeStart,
+    EventTimeEnd: event.eventdata.EventTimeEnd,
+    EventLocation: event.eventdata.EventLocation,
+    EventMaxGuests: event.eventdata.EventMaxGuests,
+    EventOrganizer: event.eventdata.EventOrganizer,
+    EventIsCancelled: event.eventdata.EventIsCancelled,
+    EventIsPrivate: event.eventdata.EventIsPrivate,
+    EventPrice: event.eventdata.EventPrice,
+    EventMinimumAge: event.eventdata.EventMinimumAge,
+    pk: event.eventdata.pk,
   });
   const handleChange = (event) => {
     setEventInfo({ ...EventInfo, [event.target.name]: event.target.value });
   };
   const handleSubmit = (event) => {
-    console.log(EventInfo);
     event.preventDefault();
     axiosInstance
       .put(
@@ -43,10 +43,10 @@ function EventEdit() {
           EventMaxGuests: EventInfo.EventMaxGuests,
           EventOrganizer: EventInfo.EventOrganizer,
           EventIsCancelled: EventInfo.EventIsCancelled,
-          EventIsPrivate: EventInfo.EventIsPrivate,
+          EventIsPrivate: isChecked,
           EventPrice: EventInfo.EventPrice,
           EventMinimumAge: EventInfo.EventMinimumAge,
-          pk: singleevent.pk,
+          pk: EventInfo.pk,
         },
         { headers: { "X-CSRFToken": csrftoken[0].csrftoken } }
       )
@@ -54,8 +54,11 @@ function EventEdit() {
         console.log(response);
         if (response.status === 200) {
           if (response.data === "Event edited") {
+            setError("no error")
             setStatus("Event edited");
+            window.scrollTo(0, 0);
           } else {
+            window.scrollTo(0, 0);
             setError(response.data)
           }
         } 
@@ -65,11 +68,16 @@ function EventEdit() {
   };
   return (
     <>
-    {Status === "ready" ? (
+      <motion.div
+        initial={{ opacity: 0, scale: 0.7 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8 }}
+      >
         <div>
-          <div className="container-flex EditEventContainer">
+          <div onClick={() => setStatus("ready")} className="container-flex EditEventContainer">
             <form onSubmit={handleSubmit} className="myFormGroupEvent">
               <div className="">
+              {Status === "Event edited" ? (<div className="success">Event Edited</div>) : (null)}
                 <label htmlFor="EventTitle">Event Title</label>
                 {error !== "no error" ? (
                   <div className="error">{error.EventTitle}</div>
@@ -83,7 +91,7 @@ function EventEdit() {
                   value={EventInfo.EventTitle}
                 />
               </div>
-              <div class="form-group">
+              <div className="form-group">
                 <label for="EventDescription">
                   Event Description
                 </label>
@@ -133,6 +141,16 @@ function EventEdit() {
                 {error !== "no error" ? (
                   <div className="error">{error.EventMaxGuests}</div>
                 ) : null}
+                <input
+                  type="range"
+                  className="form-range"
+                  min={0}
+                  max={1000}
+                  name="EventMaxGuests"
+                  placeholder="Enter EventPrice"
+                  onChange={handleChange}
+                  value={EventInfo.EventMaxGuests}
+                />
                 <input
                   type="text"
                   className="form-control"
@@ -201,20 +219,33 @@ function EventEdit() {
                   value={EventInfo.EventPrice}
                 />
               </div>
-              <div className="myFormEditEvent">
-                <label htmlFor="EventMinimumAge">How old should your guests be to be able to enter?</label>
+              <div className="myFormEditEvent price">
+                <label htmlFor="EventMinimumAge">How old should your guests be?<br/>
+                {EventInfo.EventMinimumAge} years old
+                </label>
                 {error !== "no error" ? (
                   <div className="error">{error.EventMinimumAge}</div>
                 ) : null}
                 <input
-                  type="number"
-                  className="form-control"
+                  type="range"
+                  className="form-range"
                   name="EventMinimumAge"
                   placeholder="Enter EventMinimumAge"
                   onChange={handleChange}
                   value={EventInfo.EventMinimumAge}
                 />
               </div>
+              <div className="myFormEditEvent">
+                              <label htmlFor="agree">
+                Do you want your event to be private?
+              </label>
+              <input
+                className="form-check-input"
+                type="checkbox"
+                checked={isChecked}
+                onChange={() => setIsChecked(!isChecked)}
+              />
+            </div>
               <button type="submit" className="btn btn-primary">
                 Edit Event
               </button>
@@ -222,12 +253,9 @@ function EventEdit() {
           </div>
           <div className="heightmaker"></div>
         </div>
-      ) : (
-        <div>
-        {Status === "Event edited" ? (<div>Event Edited</div>) : (null)}
-        </div>
-      )}
+      </motion.div>
     </>
+
   );
 }
 

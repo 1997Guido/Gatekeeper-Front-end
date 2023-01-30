@@ -1,9 +1,10 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, useLocation} from 'react-router-dom';
 import RouterGate from './components/RouterGate';
-import './css/style.css'
-import './css/mNav.css'
-import HeaderFooter from "./components/HeaderFooter";
+import './css/Miscellaneous/style.css'
+import './css//Miscellaneous/mNav.css'
+import HeaderFooter from "./components/Other/HeaderFooter.jsx";
+import Footer from "./components/Other/Footer.jsx";
 import { useEffect, useState } from "react";
 import validateUserLoggedIn from "./api/ValidateUserLoggedIn";
 
@@ -26,7 +27,8 @@ function App() {
     <div className="App">
     <Router>
       <HeaderFooter/>
-      <RouterGate/>      
+      <RouterGate/>  
+      <Footer/>
     </Router>
     </div>
   );

@@ -1,19 +1,18 @@
 import { Route, Routes, useLocation} from 'react-router-dom';
-import Home from './Home';
-import UserProfile from './UserProfile';
-import UserQr from './UserQr';
-import CreateEvent from '../components/Events/CreateEvent';
-import Events from '../components/Events/Events'
-import AdminQr from './AdminQr'
-import Register from './Register';
-import Login from './Login';
+import Home from './General/Home';
+import UserProfile from './Profile/UserProfile';
+import UserQr from './QR/UserQr';
+import CreateEvent from './Events/CreateEvent';
+import Events from './Events/Events'
+import Scanner from '../components/QR/Scanner'
+import Register from './General/Register';
+import Login from './General/Login';
 import {AnimatePresence} from "framer-motion";
 import React from 'react';
 import PrivateRoutes from '../api/ProtectedRoutes.jsx';
-import Nav from './NavBar.jsx';
-import MyEvents from '../components/Events/MyEvents';
-import SingleEvent from '../components/Events/SingleEventPage';
-import validateUserLoggedIn from '../api/ValidateUserLoggedIn';
+import Nav from './Other/NavBar.jsx';
+import MyEvents from './Events/MyEvents';
+import SingleEvent from './Events/SingleEventPage';
 
 function RouterGate() {
     const location = useLocation();
@@ -25,7 +24,7 @@ function RouterGate() {
             <Route element={<PrivateRoutes/>}>
                 <Route path="*" element={<Home />}></Route>
                 <Route path="/" element={<Home />}></Route>
-                <Route path="/admin" element={<AdminQr />}></Route>
+                <Route path="/scanner" element={<Scanner />}></Route>
                 <Route path="/qrpage" element={<UserQr/>}/>
                 <Route path="/userprofile" element={<UserProfile />}></Route>
                 <Route path="/events" element={<Events />}></Route>

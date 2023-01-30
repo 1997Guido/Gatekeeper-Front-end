@@ -1,0 +1,2 @@
+cd gatekeeper
+yarn start

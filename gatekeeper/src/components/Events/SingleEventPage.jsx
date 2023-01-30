@@ -1,4 +1,4 @@
-import "./../../css/SingleEvent.css";
+import "./../../css/Events/SingleEvent.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
@@ -9,7 +9,6 @@ import * as TbIcons from "react-icons/tb";
 import EventEdit from "./EventEdit";
 import EventInvite from "./EventInvite";
 import EventDelete from "./EventDelete";
-
 function SingleEvent() {
   const [currentInvitedUsers, setcurrentInvitedUsers] = useState([{}]);
   const csrftoken = useCookies(["csrftoken"]);
@@ -42,33 +41,25 @@ function SingleEvent() {
   return (
     <>
       <motion.div
+        key={editmode}
         initial={{ opacity: 0, scale: 0.7 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8 }}
       >
+        
         {editmode === "false" ? (
           <div className="container-fluid">
             <div className="row">
-              <div className="col SingleEventBanner">SingleEvent</div>
+              <div className="col SingleEventBanner">Event</div>
             </div>
             <div className="row SingleEventContainer">
-              <div className="col SingleEventTitle">{event.EventTitle}</div>
-              <div className="row">
-                <div className="col">
-                  Organized by:
+                <div className="SingleEventTitle">{event.EventTitle}</div>
+                <div className="SingleEventTitleOrganizer">
+                Organized by:
                   <br />
                   {event.EventOrganizer}
-                  <br />
-                  <TbIcons.TbCalendarEvent className="EventIcon" />
-                  {event.EventDate}
-                  <br />
-                  <TbIcons.TbLocation className="EventIcon" />
-                  {event.EventLocation}
-                  <br />
-                  <TbIcons.TbInfoCircle className="EventIcon" />
-                  <br />
-                  {event.EventDescription}
-                  <br />
+                </div>
+                <div className="col">
                   Private:
                   {event.EventIsPrivate === false ? (
                     <TbIcons.TbCircleX className="EventIcon" />
@@ -84,14 +75,31 @@ function SingleEvent() {
                   )}
                   {event.EventIsFree}
                   <br />
-                  Event Max Capacity:
+                  Capacity:
                   {event.EventCurrentGuests}/{event.EventMaxGuests}
                   <br />
                   {event.EventMinimumAge === 0 ? null : (
                     <div>Minimum Age:{event.EventMinimumAge}</div>
                   )}
                   <br />
-                  {event.EventPrice}
+                  ${event.EventPrice}
+                </div>
+                <div className="col">
+                <TbIcons.TbCalendarEvent className="EventIcon" />
+                  {event.EventDate}
+                  <br />
+                  <TbIcons.TbLocation className="EventIcon" />
+                  {event.EventLocation}
+                  <br />
+                </div>
+                
+              </div>
+            <div className="row SingleEventContainer2">
+              <div className="col">
+                <div className="SingleEventDescription">
+                <TbIcons.TbInfoCircle className="EventIcon" />
+                  <br />
+                {event.EventDescription}
                 </div>
               </div>
             </div>
