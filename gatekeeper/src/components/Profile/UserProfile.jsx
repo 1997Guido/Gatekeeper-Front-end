@@ -117,7 +117,7 @@ function UserProfile() {
             </div>
           </div>
           <div className="container-fluid">
-            <div className="row UserProfile">
+            <div className="row ButtonBar">
               <div className="col" align="center">
                 <TbIcons.TbTrash
                   onClick={() => seteditmode("delete")}

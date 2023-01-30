@@ -18,19 +18,18 @@
   }
   @media only screen and (min-width: 1300px) {
   .HomeContainer{
-    background-color: #2c2c2c;
+    background-color: #343434;
     text-align: left;
     color: white;
     width: 35%;
     max-width: 35%;
     min-height: 30vh;
     margin: auto;
-    border: 1px solid #2c2c2c;
+    border: 1px solid #343434;
     border-radius: 3%;
-    max-width: 85%;
     height: 150%;
     min-height: 100%;
-    box-shadow: 0 0 10px #2c2c2c;
+    box-shadow: 0 0 10px #343434;
     opacity: 95%;
     margin-top: 5vh;
 }
@@ -58,21 +57,21 @@
 
 
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 700px) {
 .HomeContainer{
-    background-color: #2c2c2c;
+    background-color: #343434;
     text-align: left;
     color: white;
     width: 40vh;
     max-width: 82%;
     min-height: 30vh;
     margin: auto;
-    border: 1px solid #2c2c2c;
+    border: 1px solid #343434;
     border-radius: 3%;
     max-width: 85%;
     height: 150%;
     min-height: 100%;
-    box-shadow: 0 0 10px #2c2c2c;
+    box-shadow: 0 0 10px #343434;
     opacity: 95%;
     margin-top: 5vh;
 }
@@ -96,21 +95,20 @@
     text-align: center;
 }
 }
-@media only screen and (min-width: 900px) and (max-width: 1300px) {
+@media only screen and (min-width: 700px) and (max-width: 1300px) {
   .HomeContainer{
-      background-color: #2c2c2c;
+      background-color: #343434;
       text-align: left;
       color: white;
       width: 40vh;
-      max-width: 82%;
+      max-width: 60%;
       min-height: 30vh;
       margin: auto;
-      border: 1px solid #2c2c2c;
+      border: 1px solid #343434;
       border-radius: 3%;
-      max-width: 85%;
       height: 150%;
       min-height: 100%;
-      box-shadow: 0 0 10px #2c2c2c;
+      box-shadow: 0 0 10px #343434;
       opacity: 95%;
       margin-top: 5vh;
   }

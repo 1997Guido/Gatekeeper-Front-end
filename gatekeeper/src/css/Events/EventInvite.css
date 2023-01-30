@@ -1,17 +1,17 @@
 .EventInviteContainer{
-    background-color: #2c2c2c;
+    background-color: #343434;
     text-align: center;
     color: white;
     width: 40vh;
     min-width: 30vh;
     height: 50vh;
     margin: auto;
-    border: 1px solid #2c2c2c;
+    border: 1px solid #343434;
     border-radius: 3%;
     opacity: 95%;
     margin-top: 2vh;
     margin-bottom: 10vh;
-    box-shadow: 0 0 10px #2c2c2c;
+    box-shadow: 0 0 10px #343434;
     opacity: 95%;
 }
 .InvitedUsers{
