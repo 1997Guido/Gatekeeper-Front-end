@@ -1,8 +1,8 @@
-import axiosInstance from "../api/axiosApi";
+import axiosInstance from "../../api/axiosApi";
 import { useState } from "react";
 import { useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.css";
-import "./../css/Images.css";
+import "./../../css/Miscellaneous/Images.css";
 import { useCookies } from "react-cookie";
 import { motion } from "framer-motion";
 import * as TbIcons from "react-icons/tb";

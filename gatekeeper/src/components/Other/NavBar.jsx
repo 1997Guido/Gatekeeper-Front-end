@@ -1,12 +1,12 @@
-import './../css/GlobalStyle.css'
-import "./../css/mNav.css";
+import "./../../css/Miscellaneous/GlobalStyle.css";
+import "./../../css/Miscellaneous/mNav.css";
 import "bootstrap/dist/css/bootstrap.css";
-import logo from "./../images/gatepng.png";
+import logo from "./../../images/gatepng.png";
 import * as HiIcons from "react-icons/hi";
 import * as TbIcons from "react-icons/tb";
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
-import selectNav from "../functions/selectNav";
+import selectNav from "../../functions/selectNav";
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom'
 

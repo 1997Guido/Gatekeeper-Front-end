@@ -1,18 +1,18 @@
 @font-face {
     font-family: 'ModernPrestige';
-    src: local('ModernPrestige'), url(./../fonts/ModernPrestige.otf) format('opentype');
+    src: local('ModernPrestige'), url(./../../fonts/ModernPrestige.otf) format('opentype');
     /* other formats include: 'woff2', 'truetype, 'opentype',
                               'embedded-opentype', and 'svg' */
   }
   @font-face {
     font-family: 'Anchora';
-    src: local('Anchora'), url(./../fonts/Anchora.otf) format('opentype');
+    src: local('Anchora'), url(./../../fonts/Anchora.otf) format('opentype');
     /* other formats include: 'woff2', 'truetype, 'opentype',
                               'embedded-opentype', and 'svg' */
   }
   @font-face {
     font-family: 'Ubuntu-B';
-    src: local('Ubuntu-B'), url(./../fonts/Ubuntu-B.ttf) format('truetype');
+    src: local('Ubuntu-B'), url(./../../fonts/Ubuntu-B.ttf) format('truetype');
     /* other formats include: 'woff2', 'truetype, 'opentype',
                               'embedded-opentype', and 'svg' */
   }
@@ -42,4 +42,7 @@
   font-size: 20px;
   margin-top: 10vh;
   text-align: center;
+}
+h1{
+  text-shadow: black 2px 2px 2px;
 }

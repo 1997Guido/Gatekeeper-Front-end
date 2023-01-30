@@ -1,5 +1,5 @@
-import "../../css/GlobalStyle.css";
-import "../../css/Qr/userqr.css";
+import "./../../css/Miscellaneous/GlobalStyle.css";
+import "./../../css/QR/userqr.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { motion } from "framer-motion";
 import React from "react";

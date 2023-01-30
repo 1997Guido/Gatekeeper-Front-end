@@ -1,5 +1,5 @@
-import "../../css/GlobalStyle.css";
-import "../../css/Qr/scanner.css";
+import "./../../css/Miscellaneous/GlobalStyle.css";
+import "./../../css/QR/scanner.css";
 import "bootstrap/dist/css/bootstrap.css";
 import React, { useState } from "react";
 import Scanner from "./Scanner";

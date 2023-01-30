@@ -1,13 +1,13 @@
 import "bootstrap/dist/css/bootstrap.css";
-import "./../../css/GlobalStyle.css";
-import "./../../css/userprofile.css";
+import "./../../css/Miscellaneous/GlobalStyle.css";
+import "./../../css/Profile/userprofile.css";
 import { useEffect, useState } from "react";
 import axiosinstance from "../../api/axiosApi";
 import { motion } from "framer-motion";
 import * as TbIcons from "react-icons/tb";
 import ProfileEdit from "./ProfileEdit";
 import ProfileDelete from "./ProfileDelete";
-import ImageUpload from "../ImageUpload";
+import ImageUpload from "../Other/ImageUpload";
 
 //© 2023 Mike Vermeer & Guido Erdtsieck. All rights reserved.
 

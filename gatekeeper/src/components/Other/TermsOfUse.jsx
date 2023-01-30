@@ -1,4 +1,4 @@
-import "./../css/TermsOfUse.css";
+import "./../../css/Miscellaneous/GlobalStyle.css";
 
 //© 2023 Mike Vermeer & Guido Erdtsieck. All rights reserved.
 

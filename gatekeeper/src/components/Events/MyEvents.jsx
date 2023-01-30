@@ -1,4 +1,4 @@
-import "./../../css/MyEvents.css";
+import "./../../css/Miscellaneous/GlobalStyle.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";

@@ -1,6 +1,6 @@
-import "./../../css/GlobalStyle.css";
+import "./../../css/Miscellaneous/GlobalStyle.css";
 import * as TbIcons from "react-icons/tb";
-import "./../../css/Qr/scanner.css";
+import "./../../css/QR/scanner.css";
 import "bootstrap/dist/css/bootstrap.css";
 import React, { useState } from "react";
 import { QrReader } from "react-qr-reader";
