@@ -39,7 +39,7 @@ function UserProfile() {
     getProfile();
     getProfilePicture();
   }, []);
-  const url = "http://gatekeeper.uksouth.cloudapp.azure.com/";
+  const url = "https://guidoerdtsieck.nl/";
   return (
     <>
       {editmode === "false" ? (

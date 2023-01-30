@@ -12,7 +12,7 @@ function QrProfile(userdata, option) {
   const [scan, setScan] = useState(false);
   // const [picture, setPicture] = useState([{}]);
 
-  const url = "http://gatekeeper.uksouth.cloudapp.azure.com/";
+  const url = "https://guidoerdtsieck.nl/";
 
   // useEffect(() => {
   //   if (userdata.userdata.imageurl !== null) {
