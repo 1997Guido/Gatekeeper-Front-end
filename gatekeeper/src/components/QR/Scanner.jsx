@@ -4,13 +4,12 @@ import "./../../css/QR/scanner.css";
 import "bootstrap/dist/css/bootstrap.css";
 import React, { useState } from "react";
 import { QrReader } from "react-qr-reader";
-import axios from "axios";
 import axiosinstance from "../../api/axiosApi";
 import { motion } from "framer-motion";
 import { useCookies } from "react-cookie";
 import { useEffect } from "react";
 import Select from "react-select";
-import QrProfile from "./QrProfile";
+import QrProfile from "./QRProfile";
 
 // This is the component that is used to scan QR codes
 
@@ -137,7 +136,7 @@ function Scanner(props) {
         </>
       </motion.div>
     )
-    };
+    }
   </div>
     ) : (
       <motion.div
@@ -161,7 +160,7 @@ function Scanner(props) {
     </motion.div>
     )}
   </div>
-  );
-};
+  )
+}
 
 export default Scanner;

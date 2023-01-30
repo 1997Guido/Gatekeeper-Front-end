@@ -56,11 +56,11 @@ function Events() {
                         </div>
                       </div>
                       <div className="row">
-                        <div className="col" align="left">
+                        <div className="col" align="center">
                           <TbIcons.TbCalendarEvent className="EventIcon" />
                           {event.EventDate}
                           </div>
-                          <div className="col" align="left">
+                          <div className="col" align="center">
                           <TbIcons.TbLocation className="EventIcon" />
                           {event.EventLocation}
                           </div>
