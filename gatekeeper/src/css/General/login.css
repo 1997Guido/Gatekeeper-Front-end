@@ -1,27 +1,97 @@
+@media only screen and (max-width: 700px) {
+  .myForm {
+    background-color: #343434;
+    text-align: center;
+    color: white;
+    margin: auto;
+    border: 1px solid #343434;
+    border-radius: 3%;
+    width: 85%;
+    height: 150%;
+    min-height: 100%;
+    box-shadow: 0 0 10px #343434;
+    opacity: 95%;
+    margin-top: 5vh;
+  }
 
-    .myForm{
-        background-color: #343434;
-        text-align: center;
-        color: white;
-        margin: auto;
-        border: 1px solid #343434;
-        border-radius: 3%;
-        width: 85%;
-        height: 150%;
-        min-height: 100%;
-        box-shadow: 0 0 10px #343434;
-        opacity: 95%;
-        margin-top: 5vh;
-    }
-
-.myFormGroup{
+  .myFormGroup {
     margin-top: 5vh;
     margin-bottom: 2vh;
     margin-left: 5vh;
     margin-right: 5vh;
-}
-.Copyright {
+  }
+  .Copyright {
     font-size: 20px;
     margin-top: 10vh;
     text-align: center;
+  }
 }
+
+
+
+/* 
+ Medium screen
+ */
+ @media only screen and (min-width: 700px) and (max-width: 1300px) {
+    .myForm {
+      background-color: #343434;
+      text-align: center;
+      color: white;
+      margin: auto;
+      border: 1px solid #343434;
+      border-radius: 3%;
+      width: 50%;
+      height: 150%;
+      min-height: 100%;
+      box-shadow: 0 0 10px #343434;
+      opacity: 95%;
+      margin-top: 5vh;
+    }
+  
+    .myFormGroup {
+      margin-top: 5vh;
+      margin-bottom: 2vh;
+      margin-left: 5vh;
+      margin-right: 5vh;
+    }
+    .Copyright {
+      font-size: 20px;
+      margin-top: 10vh;
+      text-align: center;
+    }
+  }
+
+    /* 
+     Large screen
+     */
+
+     @media only screen and (min-width: 1300px) {
+        .myForm {
+          background-color: #343434;
+          text-align: center;
+          color: white;
+          margin: auto;
+          border: 1px solid #343434;
+          border-radius: 3%;
+          width: 30%;
+          height: 150%;
+          min-height: 100%;
+          box-shadow: 0 0 10px #343434;
+          opacity: 95%;
+          margin-top: 5vh;
+        }
+      
+        .myFormGroup {
+          margin-top: 5vh;
+          margin-bottom: 2vh;
+          margin-left: 5vh;
+          margin-right: 5vh;
+        }
+        .Copyright {
+          font-size: 20px;
+          margin-top: 10vh;
+          text-align: center;
+        }
+      }
+      
+  
