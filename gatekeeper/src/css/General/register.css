@@ -1,158 +1,148 @@
-
-
-
-
-
-
-
-
-
-
 /* Small Screen */
 
 @media only screen and (max-width: 700px) {
-.myFormRegister{
-        background-color: #343434;
-        text-align: center;
-        color: white;
-        margin: auto;
-        border: 1px solid #343434;
-        border-radius: 3%;
-        width: 85%;
-        height: 150%;
-        min-height: 100%;
-        box-shadow: 0 0 10px #343434;
-        opacity: 95%;
-        margin-top: 5vh;
-    }
-.myFormGroupRegister{
+  .myFormRegister {
+    background-color: #343434;
+    text-align: center;
+    color: white;
+    margin: auto;
+    border: 1px solid #343434;
+    border-radius: 3%;
+    width: 85%;
+    height: 150%;
+    min-height: 100%;
+    box-shadow: 0 0 10px #343434;
+    opacity: 95%;
+    margin-top: 5vh;
+  }
+  .myFormGroupRegister {
     margin-top: 2vh;
     margin-bottom: 2vh;
     margin-left: 5vh;
     margin-right: 5vh;
-}
-.btn{
+  }
+  .btn {
     color: #343434;
     background-color: #4a9bd8c7;
     border: #4a9bd8c7;
     width: 10vh;
-}
-.registerButton{
-    color:antiquewhite;
+  }
+  .registerButton {
+    color: antiquewhite;
     margin-top: 2vh;
     font-size: 2.5vh;
-}
-.error{
+  }
+  .error {
     color: red;
     font-size: 2vh;
-}
-.genderradio{
+  }
+  .genderradio {
     width: 3vh;
     height: 3vh;
     margin: 0.5vh;
-}
-.CheckBox{
+  }
+  .CheckBox {
     width: 3vh;
     height: 3vh;
     margin: 0.5vh;
+  }
 }
- }
 
 /* Medium Screen */
 @media only screen and (min-width: 700px) and (max-width: 1300px) {
-    .myFormRegister{
-            background-color: #343434;
-            text-align: center;
-            color: white;
-            margin: auto;
-            border: 1px solid #343434;
-            border-radius: 3%;
-            width: 45%;
-            height: 150%;
-            min-height: 100%;
-            box-shadow: 0 0 10px #343434;
-            opacity: 95%;
-            margin-top: 5vh;
-        }
-    .myFormGroupRegister{
-        margin-top: 2vh;
-        margin-bottom: 2vh;
-        margin-left: 5vh;
-        margin-right: 5vh;
-    }
-    .btn{
-        color: #343434;
-        background-color: #4a9bd8c7;
-        border: #4a9bd8c7;
-        width: 10vh;
-    }
-    .registerButton{
-        color:antiquewhite;
-        margin-top: 2vh;
-        font-size: 2.5vh;
-    }
-    .error{
-        color: red;
-        font-size: 2vh;
-    }
-    .genderradio{
-        width: 3vh;
-        height: 3vh;
-        margin: 0.5vh;
-    }
-    .CheckBox{
-        width: 3vh;
-        height: 3vh;
-        margin: 0.5vh;
-    }
-     }
+  .myFormRegister {
+    background-color: #343434;
+    text-align: center;
+    color: white;
+    margin: auto;
+    border: 1px solid #343434;
+    border-radius: 3%;
+    width: 45%;
+    height: 150%;
+    min-height: 100%;
+    box-shadow: 0 0 10px #343434;
+    opacity: 95%;
+    margin-top: 5vh;
+  }
+  .myFormGroupRegister {
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    margin-left: 5vh;
+    margin-right: 5vh;
+  }
+  .btn {
+    color: #343434;
+    background-color: #4a9bd8c7;
+    border: #4a9bd8c7;
+    width: 10vh;
+  }
+  .registerButton {
+    color: antiquewhite;
+    margin-top: 2vh;
+    font-size: 2.5vh;
+  }
+  .error {
+    color: red;
+    font-size: 2vh;
+  }
+  .genderradio {
+    width: 3vh;
+    height: 3vh;
+    margin: 0.5vh;
+  }
+  .CheckBox {
+    width: 3vh;
+    height: 3vh;
+    margin: 0.5vh;
+  }
+}
 
 /* Large Screen */
 
 @media only screen and (min-width: 1300px) {
-    .myFormRegister{
-            background-color: #343434;
-            text-align: center;
-            color: white;
-            margin: auto;
-            border: 1px solid #343434;
-            border-radius: 3%;
-            width: 30%;
-            height: 150%;
-            min-height: 100%;
-            box-shadow: 0 0 10px #343434;
-            opacity: 95%;
-            margin-top: 5vh;
-        }
-    .myFormGroupRegister{
-        margin-top: 2vh;
-        margin-bottom: 2vh;
-        margin-left: 5vh;
-        margin-right: 5vh;
-    }
-    .btn{
-        color: #343434;
-        background-color: #4a9bd8c7;
-        border: #4a9bd8c7;
-        width: 10vh;
-    }
-    .registerButton{
-        color:antiquewhite;
-        margin-top: 2vh;
-        font-size: 2.5vh;
-    }
-    .error{
-        color: red;
-        font-size: 2vh;
-    }
-    .genderradio{
-        width: 3vh;
-        height: 3vh;
-        margin: 0.5vh;
-    }
-    .CheckBox{
-        width: 3vh;
-        height: 3vh;
-        margin: 0.5vh;
-    }
-     }
+  .myFormRegister {
+    background-color: #343434;
+    text-align: center;
+    color: white;
+    margin: auto;
+    border: 1px solid #343434;
+    border-radius: 3%;
+    width: 30%;
+    height: 150%;
+    min-height: 100%;
+    box-shadow: 0 0 10px #343434;
+    opacity: 95%;
+    margin-top: 5vh;
+  }
+  .myFormGroupRegister {
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    margin-left: 5vh;
+    margin-right: 5vh;
+  }
+  .btn {
+    color: #343434;
+    background-color: #4a9bd8c7;
+    border: #4a9bd8c7;
+    width: 10vh;
+  }
+  .registerButton {
+    color: antiquewhite;
+    margin-top: 2vh;
+    font-size: 2.5vh;
+  }
+  .error {
+    color: red;
+    font-size: 2vh;
+  }
+  .genderradio {
+    width: 3vh;
+    height: 3vh;
+    margin: 0.5vh;
+  }
+  .CheckBox {
+    width: 3vh;
+    height: 3vh;
+    margin: 0.5vh;
+  }
+}
