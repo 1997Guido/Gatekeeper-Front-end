@@ -10,7 +10,7 @@ import { motion } from "framer-motion";
 import { useCookies } from "react-cookie";
 import { useEffect } from "react";
 import Select from "react-select";
-import QrProfile from "./QrProfile";
+import QrProfile from "./QRProfile";
 
 // This is the component that is used to scan QR codes
 
