@@ -1,18 +1,29 @@
-import { Route, Routes, useLocation} from 'react-router-dom';
+// Third-party imports
+import React from 'react';
+import { Route, Routes, useLocation } from 'react-router-dom';
+import { AnimatePresence } from "framer-motion";
+
+// General components
 import Home from './General/Home';
-import UserProfile from './Profile/UserProfile';
-import UserQr from './QR/UserQr';
-import CreateEvent from './Events/CreateEvent';
-import Events from './Events/Events'
-import Scanner from '../components/QR/Scanner'
 import Register from './General/Register';
 import Login from './General/Login';
-import {AnimatePresence} from "framer-motion";
-import React from 'react';
-import PrivateRoutes from '../api/ProtectedRoutes.jsx';
-import Nav from './Other/NavBar.jsx';
+
+// Profile components
+import UserProfile from './Profile/UserProfile';
+
+// QR components
+import UserQr from './QR/UserQR';
+import Scanner from '../components/QR/Scanner';
+
+// Event components
+import CreateEvent from './Events/CreateEvent';
+import Events from './Events/Events';
 import MyEvents from './Events/MyEvents';
 import SingleEvent from './Events/SingleEventPage';
+
+// Other components and utilities
+import Nav from './Other/NavBar';
+import PrivateRoutes from '../api/ProtectedRoutes';
 
 function RouterGate() {
     const location = useLocation();

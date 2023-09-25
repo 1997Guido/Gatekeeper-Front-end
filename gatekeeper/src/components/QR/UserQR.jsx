@@ -7,7 +7,7 @@ import axiosinstance from "../../api/axiosApi";
 import QRCode from "react-qr-code";
 import { useEffect, useState } from "react";
 
-function UserQr() {
+function UserQR() {
   const [QrData, setQrData] = useState([]);
   const getProfile = () => {
     axiosinstance.get("api/qrcodegeneratorapi").then(function (response) {
@@ -43,4 +43,4 @@ function UserQr() {
   );
 }
 
-export default UserQr;
+export default UserQR;
