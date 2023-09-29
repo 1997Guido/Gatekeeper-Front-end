@@ -19,16 +19,16 @@ function SingleEvent() {
 
   const getSingleEvent = async () => {
     await axiosinstance
-      .get(`/api/viewsingleevent?pk=${pk}`, {
+      .get(`/api/event/${pk}/`, {
         headers: { "X-CSRFToken": csrftoken[0].csrftoken },
       })
       .then(function (response) {
         console.log("response:", response.data);
-        setevent(response.data[0]);
+        setevent(response.data);
         localStorage.setItem("singleevent", JSON.stringify(response.data[0]));
         console.log(response.data.EventOwner);
         console.log(localStorage.getItem("userpk"));
-        if (response.data[0].EventOwner == localStorage.getItem("userpk")) {
+        if (response.data.EventOwner == localStorage.getItem("userpk")) {
           seteventowner(true);
         }
       });

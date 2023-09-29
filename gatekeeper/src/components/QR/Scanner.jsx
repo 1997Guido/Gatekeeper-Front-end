@@ -30,7 +30,7 @@ function Scanner(props) {
   };
 
   const getPersonalEvents = async () => {
-    await axiosinstance.get('/api/eventviewapipersonal')
+    await axiosinstance.get('/api/eventslist?show=owned')
       .then(function (response) {
         console.log("Fetched personal events: " , response.data)
         for (let i = 0; i < response.data.length; i++) {

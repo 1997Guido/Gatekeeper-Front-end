@@ -15,7 +15,7 @@ function UserProfile() {
   const [picture, setPicture] = useState([{}]);
 
   const getProfile = () => {
-    axiosinstance.get(`api/profileapi?allusers=me`).then(function (response) {
+    axiosinstance.get(`api/users?show=me`).then(function (response) {
       const Actualdata = response.data[0];
       console.log(response);
       setData(Actualdata);
@@ -23,7 +23,7 @@ function UserProfile() {
   };
   const getProfilePicture = () => {
     axiosinstance
-      .get(`api/imageview?allmypictures=profilepicture`)
+      .get(`api/profilepicture`)
       .then(function (response) {
         console.log(response);
         setPicture(response.data);

@@ -15,7 +15,7 @@ function EventInvite(event) {
   const [selectedOption, setSelectedOption] = useState(null);
   const getUserNames = async () => {
     await axiosInstance
-      .get(`/api/usernameviewapi?allusers=yes`)
+      .get(`/api/username?show=all`)
       .then(function (response) {
         console.log("response.data:", response.data);
         for (let i = 0; i < response.data.length; i++) {
@@ -31,11 +31,8 @@ function EventInvite(event) {
   };
   const getInvitedUsers = async () => {
     await axiosInstance
-      .post(
-        "/api/getinvitedusers",
-        {
-          pk: event.eventdata.pk,
-        },
+      .get(
+        `/api/event/${event.eventdata.pk}/?show=guests`,
         { headers: { "X-CSRFToken": csrftoken[0].csrftoken } }
       )
       .then(function (response) {
@@ -53,12 +50,24 @@ function EventInvite(event) {
 
   const Invite = (invite) => {
     axiosInstance
-      .post(
-        "/api/eventinviteapi",
+      .patch(
+        `/api/eventinvite/${event.eventdata.pk}/`,
         {
-          pk: event.eventdata.pk,
-          invitedUsers: selectedOption,
-          inv: invite,
+          invited: selectedOption,
+        },
+        { headers: { "X-CSRFToken": csrftoken[0].csrftoken } }
+      )
+      .then(function (response) {
+        getInvitedUsers();
+        console.log(response);
+      });
+  };
+  const unInvite = (invite) => {
+    axiosInstance
+      .patch(
+        `/api/eventuninvite/${event.eventdata.pk}/`,
+        {
+          uninvited: selectedOption,
         },
         { headers: { "X-CSRFToken": csrftoken[0].csrftoken } }
       )
@@ -101,7 +110,7 @@ function EventInvite(event) {
                 </button>
                 <button
                   className="btn btn-primary"
-                  onClick={() => Invite("Uninvite")}
+                  onClick={() => unInvite("Uninvite")}
                 >
                   Uninvite
                 </button>

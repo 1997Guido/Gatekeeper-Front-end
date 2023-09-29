@@ -29,14 +29,14 @@ function ProfileEdit(data) {
     let date = new Date(ProfileInfo.date_of_birth);
     let maxdate = new Date("2012-01-01");
     if (date > maxdate) {
-      alert("You must be at least 10 years old");
+      alert("You must be at least 18 years old");
     } else {
     window.scrollTo(0, 0);
       event.preventDefault();
       console.log(ProfileInfo.gender);
       axiosinstance
         .patch(
-          "/api/profileeditapi",
+          "/api/userupdate",
           {
             username: ProfileInfo.username,
             email: ProfileInfo.email,
