@@ -37,22 +37,22 @@ function ImageUpload() {
     formData.append("Description", Image.Description);
     formData.append("Image", Image.Image);
     axiosInstance
-      .post("api/imageview", formData, {
+      .post("api/image", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       })
       .then(function (response) {
         console.log(response);
-        GetPersonalImages();
+        getPersonalImages();
       })
       .catch(function (error) {
         console.log(error);
       });
   };
-  const GetPersonalImages = () => {
+  const getPersonalImages = () => {
     axiosInstance
-      .get("api/imageview?allmypictures=yes")
+      .get("api/image?show=all")
       .then(function (response) {
         console.log(response);
         setPersonalImages(response.data);
@@ -65,9 +65,8 @@ function ImageUpload() {
   };
   const setProfilePicture = (pictureid) => {
     axiosInstance
-      .post(
-        "api/setprofileimage",
-        { pictureid: pictureid },
+      .patch(
+        `api/profilepicture/${pictureid}/`,
         { headers: { "X-CSRFToken": csrftoken[0].csrftoken } }
       )
       .then(function (response) {
@@ -79,14 +78,14 @@ function ImageUpload() {
   };
   const deleteImage = async () => {
     await axiosInstance
-      .delete(`/api/imageview?pk=${selectedImage.id}`)
+      .delete(`/api/image/${selectedImage.id}/`)
       .then(function (response) {
-        GetPersonalImages();
+        getPersonalImages();
         console.log(response);
       });
   };
   useEffect(() => {
-    GetPersonalImages();
+    getPersonalImages();
   }, []);
   const url = "http://localhost:8000";
   return (

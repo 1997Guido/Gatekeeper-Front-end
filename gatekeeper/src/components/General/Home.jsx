@@ -10,7 +10,7 @@ function Home() {
   const [username, setusername] = useState("");
   const getUserNames = async () => {
     await axiosInstance
-      .get(`/api/usernameviewapi?allusers=me`)
+      .get(`/api/username?show=me`)
       .then(function (response) {
         console.log("response:", response);
         setusername(response.data[0].username);

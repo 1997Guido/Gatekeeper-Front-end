@@ -29,7 +29,7 @@ function CreateEvent() {
     event.preventDefault();
     axiosinstance
       .post(
-        "api/eventcreationapi",
+        "api/eventcreate",
         {
           EventTitle: EventInfo.EventTitle,
           EventDescription: EventInfo.EventDescription,

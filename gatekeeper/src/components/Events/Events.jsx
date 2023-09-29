@@ -17,7 +17,7 @@ function Events() {
 
   const getEvents = async () => {
     await axiosinstance
-      .get("/api/eventviewapi?format=json")
+      .get("/api/eventslist")
       .then(function (response) {
         console.log(response);
         setevent(response.data);

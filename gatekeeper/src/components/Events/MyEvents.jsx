@@ -16,7 +16,7 @@ function MyEvents() {
   };
   const getPersonalEvents = async () => {
     await axiosinstance
-      .get("/api/eventviewapipersonal")
+      .get("/api/eventslist?show=owned")
       .then(function (response) {
         setevent(response.data);
         console.log(response.data);
