@@ -1,28 +1,37 @@
-import "./../../css/Miscellaneous/GlobalStyle.css";
-import "./../../css/QR/scanner.css";
-import "bootstrap/dist/css/bootstrap.css";
 import React, { useState } from "react";
 import Scanner from "./Scanner";
 import { motion } from "framer-motion";
-import axiosinstance from "../../api/axiosApi";
-import { useEffect } from "react";
 
-function QrProfile(userdata, option) {
+import "./../../css/Miscellaneous/GlobalStyle.css";
+import "./../../css/QR/scanner.css";
+import "bootstrap/dist/css/bootstrap.css";
 
+//////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                      //
+//  This is the QrProfile component. It is used to handle scanned QR codes.             //
+//                                                                                      //
+//  Created by Mike C. Vermeer                                                          //
+//                                                                                      //
+//////////////////////////////////////////////////////////////////////////////////////////
+
+function QrProfile({ userdata, option, status }) {
   const [scan, setScan] = useState(false);
-  // const [picture, setPicture] = useState([{}]);
-
   const url = "http://localhost:8000";
 
-  // useEffect(() => {
-  //   if (userdata.userdata.imageurl !== null) {
-  //   setPicture(userdata.userdata.imageurl);
-  // }, [userdata]);
+  if (!scan) {
+    const InvalidMessage = status === 401 ? 
+      {
+        title: "Invalid Request",
+        text: "This user has not been invited to the selected event!"
+      } : 
+      {
+        title: "Invalid QR Code",
+        text: "This user does not exist or the QR code is invalid!"
+      };
 
-  if (userdata.userdata === undefined) {
-    if (scan === false) {
-  return (
-      <div>
+    if (status === 401 || status === 404 || status === 500 || status === 400) {
+      console.log(userdata, option, status);
+      return (
         <motion.div
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -31,18 +40,16 @@ function QrProfile(userdata, option) {
           <div className="InvalidContainer">
             <div className="row">
               <div className="col">
-                <p className="InvalidTitle">Invalid QR Code</p>
-                <p className="InvalidText">No user found or invited with this QR Code!</p>
+                <p className="InvalidTitle">{InvalidMessage.title}</p>
+                <p className="InvalidText">{InvalidMessage.text}</p>
               </div>
-              </div>
-                <button className="btn btn-primray buttonscan" onClick={() => setScan(true)}>Scan Again</button>
             </div>
+            <button className="btn btn-primary buttonscan" onClick={() => setScan(true)}>Scan Again</button>
+          </div>
         </motion.div>
-      </div>
-    );
+      );
+    }
   }
-}
-
 
   return (
     <div>
@@ -50,51 +57,47 @@ function QrProfile(userdata, option) {
         <Scanner ReturnedOption={option} />
       ) : (
         <motion.div
-        initial={{ opacity: 0, scale: 0.5 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1 }}
-      >
-        <div className="QRProfileContainer">
-          <div className="row">
-            <div className="col Userprofile">
-              <p className="ProfileTitle">Scanned Profile</p>
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1 }}
+        >
+          <div className="QRProfileContainer">
+            <div className="row">
+              <div className="col Userprofile">
+                <p className="ProfileTitle">Scanned Profile</p>
+              </div>
             </div>
-          </div>
-          <div className="row">
-            <div className="col Userprofile">
-            {userdata.userdata.imageurl === null ? (
-                      <p>No Profile Picture</p>
-                  ) : (
-                    <div>
-                      <img
-                        className="Image"
-                        src={url + userdata.userdata.imageurl}
-                      />
-                    </div>
-                  )}
+            <div className="row">
+              <div className="col Userprofile">
+                {userdata.imageurl ? (
+                  <div>
+                  <img className="Image" src={url + userdata.imageurl} alt="Profile Picture" />
+                  </div>
+                ) : (
+                  <p>No Profile Picture</p>
+                )}
+              </div>
             </div>
-          </div>
-
-          <div className="row">
-            <div className="col Userprofile">
-              <p>
-                {userdata.userdata.first_name} {userdata.userdata.last_name}
-              </p>
+            <div className="row">
+              <div className="col Userprofile">
+                <p>
+                  {userdata.first_name} {userdata.last_name}
+                </p>
+              </div>
             </div>
-          </div>
-          <div className="row">
-            <div className="col Userprofile">
-              <p>{userdata.userdata.date_of_birth}</p>
+            <div className="row">
+              <div className="col Userprofile">
+                <p>{userdata.date_of_birth}</p>
+              </div>
             </div>
-          </div>
-          <div className="row">
-            <div className="col Userprofile">
-              <p>{userdata.userdata.gender}</p>
+            <div className="row">
+              <div className="col Userprofile">
+                <p>{userdata.gender}</p>
+              </div>
             </div>
+            <button className="btn btn-primary buttonscan" onClick={() => setScan(true)}>Scan Again</button>
           </div>
-          <button className="btn btn-primray buttonscan" onClick={() => setScan(true)}>Scan Again</button>
-        </div>
-      </motion.div>
+        </motion.div>
       )}
     </div>
   );
