@@ -12,7 +12,6 @@ import { useLocation } from 'react-router-dom'
 
 function Nav() {
   const loca = useLocation().pathname.substring(1)
-  console.log(loca)
 useEffect(() => {
     selectNav(loca);
   }, []);
