@@ -6,13 +6,7 @@ import "./../../css/Miscellaneous/GlobalStyle.css";
 import "./../../css/QR/scanner.css";
 import "bootstrap/dist/css/bootstrap.css";
 
-//////////////////////////////////////////////////////////////////////////////////////////
-//                                                                                      //
-//  This is the QrProfile component. It is used to handle scanned QR codes.             //
-//                                                                                      //
-//  Created by Mike C. Vermeer                                                          //
-//                                                                                      //
-//////////////////////////////////////////////////////////////////////////////////////////
+// This is the QrProfile component. It is used to handle scanned QR codes.
 
 function QrProfile({ userdata, option, status }) {
   const [scan, setScan] = useState(false);
@@ -69,9 +63,9 @@ function QrProfile({ userdata, option, status }) {
             </div>
             <div className="row">
               <div className="col Userprofile">
-                {userdata.imageurl ? (
+                {userdata.profilepicture_url ? (
                   <div>
-                  <img className="Image" src={url + userdata.imageurl} alt="Profile Picture" />
+                    <img className="Image" src={url + userdata.profilepicture_url} alt="Profile Picture" />
                   </div>
                 ) : (
                   <p>No Profile Picture</p>

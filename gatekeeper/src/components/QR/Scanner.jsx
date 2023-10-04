@@ -10,15 +10,9 @@ import QrProfile from "./QRProfile";
 import "./../../css/Miscellaneous/GlobalStyle.css";
 import "./../../css/QR/scanner.css";
 import "bootstrap/dist/css/bootstrap.css";
-import * as TbIcons from "react-icons/tb";
 
-//////////////////////////////////////////////////////////////////////////////////////////
-//                                                                                      //
-//  This is the Scanner component. It is used to scan QR codes and verify them.         //
-//                                                                                      //
-//  Created by Mike C. Vermeer                                                          //
-//                                                                                      //
-//////////////////////////////////////////////////////////////////////////////////////////
+// This is the Scanner component. It is used to scan QR codes and verify them.
+
 
 function Scanner() {
   const [selectedOption, setSelectedOption] = useState(() => {
@@ -42,19 +36,20 @@ function Scanner() {
   };
 
   const getPersonalEvents = async () => {
-    try {
-      const response = await axiosinstance.get('/api/eventslist?show=owned');
+    await axiosinstance.get('/api/eventslist?show=owned')
+    .then(response => {
       const tempList = response.data.map(event => ({
         value: event.pk,
         label: event.EventTitle
       }));
-
+  
       tempList.unshift({ value: "", label: "Select an event" });
-
+  
       setEventList(tempList);
-    } catch (err) {
-      console.error("Error fetching personal events:", err);
-    }
+    })
+    .catch(error => {
+      console.log(error.response);
+    });
   };
 
   const qrVerify = () => {
@@ -67,7 +62,7 @@ function Scanner() {
       "X-CSRFToken": csrftoken.csrftoken
     };
 
-    axiosinstance.post("api/qrcodeverificatorapi", {
+    axiosinstance.post("api/qrcode", {
       encryptedqrdata,
       event: selectedOption.value
     }, { headers })

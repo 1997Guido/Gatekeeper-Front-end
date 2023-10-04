@@ -7,24 +7,20 @@ import "./../../css/Miscellaneous/GlobalStyle.css";
 import "./../../css/QR/userqr.css";
 import "bootstrap/dist/css/bootstrap.css";
 
-//////////////////////////////////////////////////////////////////////////////////////////
-//                                                                                      //
-//  This is the UserQR component. It is used to display the user's QR code.             //
-//                                                                                      //
-//  Created by Mike C. Vermeer                                                          //
-//                                                                                      //
-//////////////////////////////////////////////////////////////////////////////////////////
+// This is the UserQR component. It is used to display the user's QR code.
 
 function UserQR() {
   const [qrData, setQrData] = useState([]);
 
   const getProfile = async () => {
-    try {
-      const response = await axiosinstance.get("api/qrcodegeneratorapi");
-      setQrData(response.data);
-    } catch (error) {
-      console.error("Error fetching QR data:", error);
-    }
+    await axiosinstance.get("api/qrcode")
+      .then(response => {
+        console.log(response.data);
+        setQrData(response.data);
+      })
+      .catch(error => {
+        console.log(error.response);
+      });
   };
 
   useEffect(() => {
