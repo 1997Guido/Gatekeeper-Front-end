@@ -3,12 +3,14 @@ import "bootstrap/dist/css/bootstrap.css";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import axiosinstance from "../../api/axiosApi";
-import { useCookies } from "react-cookie";
 import { Link } from "react-router-dom";
 import * as TbIcons from "react-icons/tb";
 import { useNavigate } from "react-router-dom";
+import EventCard from "./EventCard";
+
+
 function MyEvents() {
-  const [event, setevent] = useState([]);
+  const [events, setevent] = useState([]);
   const navigate = useNavigate();
   const navigateToSingleEvent = (singleventpk) => {
     localStorage.setItem("singleventpk", singleventpk);
@@ -33,31 +35,13 @@ function MyEvents() {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8 }}
       >
-        {event.map((event, index) => (
-          <>
-                        <div className="col SingleEventBanner">Your Events</div>
-              <div className="row EventContainer" key={index}>
-                <div className="col EventTitle">{event.EventTitle}</div>
-                <div className="">
-                  <div className="col">
-                    Organized by:
-                    <br />
-                    {event.EventOrganizer}
-                    <br />
-                    {event.EventDate}
-                    <br />
-                    {event.EventLocation}
-                    <br />
-                  </div>
-                </div>
-                <div className="col">
-                  <TbIcons.TbFileInfo
-                    className="EventInfoButton"
-                    onClick={() => navigateToSingleEvent(event.pk)}
-                  />
-                </div>
-              </div>
-          </>
+        <div className="container-fluid">
+        <div className="row">
+          <div className="col EventBanner">My Events</div>
+        </div>
+        </div>
+        {events.map((event, index) => (
+          <EventCard event={event} key={index} />
         ))}
         <div className="heightmaker"></div>
       </motion.div>

@@ -2,6 +2,7 @@ import "./../../css/Events/SingleEvent.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import axiosinstance from "../../api/axiosApi";
 import { useCookies } from "react-cookie";
 import { Link } from "react-router-dom";
@@ -10,12 +11,11 @@ import EventEdit from "./EventEdit";
 import EventInvite from "./EventInvite";
 import EventDelete from "./EventDelete";
 function SingleEvent() {
-  const [currentInvitedUsers, setcurrentInvitedUsers] = useState([{}]);
   const csrftoken = useCookies(["csrftoken"]);
   const [event, setevent] = useState([]);
   const [eventowner, seteventowner] = useState(false);
   const [editmode, seteditmode] = useState("false");
-  const pk = localStorage.getItem("singleventpk");
+  const { pk } = useParams();
 
   const getSingleEvent = async () => {
     await axiosinstance
@@ -25,12 +25,13 @@ function SingleEvent() {
       .then(function (response) {
         console.log("response:", response.data);
         setevent(response.data);
-        localStorage.setItem("singleevent", JSON.stringify(response.data[0]));
         console.log(response.data.EventOwner);
         console.log(localStorage.getItem("userpk"));
         if (response.data.EventOwner == localStorage.getItem("userpk")) {
           seteventowner(true);
         }
+      }).catch(function (error) {
+        console.log(error);
       });
   };
 

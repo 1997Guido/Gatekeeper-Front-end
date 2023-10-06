@@ -19,7 +19,7 @@ import Scanner from '../components/QR/Scanner';
 import CreateEvent from './Events/CreateEvent';
 import Events from './Events/Events';
 import MyEvents from './Events/MyEvents';
-import SingleEvent from './Events/SingleEventPage';
+import SingleEvent from './Events/SingleEvent';
 
 // Other components and utilities
 import Nav from './Other/NavBar';
@@ -40,7 +40,7 @@ function RouterGate() {
                 <Route path="/userprofile" element={<UserProfile />}></Route>
                 <Route path="/events" element={<Events />}></Route>
                 <Route path="/eventcreate" element={<CreateEvent />}></Route>
-                <Route path="/singleeventview" element={<SingleEvent />}></Route>
+                <Route path="/singleevent/:pk" element={<SingleEvent />}></Route>
                 <Route path="/myevents" element={<MyEvents />}></Route>
             </Route>
         </Routes>

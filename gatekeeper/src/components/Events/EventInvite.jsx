@@ -14,29 +14,26 @@ function EventInvite(event) {
   const invitedUsers = [];
   const [selectedOption, setSelectedOption] = useState(null);
   const getUserNames = async () => {
-    await axiosInstance
-      .get(`/api/username?show=all`)
-      .then(function (response) {
-        console.log("response.data:", response.data);
-        for (let i = 0; i < response.data.length; i++) {
-          if (tempList.includes(response.data[i].id) === false) {
-            tempList.push({
-              value: response.data[i].id,
-              label: response.data[i].username,
-            });
-          }
+    await axiosInstance.get(`/api/username?show=all`).then(function (response) {
+      console.log("response.data:", response.data);
+      for (let i = 0; i < response.data.length; i++) {
+        if (tempList.includes(response.data[i].id) === false) {
+          tempList.push({
+            value: response.data[i].id,
+            label: response.data[i].username,
+          });
         }
-        setuserlist(tempList);
-      });
+      }
+      setuserlist(tempList);
+    });
   };
   const getInvitedUsers = async () => {
     await axiosInstance
-      .get(
-        `/api/event/${event.eventdata.pk}/?show=guests`,
-        { headers: { "X-CSRFToken": csrftoken[0].csrftoken } }
-      )
+      .get(`/api/event/${event.eventdata.pk}/?show=guests`, {
+        headers: { "X-CSRFToken": csrftoken[0].csrftoken },
+      })
       .then(function (response) {
-        console.log("response.data:", response.data);
+        console.log("invited_user:", response.data);
         setcurrentInvitedUsers(response.data);
       });
   };
@@ -77,6 +74,14 @@ function EventInvite(event) {
       });
   };
 
+  function chunkArray(array, chunkSize) {
+    const chunked = [];
+    for (let i = 0; i < array.length; i += chunkSize) {
+      chunked.push(array.slice(i, i + chunkSize));
+    }
+    return chunked;
+  }
+
   useEffect(() => {
     getUserNames();
     getInvitedUsers();
@@ -114,16 +119,24 @@ function EventInvite(event) {
                 >
                   Uninvite
                 </button>
-                  <div className="col InvitedUsersTitle">Invited Users:</div>
-                  <div className="row">
-                  <div className="col InvitedUsers">{currentInvitedUsers.map((user, index) => (
-                    <div key={index}>
-                      {index}: {user.username}
+                <div className="col InvitedUsersTitle">Invited Users:</div>
+                <div className="row">
+                  {chunkArray(currentInvitedUsers, 2).map((pair, index) => (
+                    <div key={index} className="col">
+                      <div className="row">
+                        {pair.map((user, i) => (
+                          <div key={i} className="col">
+                            {typeof user === "string" ||
+                            typeof user === "number"
+                              ? `${index * 2 + i + 1}: ${user}`
+                              : "Invalid user type"}
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   ))}
-                  </div>
-                  </div>
                 </div>
+              </div>
             </div>
           </div>
         </div>
