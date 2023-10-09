@@ -24,7 +24,6 @@ function QrProfile({ userdata, option, status }) {
       };
 
     if (status === 401 || status === 404 || status === 500 || status === 400) {
-      console.log(userdata, option, status);
       return (
         <motion.div
           initial={{ opacity: 0, scale: 0.5 }}

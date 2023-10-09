@@ -15,7 +15,6 @@ function UserQR() {
   const getProfile = async () => {
     await axiosinstance.get("api/qrcode")
       .then(response => {
-        console.log(response.data);
         setQrData(response.data);
       })
       .catch(error => {
