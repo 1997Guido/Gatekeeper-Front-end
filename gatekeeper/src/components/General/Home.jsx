@@ -27,10 +27,9 @@ function Home() {
         transition={{ duration: 1 }}
       >
         <div className="container-fluid HomeContainer">
-          <h1>Home</h1>
           <div className="row">
-            <div className="col text">
-              <p>Welcome {username}</p>
+            <div className="col text-start">
+              <h1>Welcome {username}</h1>
               <p>
                 to our event planning webapp!
                 <br />
@@ -39,7 +38,7 @@ function Home() {
                 with ease. Plus, our unique QR code scanning feature allows you
                 to easily check guests in and keep track of who has arrived,
                 ensuring only those on the invite list are able to attend.
-                <br /> Get started now and make your next event a{" "}
+                <br /> Get started now,<br/> and make your next event a{" "}
                 <strong>success!</strong>
               </p>
             </div>
