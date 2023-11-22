@@ -13,17 +13,24 @@ function QrProfile({ userdata, option, status }) {
   const url = "http://localhost:8000";
 
   if (!scan) {
-    const InvalidMessage = status === 401 ? 
+    const InvalidMessage = 
+      status === 401 ? 
       {
-        title: "Invalid Request",
-        text: "This user has not been invited to the selected event!"
+          title: "Invalid Request",
+          text: "This user has not been invited to the selected event!"
       } : 
+      status === 406 ? 
       {
-        title: "Invalid QR Code",
-        text: "This user does not exist or the QR code is invalid!"
+          title: "QR Code Expired",
+          text: "This QR Code has expired!"
+      } :
+      {
+          title: "Invalid QR Code",
+          text: "This user does not exist or the QR code is invalid!"
       };
+      
 
-    if (status === 401 || status === 404 || status === 500 || status === 400) {
+    if (status === 401 || status === 404 || status === 500 || status === 400 || status === 406) {
       return (
         <motion.div
           initial={{ opacity: 0, scale: 0.5 }}
