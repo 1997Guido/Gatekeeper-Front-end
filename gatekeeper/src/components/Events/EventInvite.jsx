@@ -6,45 +6,41 @@ import Select from "react-select";
 import "./../../css/Events/EventInvite.css";
 import { useCookies } from "react-cookie";
 import { motion } from "framer-motion";
+import * as TbIcons from "react-icons/tb";
 function EventInvite(event) {
   let csrftoken = useCookies(["csrftoken"]);
   const [userlist, setuserlist] = useState([{}]);
-  const [currentInvitedUsers, setcurrentInvitedUsers] = useState([{}]);
+  const [invitedUsers, setInvitedUsers] = useState([]);
   const tempList = [{}];
-  const invitedUsers = [];
   const [selectedOption, setSelectedOption] = useState(null);
   const getUserNames = async () => {
-    await axiosInstance
-      .get(`/api/username?show=all`)
-      .then(function (response) {
-        console.log("response.data:", response.data);
-        for (let i = 0; i < response.data.length; i++) {
-          if (tempList.includes(response.data[i].id) === false) {
-            tempList.push({
-              value: response.data[i].id,
-              label: response.data[i].username,
-            });
-          }
+    await axiosInstance.get(`/api/username?show=all`).then(function (response) {
+      for (let i = 0; i < response.data.length; i++) {
+        if (tempList.includes(response.data[i].id) === false) {
+          tempList.push({
+            value: response.data[i].id,
+            label: response.data[i].username,
+          });
         }
-        setuserlist(tempList);
-      });
+      }
+      console.log(response.data);
+      setuserlist(tempList);
+    });
   };
   const getInvitedUsers = async () => {
     await axiosInstance
-      .get(
-        `/api/event/${event.eventdata.pk}/?show=guests`,
-        { headers: { "X-CSRFToken": csrftoken[0].csrftoken } }
-      )
+      .get(`/api/event/${event.eventdata.pk}/?show=guests`, {
+        headers: { "X-CSRFToken": csrftoken[0].csrftoken },
+      })
       .then(function (response) {
-        console.log("response.data:", response.data);
-        setcurrentInvitedUsers(response.data);
+        console.log("invited_users:", response.data);
+        setInvitedUsers(response.data);
+        setSelectedOption(null);
       });
   };
 
   const handleChange = (selectedOption) => {
     setSelectedOption(selectedOption);
-    invitedUsers.push(selectedOption);
-    console.log("invitedUsers", invitedUsers);
     console.log(`Option selected:`, selectedOption);
   };
 
@@ -59,28 +55,28 @@ function EventInvite(event) {
       )
       .then(function (response) {
         getInvitedUsers();
+        setSelectedOption(null);
         console.log(response);
       });
   };
-  const unInvite = (invite) => {
+  const unInvite = (username) => {
     axiosInstance
       .patch(
         `/api/eventuninvite/${event.eventdata.pk}/`,
         {
-          uninvited: selectedOption,
+          username: username,
         },
         { headers: { "X-CSRFToken": csrftoken[0].csrftoken } }
       )
       .then(function (response) {
         getInvitedUsers();
-        console.log(response);
+        setSelectedOption(null);
       });
   };
 
   useEffect(() => {
     getUserNames();
     getInvitedUsers();
-    console.log("i should fire once");
   }, []);
   return (
     <>
@@ -99,32 +95,33 @@ function EventInvite(event) {
             options={userlist}
             isMulti={true}
           />
-          <div className="EventInviteContainer">
             <div className="row">
-              <div className="col">
+              <div className="col text-center">
                 <button
-                  className="btn btn-primary"
+                  className="btn btn-primary m-2"
                   onClick={() => Invite("Invite")}
                 >
                   Invite
                 </button>
-                <button
-                  className="btn btn-primary"
-                  onClick={() => unInvite("Uninvite")}
-                >
-                  Uninvite
-                </button>
-                  <div className="col InvitedUsersTitle">Invited Users:</div>
-                  <div className="row">
-                  <div className="col InvitedUsers">{currentInvitedUsers.map((user, index) => (
-                    <div key={index}>
-                      {index}: {user.username}
-                    </div>
-                  ))}
-                  </div>
-                  </div>
-                </div>
+              </div>
             </div>
+          <div className="EventInviteContainer">
+            <div className="InvitedUsersTitle">Guestlist</div>
+            <ul className="list-group InvitedUsers">
+              {invitedUsers.map((username) => (
+                <li className="list-group-item text-start">
+                  <div className="row">
+                    <div className="col text-white text-start">{username}</div>
+                    <div className="col">
+                      <TbIcons.TbTrash
+                        onClick={() => unInvite(username)}
+                        className="EventDeleteButton"
+                      />
+                    </div>
+                  </div>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </motion.div>

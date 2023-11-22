@@ -1,8 +1,6 @@
 import { Outlet, Navigate } from 'react-router-dom'
 import axiosinstance from './axiosApi';
 import { useState, useEffect } from 'react';
-import validateUserLoggedIn from './ValidateUserLoggedIn';
-
 
 
 const PrivateRoutes = () => {
@@ -13,11 +11,13 @@ const PrivateRoutes = () => {
             if (response.status === 200) {
                 if (response.data === false) {
                     localStorage.setItem('Auth', 'false');
+                    console.log(response.data)
                     setIsAuth(false);
                 }
                 if (response.data === true) {
                     localStorage.setItem('Auth', 'true');
                     setIsAuth(true);
+                    console.log(response.data)
                 }
             }
             }).catch(error => {
