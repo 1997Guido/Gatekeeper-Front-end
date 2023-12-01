@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import Scanner from "./Scanner";
 import { motion } from "framer-motion";
 import axiosInstance from "./../../api/axiosApi";
-import mediaURL from "./../../api/axiosApi";
 import "./../../css/Miscellaneous/GlobalStyle.css";
 import "./../../css/QR/scanner.css";
 import "bootstrap/dist/css/bootstrap.css";
 
 // This is the QrProfile component. It is used to handle scanned QR codes.
 
+const mediaURL = process.env.NODE_ENV === 'production' ? "https://guidoerdtsieck.nl" : "http://localhost:8000"
 function QrProfile({ userdata, option, status }) {
   const [scan, setScan] = useState(false);
 

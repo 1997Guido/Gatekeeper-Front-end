@@ -3,13 +3,13 @@ import "./../../css/Miscellaneous/GlobalStyle.css";
 import "./../../css/Profile/userprofile.css";
 import { useEffect, useState } from "react";
 import axiosinstance from "../../api/axiosApi";
-import mediaURL from "../../api/axiosApi";
 import { motion } from "framer-motion";
 import * as TbIcons from "react-icons/tb";
 import ProfileEdit from "./ProfileEdit";
 import ProfileDelete from "./ProfileDelete";
 import ImageUpload from "../Other/ImageUpload";
 
+const mediaURL = process.env.NODE_ENV === 'production' ? "https://guidoerdtsieck.nl" : "http://localhost:8000"
 function UserProfile() {
   const [editmode, seteditmode] = useState("false");
   const [data, setData] = useState([]);

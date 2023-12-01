@@ -1,4 +1,3 @@
-import mediaURL from "../../api/axiosApi";
 import axiosInstance from "../../api/axiosApi";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -8,6 +7,7 @@ import { useCookies } from "react-cookie";
 import { motion } from "framer-motion";
 import * as TbIcons from "react-icons/tb";
 import * as HiIcons from "react-icons/hi";
+const mediaURL = process.env.NODE_ENV === 'production' ? "https://guidoerdtsieck.nl" : "http://localhost:8000"
 function ImageUpload() {
   const [PictureEdit, setPictureEdit] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
