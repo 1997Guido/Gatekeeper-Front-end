@@ -9,6 +9,7 @@ import "bootstrap/dist/css/bootstrap.css";
 
 // This is the QrProfile component. It is used to handle scanned QR codes.
 
+const mediaURL = process.env.NODE_ENV === 'production' ? "https://guidoerdtsieck.nl" : "http://localhost:8000"
 function QrProfile({ userdata, option, status }) {
   const [scan, setScan] = useState(false);
 
@@ -71,7 +72,7 @@ function QrProfile({ userdata, option, status }) {
               <div className="col Userprofile">
                 {userdata.profilepicture_url ? (
                   <div>
-                    <img className="Image" src={baseURL + userdata.profilepicture_url} alt="Profile Picture" />
+                    <img className="Image" src={mediaURL + userdata.profilepicture_url} alt="Profile Picture" />
                   </div>
                 ) : (
                   <p>No Profile Picture</p>

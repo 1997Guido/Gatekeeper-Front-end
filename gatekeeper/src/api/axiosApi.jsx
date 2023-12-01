@@ -1,7 +1,8 @@
 import axios from 'axios'
-const baseURL = "https://guidoerdtsieck.nl"
+const URL = process.env.NODE_ENV === 'production' ? "https://guidoerdtsieck.nl/django" : "http://localhost:8000"
+console.log("URL: ", URL)
 const axiosInstance = axios.create({
-    baseURL: baseURL + "/django",
+    baseURL: URL,
     withCredentials: true,
 });
 

@@ -10,6 +10,7 @@ import ProfileEdit from "./ProfileEdit";
 import ProfileDelete from "./ProfileDelete";
 import ImageUpload from "../Other/ImageUpload";
 
+const mediaURL = process.env.NODE_ENV === 'production' ? "https://guidoerdtsieck.nl" : "http://localhost:8000"
 function UserProfile() {
   const [editmode, seteditmode] = useState("false");
   const [data, setData] = useState([]);
@@ -59,7 +60,7 @@ function UserProfile() {
                     <div className="col">
                       <img
                         className="Image"
-                        src={baseURL + picture.Image}
+                        src={mediaURL + picture.Image}
                         alt={picture.Title}
                       />
                     </div>

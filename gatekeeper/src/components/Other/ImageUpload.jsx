@@ -8,6 +8,7 @@ import { useCookies } from "react-cookie";
 import { motion } from "framer-motion";
 import * as TbIcons from "react-icons/tb";
 import * as HiIcons from "react-icons/hi";
+const mediaURL = process.env.NODE_ENV === 'production' ? "https://guidoerdtsieck.nl" : "http://localhost:8000"
 function ImageUpload() {
   const [PictureEdit, setPictureEdit] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
@@ -147,7 +148,7 @@ function ImageUpload() {
                       <div key={image.id}>
                         <img
                           className="Image"
-                          src={baseURL + image.Image}
+                          src={mediaURL + image.Image}
                           alt={image.Title}
                         />
                         <p>Title:{image.Title}</p>
