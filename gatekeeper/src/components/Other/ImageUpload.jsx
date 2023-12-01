@@ -1,3 +1,4 @@
+import baseURL from "../../api/axiosApi";
 import axiosInstance from "../../api/axiosApi";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -146,7 +147,7 @@ function ImageUpload() {
                       <div key={image.id}>
                         <img
                           className="Image"
-                          src={axiosInstance.defaults.baseURL + image.Image}
+                          src={baseURL + image.Image}
                           alt={image.Title}
                         />
                         <p>Title:{image.Title}</p>
