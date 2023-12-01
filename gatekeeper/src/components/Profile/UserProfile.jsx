@@ -33,7 +33,6 @@ function UserProfile() {
     getProfile();
     getProfilePicture();
   }, []);
-  const url = "http://localhost:8000";
   return (
     <>
       {editmode === "false" ? (
@@ -59,7 +58,7 @@ function UserProfile() {
                     <div className="col">
                       <img
                         className="Image"
-                        src={url + picture.Image}
+                        src={axiosinstance.defaults.baseURL + picture.Image}
                         alt={picture.Title}
                       />
                     </div>
