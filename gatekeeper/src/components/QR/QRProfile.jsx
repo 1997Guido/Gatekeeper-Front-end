@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Scanner from "./Scanner";
 import { motion } from "framer-motion";
 import axiosInstance from "./../../api/axiosApi";
+import baseURL from "./../../api/axiosApi";
 import "./../../css/Miscellaneous/GlobalStyle.css";
 import "./../../css/QR/scanner.css";
 import "bootstrap/dist/css/bootstrap.css";
