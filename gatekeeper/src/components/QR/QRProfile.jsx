@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Scanner from "./Scanner";
 import { motion } from "framer-motion";
-
+import axiosInstance from "./../../api/axiosApi";
 import "./../../css/Miscellaneous/GlobalStyle.css";
 import "./../../css/QR/scanner.css";
 import "bootstrap/dist/css/bootstrap.css";
@@ -10,7 +10,6 @@ import "bootstrap/dist/css/bootstrap.css";
 
 function QrProfile({ userdata, option, status }) {
   const [scan, setScan] = useState(false);
-  const url = "http://localhost:8000";
 
   if (!scan) {
     const InvalidMessage = 
@@ -71,7 +70,7 @@ function QrProfile({ userdata, option, status }) {
               <div className="col Userprofile">
                 {userdata.profilepicture_url ? (
                   <div>
-                    <img className="Image" src={url + userdata.profilepicture_url} alt="Profile Picture" />
+                    <img className="Image" src={axiosInstance.defaults.baseURL + userdata.profilepicture_url} alt="Profile Picture" />
                   </div>
                 ) : (
                   <p>No Profile Picture</p>

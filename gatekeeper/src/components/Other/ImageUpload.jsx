@@ -87,7 +87,6 @@ function ImageUpload() {
   useEffect(() => {
     getPersonalImages();
   }, []);
-  const url = "http://localhost:8000";
   return (
     <>
       <motion.div
@@ -147,7 +146,7 @@ function ImageUpload() {
                       <div key={image.id}>
                         <img
                           className="Image"
-                          src={url + image.Image}
+                          src={axiosInstance.defaults.baseURL + image.Image}
                           alt={image.Title}
                         />
                         <p>Title:{image.Title}</p>
