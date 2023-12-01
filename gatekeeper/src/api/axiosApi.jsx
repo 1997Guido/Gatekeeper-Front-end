@@ -1,7 +1,7 @@
 import axios from 'axios'
-
+const baseURL = "https://guidoerdtsieck.nl"
 const axiosInstance = axios.create({
-    baseURL: "https://guidoerdtsieck.nl/django",
+    baseURL: baseURL + "/django",
     withCredentials: true,
 });
 
