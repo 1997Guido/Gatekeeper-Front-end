@@ -10,7 +10,7 @@ import * as TbIcons from "react-icons/tb";
 function CreateEvent() {
   let csrftoken = useCookies(["csrftoken"]);
   const [Success, setSuccess] = useState(false);
-  const [error, setError] = useState("no error");
+  const [error, setError] = useState(false);
   const [EventInfo, setEventInfo] = useState({
     EventTitle: "",
     EventDescription: "",
@@ -44,7 +44,6 @@ function CreateEvent() {
       )
       .then(function (response) {
         console.log("Error", response);
-        setError(response.data);
         console.log(EventInfo);
         console.log(response);
         setSuccess(true);
@@ -71,7 +70,7 @@ function CreateEvent() {
             <div className="myFormGroupEvent">
               {Success ? <div className="success">Event Created</div> : null}
               <label htmlFor="EventTitle">Event Title</label>
-              {error !== "no error" ? (
+              {error !== false ? (
                 <div className="error">{error.EventTitle}</div>
               ) : null}
               <input
@@ -85,7 +84,7 @@ function CreateEvent() {
             </div>
             <div className="myFormGroupEvent">
               <label htmlFor="EventDescription">Description</label>
-              {error !== "no error" ? (
+              {error !== false ? (
                 <div className="error">{error.EventDescription}</div>
               ) : null}
               <textarea
@@ -100,7 +99,7 @@ function CreateEvent() {
             </div>
             <div className="myFormGroupRegister">
               <label htmlFor="date_of_birth">Date</label>
-              {error !== "no error" ? (
+              {error !== false ? (
                 <div className="error">{error.EventDate}</div>
               ) : null}
               <input
@@ -114,7 +113,7 @@ function CreateEvent() {
             </div>
             <div className="myFormGroupEvent">
               <label htmlFor="EventLocation">Location</label>
-              {error !== "no error" ? (
+              {error !== false ? (
                 <div className="error">{error.EventLocation}</div>
               ) : null}
               <input
@@ -128,7 +127,7 @@ function CreateEvent() {
             </div>
             <div className="myFormGroupEvent">
               <label htmlFor="EventMaxGuests">Event Capacity</label>
-              {error !== "no error" ? (
+              {error !== false ? (
                 <div className="error">{error.EventMaxGuests}</div>
               ) : null}
               <input
@@ -154,7 +153,7 @@ function CreateEvent() {
               <label htmlFor="EventOrganizer">
                 Who or what is organizing this event?
               </label>
-              {error !== "no error" ? (
+              {error !== false ? (
                 <div className="error">{error.EventOrganizer}</div>
               ) : null}
               <input
@@ -170,7 +169,7 @@ function CreateEvent() {
               <label htmlFor="EventTimeStart">
                 When does your event start?
               </label>
-              {error !== "no error" ? (
+              {error !== false ? (
                 <div className="error">{error.EventTimeStart}</div>
               ) : null}
               <input
@@ -184,7 +183,7 @@ function CreateEvent() {
             </div>
             <div className="myFormGroupEvent">
               <label htmlFor="EventTimeEnd">When does your event end?</label>
-              {error !== "no error" ? (
+              {error !== false ? (
                 <div className="error">{error.EventTimeEnd}</div>
               ) : null}
               <input
@@ -199,7 +198,7 @@ function CreateEvent() {
             <div className="myFormEditEvent price">
               <label htmlFor="EventPrice">What is the price?</label>
               <br />
-              {error !== "no error" ? (
+              {error !== false ? (
                 <div className="error">{error.EventPrice}</div>
               ) : null}
               ${EventInfo.EventPrice}
@@ -219,7 +218,7 @@ function CreateEvent() {
                 What is the minimum age for this event?
               </label>
               <br />
-              {error !== "no error" ? (
+              {error !== false ? (
                 <div className="error">{error.EventMinimumAge}</div>
               ) : null}
               {EventInfo.EventMinimumAge} years old

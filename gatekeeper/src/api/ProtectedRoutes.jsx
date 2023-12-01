@@ -7,7 +7,7 @@ const PrivateRoutes = () => {
     let [isAuth, setIsAuth] = useState(localStorage.getItem('Auth') === 'true' ? true : false);
     useEffect(() => {
         const validateUserLoggedIn = async () => {
-            await axiosinstance.get('api/authcheck').then(function(response){
+            await axiosinstance.get('/api/authcheck').then(function(response){
             if (response.status === 200) {
                 if (response.data === false) {
                     localStorage.setItem('Auth', 'false');
