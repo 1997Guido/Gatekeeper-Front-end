@@ -20,40 +20,47 @@ function CreateEvent() {
     EventLocation: "",
     EventMaxGuests: "",
     EventOrganizer: "",
+    EventPrice: "",
+    EventMinimumAge: "",
+    EventIsPrivate: false,
+    EventIsCancelled: false,
+    EventCurrentGuests: "",
+    EventIsFree: false,
+    EventBanner: null,
   });
   const handleChange = (event) => {
-    setEventInfo({ ...EventInfo, [event.target.name]: event.target.value });
+    if (event.target.name === "EventBanner") {
+      setEventInfo({ ...EventInfo, EventBanner: event.target.files[0] });
+    } else {
+      setEventInfo({ ...EventInfo, [event.target.name]: event.target.value });
+    }
   };
   const handleSubmit = (event) => {
-    console.log(EventInfo);
     event.preventDefault();
-    axiosinstance
-      .post(
-        "api/eventcreate",
-        {
-          EventTitle: EventInfo.EventTitle,
-          EventDescription: EventInfo.EventDescription,
-          EventDate: EventInfo.EventDate,
-          EventTimeStart: EventInfo.EventTimeStart,
-          EventTimeEnd: EventInfo.EventTimeEnd,
-          EventLocation: EventInfo.EventLocation,
-          EventMaxGuests: EventInfo.EventMaxGuests,
-          EventOrganizer: EventInfo.EventOrganizer,
-        },
-        { headers: { "X-CSRFToken": csrftoken[0].csrftoken } }
-      )
-      .then(function (response) {
-        console.log("Error", response);
-        console.log(EventInfo);
-        console.log(response);
-        setSuccess(true);
-        window.scrollTo(0, 0);
-      })
-      .catch(function (error) {
-        console.log("Error", error);
-        setError(error.response.data);
-        window.scrollTo(0, 0);
-      });
+
+    const formData = new FormData();
+    Object.keys(EventInfo).forEach(key => {
+      if (key === "EventBanner" && EventInfo[key]) {
+        formData.append(key, EventInfo[key], EventInfo[key].name);
+      } else {
+        formData.append(key, EventInfo[key]);
+      }
+    });
+
+    axiosinstance.post("api/eventcreate", formData, {
+      headers: {
+        "X-CSRFToken": csrftoken[0].csrftoken,
+        "Content-Type": "multipart/form-data",
+      }
+    })
+    .then(function (response) {
+      setSuccess(true);
+      window.scrollTo(0, 0);
+    })
+    .catch(function (error) {
+      setError(error.response.data);
+      window.scrollTo(0, 0);
+    });
   };
   return (
     <>
@@ -229,6 +236,18 @@ function CreateEvent() {
                 placeholder="Enter EventMinimumAge"
                 onChange={handleChange}
                 value={EventInfo.EventMinimumAge}
+              />
+            </div>
+            <div className="myFormGroupEvent">
+              <label htmlFor="EventBanner">Event Banner</label>
+              {error !== false ? (
+                <div className="error">{error.EventBanner}</div>
+              ) : null}
+              <input
+                type="file"
+                className="form-control"
+                name="EventBanner"
+                onChange={handleChange}
               />
             </div>
             <button type="submit" className="btn btn-primary">

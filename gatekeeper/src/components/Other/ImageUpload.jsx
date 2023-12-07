@@ -54,7 +54,7 @@ function ImageUpload() {
   };
   const getPersonalImages = () => {
     axiosInstance
-      .get("api/image?show=all")
+      .get("api/image?show=owned")
       .then(function (response) {
         console.log(response);
         setPersonalImages(response.data);
