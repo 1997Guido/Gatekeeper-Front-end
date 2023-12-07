@@ -5,64 +5,68 @@ import { motion } from "framer-motion";
 import { useCookies } from "react-cookie";
 import "./../../css/Events/EventEdit.css";
 
-function EventEdit(event) {
+function EventEdit({eventdata}) {
   let csrftoken = useCookies(["csrftoken"]);
-  const [isChecked, setIsChecked] = useState(event.eventdata.EventIsPrivate);
+  const [isChecked, setIsChecked] = useState(eventdata.EventIsPrivate);
   const [Status, setStatus] = useState("ready");
   const [error, setError] = useState("no error");
   const [EventInfo, setEventInfo] = useState({
-    EventTitle: event.eventdata.EventTitle,
-    EventDescription: event.eventdata.EventDescription,
-    EventDate: event.eventdata.EventDate,
-    EventTimeStart: event.eventdata.EventTimeStart,
-    EventTimeEnd: event.eventdata.EventTimeEnd,
-    EventLocation: event.eventdata.EventLocation,
-    EventMaxGuests: event.eventdata.EventMaxGuests,
-    EventOrganizer: event.eventdata.EventOrganizer,
-    EventIsCancelled: event.eventdata.EventIsCancelled,
-    EventIsPrivate: event.eventdata.EventIsPrivate,
-    EventPrice: event.eventdata.EventPrice,
-    EventMinimumAge: event.eventdata.EventMinimumAge,
-    pk: event.eventdata.pk,
+    EventTitle: eventdata.EventTitle,
+    EventDescription: eventdata.EventDescription,
+    EventDate: eventdata.EventDate,
+    EventTimeStart: eventdata.EventTimeStart,
+    EventTimeEnd: eventdata.EventTimeEnd,
+    EventLocation: eventdata.EventLocation,
+    EventMaxGuests: eventdata.EventMaxGuests,
+    EventOrganizer: eventdata.EventOrganizer,
+    EventIsCancelled: eventdata.EventIsCancelled,
+    EventIsPrivate: eventdata.EventIsPrivate,
+    EventPrice: eventdata.EventPrice,
+    EventMinimumAge: eventdata.EventMinimumAge,
+    pk: eventdata.pk,
+    EventBanner: null,  // Initialize EventBanner as null
   });
+  const [currentEventBanner, setCurrentEventBanner] = useState(eventdata.EventBannerURL); // Add this line
+
   const handleChange = (event) => {
-    setEventInfo({ ...EventInfo, [event.target.name]: event.target.value });
+    if (event.target.name === "EventBanner") {
+      setEventInfo({ ...EventInfo, EventBanner: event.target.files[0] });
+    } else {
+      setEventInfo({ ...EventInfo, [event.target.name]: event.target.value });
+    }
   };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    axiosInstance
-      .put(
-        `api/eventupdate/${EventInfo.pk}/`,
-        {
-          EventTitle: EventInfo.EventTitle,
-          EventDescription: EventInfo.EventDescription,
-          EventDate: EventInfo.EventDate,
-          EventTimeStart: EventInfo.EventTimeStart,
-          EventTimeEnd: EventInfo.EventTimeEnd,
-          EventLocation: EventInfo.EventLocation,
-          EventMaxGuests: EventInfo.EventMaxGuests,
-          EventOrganizer: EventInfo.EventOrganizer,
-          EventIsCancelled: EventInfo.EventIsCancelled,
-          EventIsPrivate: isChecked,
-          EventPrice: EventInfo.EventPrice,
-          EventMinimumAge: EventInfo.EventMinimumAge,
-          pk: EventInfo.pk,
-        },
-        { headers: { "X-CSRFToken": csrftoken[0].csrftoken } }
-      )
-      .then(function (response, error) {
-        console.log(response);
-        if (response.status === 200) {
-          setStatus("Event edited");
-          window.scrollTo(0, 0);
-        } else {
-          setError(response.data);
-          window.scrollTo(0, 0);
-        }
-      })
-      .catch(function (error) {
-        console.log("Error", error);
-      });
+
+    const formData = new FormData();
+    Object.keys(EventInfo).forEach(key => {
+      // Append only if EventBanner is changed
+      if (key === "EventBanner" && EventInfo[key]) {
+        formData.append(key, EventInfo[key], EventInfo[key].name);
+      } else if (key !== "EventBanner") {
+        formData.append(key, EventInfo[key]);
+      }
+    });
+
+    axiosInstance.put(
+      `api/eventupdate/${EventInfo.pk}/`,
+      formData,
+      { 
+        headers: { 
+          "X-CSRFToken": csrftoken[0].csrftoken,
+          "Content-Type": "multipart/form-data", 
+        } 
+      }
+    )
+    .then(function (response) {
+      setStatus("Event edited");
+      window.scrollTo(0, 0);
+    })
+    .catch(function (error) {
+      setError(error.response.data);
+      window.scrollTo(0, 0);
+    });
   };
   return (
     <>
@@ -255,6 +259,19 @@ function EventEdit(event) {
                   type="checkbox"
                   checked={isChecked}
                   onChange={() => setIsChecked(!isChecked)}
+                />
+              </div>
+              <div className="myFormGroupEvent">
+                <label htmlFor="EventBanner">Event Banner</label>
+                {currentEventBanner && (
+                  <img src={currentEventBanner} alt="Current Event Banner" />
+                )}
+                {error !== "no error" && <div className="error">{error.EventBanner}</div>}
+                <input
+                  type="file"
+                  className="form-control"
+                  name="EventBanner"
+                  onChange={handleChange}
                 />
               </div>
               <button type="submit" className="btn btn-primary">
