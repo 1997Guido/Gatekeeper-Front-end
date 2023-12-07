@@ -95,9 +95,13 @@
     border-radius: 100%;
 }
 .EventInfoButton{
-    width: 9vh;
-    height: 6vh;
-    margin-left: 16vh;
+    position: absolute;
+    width: 11vh;
+    height: 7vh;
+    /* margin-left: 12.5vh;
+    margin-top: -2vh; */
+    bottom: -30px;  /* Adjust the value as needed */
+    right: -45px;   /* Adjust the value as needed */
 }
 .EventInviteButton{
     width: 5vh;
@@ -121,4 +125,7 @@
 .price{
     width: 75%;
     margin: auto;
+}
+.card {
+    position: relative;
 }
