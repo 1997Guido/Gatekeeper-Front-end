@@ -68,9 +68,9 @@
     text-shadow: black 2px 2px 2px;
 }
 .Image{
-    object-fit: contain;
-    width: 60%;
-    height: 60%;
+    object-fit: cover;
+    width: 12rem;
+    height: 12rem;
     border-radius: 50%;
     border: 4px solid #15517fc7;
 }

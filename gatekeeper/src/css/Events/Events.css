@@ -4,6 +4,16 @@
     margin-left: 5vh;
     margin-right: 5vh;
 }
+.card-img-top {
+    max-height: 200px;
+    width: auto;
+    object-fit: cover;
+  }
+.EventContainer .list-group-item {
+    background-color: #3e3e3e !important;
+    color: white;
+    border: 1px solid #2c2c2c;
+  }
 .EventButton{
     position: fixed;
     z-index: 100;
@@ -100,8 +110,8 @@
     height: 7vh;
     /* margin-left: 12.5vh;
     margin-top: -2vh; */
-    bottom: -30px;  /* Adjust the value as needed */
-    right: -45px;   /* Adjust the value as needed */
+    bottom: -40px;  /* Adjust the value as needed */
+    right: -40px;   /* Adjust the value as needed */
 }
 .EventInviteButton{
     width: 5vh;
