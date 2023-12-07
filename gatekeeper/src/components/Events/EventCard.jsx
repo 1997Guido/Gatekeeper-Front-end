@@ -13,7 +13,9 @@ const EventCard = ({ event }) => {
   return (
   <div className="col">
   <div className="card h-80 w-80 mb-5 flex-grow-0 EventContainer">
-    <img className="card-img-top img-fluid" src={mediaURL + event.EventBanner}></img>
+    {event.EventBannerURL === null ? (null) : (
+      <img className="card-img-top img-fluid" src={mediaURL + event.EventBannerURL}></img>
+    )}
     <div className="card-body d-flex flex-column event_body">
       <h5 className="card-title">{event.EventTitle}</h5>
       <p className="card-text">{event.EventDescription}</p>
