@@ -3,7 +3,6 @@ import "./../../css/Miscellaneous/GlobalStyle.css";
 import "./../../css/Profile/userprofile.css";
 import { useEffect, useState } from "react";
 import axiosinstance from "../../api/axiosApi";
-import baseURL from "../../api/axiosApi";
 import { motion } from "framer-motion";
 import * as TbIcons from "react-icons/tb";
 import ProfileEdit from "./ProfileEdit";

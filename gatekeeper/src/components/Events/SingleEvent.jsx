@@ -16,7 +16,7 @@ function SingleEvent() {
   const [eventowner, seteventowner] = useState(false);
   const [editmode, seteditmode] = useState("false");
   const { pk } = useParams();
-
+  const mediaURL = process.env.NODE_ENV === 'production' ? "https://guidoerdtsieck.nl" : "http://localhost:8000"
   const getSingleEvent = async () => {
     await axiosinstance
       .get(`/api/event/${pk}/`, {
@@ -50,57 +50,58 @@ function SingleEvent() {
         
         {editmode === "false" ? (
           <div className="container-fluid">
-            <div className="row">
-              <div className="col SingleEventBanner">Event</div>
-            </div>
-            <div className="row SingleEventContainer">
-                <div className="SingleEventTitle">{event.EventTitle}</div>
-                <div className="SingleEventTitleOrganizer">
-                Organized by:
-                  <br />
-                  {event.EventOrganizer}
-                </div>
-                <div className="col">
-                  Private:
-                  {event.EventIsPrivate === false ? (
-                    <TbIcons.TbCircleX className="EventIcon" />
-                  ) : (
-                    <TbIcons.TbCheck className="EventIcon" />
-                  )}
-                  <br />
-                  Free:
-                  {event.EventPrice > 0 ? (
-                    <TbIcons.TbCircleX className="EventIcon"/>
-                  ) : (
-                    <TbIcons.TbCheck className="EventIcon"/>
-                  )}
-                  {event.EventIsFree}
-                  <br />
-                  Capacity:
-                  {event.EventCurrentGuests}/{event.EventMaxGuests}
-                  <br />
-                  {event.EventMinimumAge === 0 ? null : (
-                    <div>Minimum Age:{event.EventMinimumAge}</div>
-                  )}
-                  <br />
-                  ${event.EventPrice}
-                </div>
-                <div className="col">
-                <TbIcons.TbCalendarEvent className="EventIcon" />
-                  {event.EventDate}
-                  <br />
-                  <TbIcons.TbLocation className="EventIcon" />
-                  {event.EventLocation}
-                  <br />
-                </div>
-                
+            <div className="card SingleEventContainer mt-5">
+              {event.EventBanner === null ? null : (
+              <img
+                class="card-img-top"
+                src={mediaURL + event.EventBannerURL}
+                alt="Card image cap"
+              ></img>
+              )}
+              <div className="card-body">
+                <h5 className="card-title">{event.EventTitle}</h5>
+                <p className="card-text">{event.EventDescription}</p>
               </div>
-            <div className="row SingleEventContainer2">
-              <div className="col">
-                <div className="SingleEventDescription">
-                <TbIcons.TbInfoCircle className="EventIcon" />
-                  <br />
-                {event.EventDescription}
+              <div className="row">
+                <div className="col">
+                  <ul className="list-group list-group-flush">
+                  <li className="list-group-item">
+                      <TbIcons.TbCalendarEvent /> {event.EventDate}
+                    </li>
+                    <li className="list-group-item">
+                      <TbIcons.TbLocation /> {event.EventLocation}
+                    </li>
+                    <li className="list-group-item">
+                      Capacity: {event.EventCurrentGuests}/
+                      {event.EventMaxGuests}
+                    </li>
+                    <li className="list-group-item">
+                      Minimum Age: {event.EventMinimumAge || "No restriction"}
+                    </li>
+                  </ul>
+                </div>
+                <div className="col">
+                  <ul className="list-group list-group-flush">
+                    <li className="list-group-item">
+                      Price: ${event.EventPrice}
+                    </li>
+                    <li className="list-group-item">
+                      Private:{" "}
+                      {event.EventIsPrivate ? (
+                        <TbIcons.TbCheck />
+                      ) : (
+                        <TbIcons.TbCircleX />
+                      )}
+                    </li>
+                    <li className="list-group-item">
+                      Free:{" "}
+                      {event.EventPrice > 0 ? (
+                        <TbIcons.TbCircleX />
+                      ) : (
+                        <TbIcons.TbCheck />
+                      )}
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
