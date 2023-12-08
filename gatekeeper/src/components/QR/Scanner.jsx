@@ -137,7 +137,7 @@ const ScannerContent = ({ selectedOption, handleChange, eventList, setEncryptedQ
       <div className="row justify-content-center">
         <div className="col scanner">
           <QrReader
-            facingMode="environment"
+            constraints={{ facingMode: "environment" }}
             onResult={(result, err) => {
               if (result) {
                 setEncryptedQRData(result?.text);
