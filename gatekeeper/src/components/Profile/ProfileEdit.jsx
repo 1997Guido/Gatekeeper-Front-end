@@ -33,7 +33,6 @@ function ProfileEdit(data) {
     } else {
     window.scrollTo(0, 0);
       event.preventDefault();
-      console.log(ProfileInfo.gender);
       axiosinstance
         .patch(
           "/api/userupdate",
@@ -55,7 +54,6 @@ function ProfileEdit(data) {
         })
         .catch(function (error) {
           setSuccess(false);
-          console.log("error", error.response.data);
           setError(error.response.data);
         });
     }

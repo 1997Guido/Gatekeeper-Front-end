@@ -24,9 +24,10 @@ function EventEdit({eventdata}) {
     EventPrice: eventdata.EventPrice,
     EventMinimumAge: eventdata.EventMinimumAge,
     pk: eventdata.pk,
-    EventBanner: null,  // Initialize EventBanner as null
+    EventBanner: null,
   });
-  const [currentEventBanner, setCurrentEventBanner] = useState(eventdata.EventBannerURL); // Add this line
+  const mediaURL = process.env.NODE_ENV === 'production' ? "https://guidoerdtsieck.nl" : "http://localhost:8000"
+  const [currentEventBanner, setCurrentEventBanner] = useState(mediaURL + eventdata.EventBannerURL);
 
   const handleChange = (event) => {
     if (event.target.name === "EventBanner") {
@@ -41,7 +42,6 @@ function EventEdit({eventdata}) {
 
     const formData = new FormData();
     Object.keys(EventInfo).forEach(key => {
-      // Append only if EventBanner is changed
       if (key === "EventBanner" && EventInfo[key]) {
         formData.append(key, EventInfo[key], EventInfo[key].name);
       } else if (key !== "EventBanner") {
@@ -263,9 +263,12 @@ function EventEdit({eventdata}) {
               </div>
               <div className="myFormGroupEvent">
                 <label htmlFor="EventBanner">Event Banner</label>
+                <div className="EventBannerPreviewContainer">
                 {currentEventBanner && (
-                  <img src={currentEventBanner} alt="Current Event Banner" />
+                  <img className="EventBannerPreview" src={currentEventBanner} alt="Current Event Banner" />
                 )}
+
+                </div>
                 {error !== "no error" && <div className="error">{error.EventBanner}</div>}
                 <input
                   type="file"

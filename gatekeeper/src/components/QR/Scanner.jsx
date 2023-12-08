@@ -32,7 +32,6 @@ function Scanner() {
 
   const handleChange = selected => {
     setSelectedOption(selected);
-    console.log(`Option Selected:`, selected);
   };
 
   const getPersonalEvents = async () => {
@@ -48,13 +47,11 @@ function Scanner() {
       setEventList(tempList);
     })
     .catch(error => {
-      console.log(error.response);
     });
   };
 
   const qrVerify = () => {
     if (!encryptedqrdata) {
-      console.log("No QR Scanned yet");
       return;
     }
 
@@ -67,7 +64,6 @@ function Scanner() {
       event: selectedOption.value
     }, { headers })
       .then(response => {
-        console.log("QR Verified!" , response);
         localStorage.setItem("selectedOption", JSON.stringify(selectedOption));
         setData(response.data.userdata);
         setStatus(response.status);

@@ -11,7 +11,6 @@ function ProfileDelete(data) {
         await axiosInstance
             .delete('/api/profiledeleteapi')
             .then(function (response) {
-                console.log(response)
             })
     }
     return ( 

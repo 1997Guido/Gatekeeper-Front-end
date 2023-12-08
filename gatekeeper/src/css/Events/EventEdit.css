@@ -1,6 +1,10 @@
 .heightmaker{
     height: 10vh;
 }
+.EventBannerPreview {
+    max-width: 100px;
+    max-height: 100px;
+}
 .EditEventContainer{
     background-color: #2c2c2c;
     text-align: center;

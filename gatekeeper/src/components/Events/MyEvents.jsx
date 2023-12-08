@@ -21,7 +21,6 @@ function MyEvents() {
       .get("/api/eventslist?show=owned")
       .then(function (response) {
         setevent(response.data);
-        console.log(response.data);
       });
   };
 

@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 
 function EventDelete(event) {
   const navigate = useNavigate();
-  console.log(event.eventdata.pk);
   const csrftoken = useCookies(["csrftoken"]);
   const deleteEvent = async () => {
     await axiosInstance
@@ -16,7 +15,6 @@ function EventDelete(event) {
         { headers: { "X-CSRFToken": csrftoken[0].csrftoken } }
       )
       .then(function (response) {
-        console.log(response);
       });
   };
   return (
