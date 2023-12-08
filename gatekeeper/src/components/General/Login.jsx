@@ -31,7 +31,6 @@ function Login() {
         localStorage.setItem("Auth", "true");
         localStorage.setItem("userpk", response.data.user.pk);
         setSucces(true);
-        console.log("Logged In");
       });
   };
   return (

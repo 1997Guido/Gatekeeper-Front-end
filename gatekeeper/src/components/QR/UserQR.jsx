@@ -7,7 +7,6 @@ import "./../../css/Miscellaneous/GlobalStyle.css";
 import "./../../css/QR/userqr.css";
 import "bootstrap/dist/css/bootstrap.css";
 
-// This is the UserQR component. It is used to display the user's QR code.
 
 function UserQR() {
   const [qrData, setQrData] = useState([]);
@@ -18,7 +17,6 @@ function UserQR() {
         setQrData(response.data);
       })
       .catch(error => {
-        console.log(error.response);
       });
   };
 

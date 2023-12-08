@@ -18,7 +18,6 @@ function UserProfile() {
   const getProfile = () => {
     axiosinstance.get(`api/users?show=me`).then(function (response) {
       const Actualdata = response.data[0];
-      console.log(response);
       setData(Actualdata);
     });
   };
@@ -26,7 +25,6 @@ function UserProfile() {
     axiosinstance
       .get(`api/profilepicture`)
       .then(function (response) {
-        console.log(response);
         setPicture(response.data);
       });
   };

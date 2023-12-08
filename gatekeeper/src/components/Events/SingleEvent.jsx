@@ -23,15 +23,11 @@ function SingleEvent() {
         headers: { "X-CSRFToken": csrftoken[0].csrftoken },
       })
       .then(function (response) {
-        console.log("response:", response.data);
         setevent(response.data);
-        console.log(response.data.EventOwner);
-        console.log(localStorage.getItem("userpk"));
         if (response.data.EventOwner == localStorage.getItem("userpk")) {
           seteventowner(true);
         }
       }).catch(function (error) {
-        console.log(error);
       });
   };
 

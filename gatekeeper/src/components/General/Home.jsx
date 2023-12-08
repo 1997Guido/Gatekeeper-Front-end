@@ -12,7 +12,6 @@ function Home() {
     await axiosInstance
       .get(`/api/username?show=me`)
       .then(function (response) {
-        console.log("response:", response);
         setusername(response.data[0].username);
       });
   };

@@ -23,7 +23,6 @@ function EventInvite(event) {
           });
         }
       }
-      console.log(response.data);
       setuserlist(tempList);
     });
   };
@@ -33,7 +32,6 @@ function EventInvite(event) {
         headers: { "X-CSRFToken": csrftoken[0].csrftoken },
       })
       .then(function (response) {
-        console.log("invited_users:", response.data);
         setInvitedUsers(response.data);
         setSelectedOption(null);
       });
@@ -41,7 +39,6 @@ function EventInvite(event) {
 
   const handleChange = (selectedOption) => {
     setSelectedOption(selectedOption);
-    console.log(`Option selected:`, selectedOption);
   };
 
   const Invite = (invite) => {
@@ -56,7 +53,6 @@ function EventInvite(event) {
       .then(function (response) {
         getInvitedUsers();
         setSelectedOption(null);
-        console.log(response);
       });
   };
   const unInvite = (username) => {

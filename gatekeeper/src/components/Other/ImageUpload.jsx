@@ -45,24 +45,18 @@ function ImageUpload() {
         },
       })
       .then(function (response) {
-        console.log(response);
         getPersonalImages();
       })
       .catch(function (error) {
-        console.log(error);
       });
   };
   const getPersonalImages = () => {
     axiosInstance
       .get("api/image?show=owned")
       .then(function (response) {
-        console.log(response);
         setPersonalImages(response.data);
-        console.log("Response", response);
-        console.log("Personal Images", PersonalImages);
       })
       .catch(function (error) {
-        console.log(error);
       });
   };
   const setProfilePicture = (pictureid) => {
@@ -72,10 +66,8 @@ function ImageUpload() {
         { headers: { "X-CSRFToken": csrftoken[0].csrftoken } }
       )
       .then(function (response) {
-        console.log(response);
       })
       .catch(function (error) {
-        console.log(error);
       });
   };
   const deleteImage = async () => {

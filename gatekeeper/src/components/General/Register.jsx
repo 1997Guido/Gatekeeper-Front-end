@@ -31,9 +31,7 @@ function Register() {
       ...RegisterInfo,
       [event.target.name]: event.target.value,
     });
-    console.log(RegisterInfo.agree);
   };
-  console.log(Terms);
   const handleSubmit = (event) => {
     let date = new Date(RegisterInfo.date_of_birth);
     let maxdate = new Date("2012-01-01");
@@ -43,7 +41,6 @@ function Register() {
     } else {
       window.scrollTo(0, 0);
       event.preventDefault();
-      console.log(RegisterInfo.gender);
       axiosinstance
         .post(
           "/auth/registration/",
@@ -65,7 +62,6 @@ function Register() {
         })
         .catch(function (error) {
           setSuccess(false);
-          console.log("error", error.response.data);
           setError(error.response.data);
         });
     }
