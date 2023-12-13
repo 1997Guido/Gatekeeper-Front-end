@@ -1,6 +1,5 @@
 import "./../../css/Miscellaneous/GlobalStyle.css";
 import "./../../css/Miscellaneous/mNav.css";
-import "bootstrap/dist/css/bootstrap.css";
 import logo from "./../../images/gatepng.png";
 import * as HiIcons from "react-icons/hi";
 import * as TbIcons from "react-icons/tb";

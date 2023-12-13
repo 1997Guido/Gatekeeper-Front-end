@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import * as TbIcons from "react-icons/tb";
-
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 const EventCard = ({ event }) => {
   const navigate = useNavigate();
 
@@ -17,10 +18,12 @@ const EventCard = ({ event }) => {
     <div className="col">
       <div className="card h-80 w-80 mb-5 flex-grow-0 EventContainer">
         {event.EventBannerURL === null ? null : (
-          <img
+          <LazyLoadImage
             className="card-img-top img-fluid"
+            alt="Event Banner"
             src={mediaURL + event.EventBannerURL}
-          ></img>
+            effect="blur" // Optional: for blur effect while loading
+          />
         )}
         <div className="card-body d-flex flex-column event_body">
           <h5 className="card-title">{event.EventTitle}</h5>

@@ -1,5 +1,4 @@
 import "./../../css/Miscellaneous/GlobalStyle.css";
-import "bootstrap/dist/css/bootstrap.css";
 import "./../../css/General/login.css";
 import { useState, useEffect } from "react";
 import axiosInstance from "../../api/axiosApi";

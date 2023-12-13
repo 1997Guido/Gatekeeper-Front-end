@@ -9,7 +9,6 @@ import QrProfile from "./QRProfile";
 
 import "./../../css/Miscellaneous/GlobalStyle.css";
 import "./../../css/QR/scanner.css";
-import "bootstrap/dist/css/bootstrap.css";
 
 // This is the Scanner component. It is used to scan QR codes and verify them.
 

@@ -1,6 +1,5 @@
 import "./../../css/Miscellaneous/GlobalStyle.css";
 import "./../../css/General/home.css";
-import "bootstrap/dist/css/bootstrap.css";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import axiosInstance from "../../api/axiosApi";

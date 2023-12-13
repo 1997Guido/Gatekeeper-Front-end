@@ -1,5 +1,4 @@
 import './../css/GlobalStyle.css'
-import 'bootstrap/dist/css/bootstrap.css';
 import HeaderFooter from './HeaderFooter';
 
 
