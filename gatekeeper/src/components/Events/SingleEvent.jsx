@@ -1,5 +1,4 @@
 import "./../../css/Events/SingleEvent.css";
-import "bootstrap/dist/css/bootstrap.css";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";

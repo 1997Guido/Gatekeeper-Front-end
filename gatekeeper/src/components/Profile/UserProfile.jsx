@@ -1,4 +1,3 @@
-import "bootstrap/dist/css/bootstrap.css";
 import "./../../css/Miscellaneous/GlobalStyle.css";
 import "./../../css/Profile/userprofile.css";
 import { useEffect, useState } from "react";
@@ -8,8 +7,12 @@ import * as TbIcons from "react-icons/tb";
 import ProfileEdit from "./ProfileEdit";
 import ProfileDelete from "./ProfileDelete";
 import ImageUpload from "../Other/ImageUpload";
-
-const mediaURL = process.env.NODE_ENV === 'production' ? "https://guidoerdtsieck.nl" : "http://localhost:8000"
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
+const mediaURL =
+  process.env.NODE_ENV === "production"
+    ? "https://guidoerdtsieck.nl"
+    : "http://localhost:8000";
 function UserProfile() {
   const [editmode, seteditmode] = useState("false");
   const [data, setData] = useState([]);
@@ -22,11 +25,9 @@ function UserProfile() {
     });
   };
   const getProfilePicture = () => {
-    axiosinstance
-      .get(`api/profilepicture`)
-      .then(function (response) {
-        setPicture(response.data);
-      });
+    axiosinstance.get(`api/profilepicture`).then(function (response) {
+      setPicture(response.data);
+    });
   };
   useEffect(() => {
     getProfile();
@@ -47,21 +48,22 @@ function UserProfile() {
               </div>
             </div>
             <div className="row">
-              <div className="col Userprofile">
-                  {data.ProfilePicture === null ? (
-                    <TbIcons.TbCamera
-                      className="ProfilePictureIcon"
-                      onClick={() => seteditmode("picture")}
-                    ></TbIcons.TbCamera>
-                  ) : (
-                    <div className="col">
-                      <img
-                        className="Image"
-                        src={mediaURL + picture.Image}
-                        alt={picture.Title}
-                      />
-                    </div>
-                  )}
+              <div className="colUserprofile">
+                {data.ProfilePicture === null ? (
+                  <TbIcons.TbCamera
+                    className="ProfilePictureIcon"
+                    onClick={() => seteditmode("picture")}
+                  ></TbIcons.TbCamera>
+                ) : (
+                  <div className="col">
+                    <LazyLoadImage
+                      className="Image"
+                      alt={picture.Title}
+                      src={mediaURL + picture.Image}
+                      effect="blur"
+                    />
+                  </div>
+                )}
               </div>
             </div>
             <div className="row">

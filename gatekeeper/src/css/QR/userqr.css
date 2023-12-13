@@ -15,6 +15,12 @@
     box-shadow: 0 0 10px #2c2c2c;
     opacity: 95%;
   }
+  .QrTitle{
+    background-color: #2c2c2c;
+    color:aliceblue;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 2vh;
+  }
 }
 @media only screen and (min-width: 1360px) {
   .QRContainer {

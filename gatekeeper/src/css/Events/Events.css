@@ -75,7 +75,7 @@
 }
 @media only screen and (max-width: 1360px) {
     .EventContainer{
-            background-color: #2c2c2c;
+            background-color: #2c2c2c !important;
             text-align: center;
             color: white;
             margin: auto;

@@ -5,7 +5,6 @@ import axiosInstance from "../../api/axiosApi";
 import * as TbIcons from "react-icons/tb";
 import EventCard from "./EventCard";
 import "./../../css/Events/Events.css";
-import "bootstrap/dist/css/bootstrap.css";
 
 const Events = () => {
   const [events, setEvents] = useState([]);

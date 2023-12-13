@@ -30,11 +30,11 @@ function UserQR() {
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 1 }}
     >
-      <div className="container-fluid UserProfileContainer">
-        <div className="col">
-          <div className="QrTitle">Your QR-Code</div>
+      <div className="container-fluid">
+        <div className="row">
+        <div className="col py-3 QrTitle">
+          <div className="text-center">Your QR-Code</div>
         </div>
-      </div>
       <div className="QRContainer">
         <QRCode
           size={512}
@@ -42,6 +42,8 @@ function UserQR() {
           value={qrData.toString()}
           viewBox={`0 0 256 256`}
         />
+      </div>
+      </div>
       </div>
     </motion.div>
   );

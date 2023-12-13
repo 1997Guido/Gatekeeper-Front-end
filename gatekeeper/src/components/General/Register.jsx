@@ -1,4 +1,3 @@
-import "bootstrap/dist/css/bootstrap.css";
 import "./../../css/General/register.css";
 import "./../../css/Miscellaneous/GlobalStyle.css";
 import { useState } from "react";

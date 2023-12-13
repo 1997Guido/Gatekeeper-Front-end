@@ -5,7 +5,6 @@ import axiosInstance from "./../../api/axiosApi";
 import baseURL from "./../../api/axiosApi";
 import "./../../css/Miscellaneous/GlobalStyle.css";
 import "./../../css/QR/scanner.css";
-import "bootstrap/dist/css/bootstrap.css";
 
 // This is the QrProfile component. It is used to handle scanned QR codes.
 
