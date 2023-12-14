@@ -42,6 +42,9 @@ const EventCard = ({ event }) => {
             <li className="list-group-item text-white bg-dark">
               {event.EventLocation}
             </li>
+            <li className="list-group-item text-white bg-dark">
+              {event.EventOrganizer}
+            </li>
           </ul>
           <div className="col">
             <TbIcons.TbFileInfo
