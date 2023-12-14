@@ -23,11 +23,6 @@ const Events = () => {
 
   return (
     <>
-      <motion.div
-        initial={{ opacity: 0, scale: 0.7 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8 }}
-      >
         <div className="container-fluid">
           <div className="row">
             <div className="col EventBanner">Events</div>
@@ -36,7 +31,6 @@ const Events = () => {
             <EventCard event={event} key={index} />
           ))}
         </div>
-      </motion.div>
       <div className="heightmaker"></div>
       <Link to="/myevents">
         <TbIcons.TbListDetails className="EventButton" />
