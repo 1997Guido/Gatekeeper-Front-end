@@ -37,10 +37,10 @@ function MyEvents() {
         <div className="row">
           <div className="col EventBanner">My Events</div>
         </div>
-        </div>
         {events.map((event, index) => (
           <EventCard event={event} key={index} />
-        ))}
+          ))}
+          </div>
         <div className="heightmaker"></div>
       </motion.div>
       <Link to="/events">
