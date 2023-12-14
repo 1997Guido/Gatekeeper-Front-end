@@ -22,7 +22,7 @@ const EventCard = ({ event }) => {
             className="card-img-top img-fluid"
             alt="Event Banner"
             src={mediaURL + event.EventBannerURL}
-            effect="blur" // Optional: for blur effect while loading
+            effect="blur"
           />
         )}
         <div className="card-body d-flex flex-column event_body">
