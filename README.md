@@ -1,4 +1,4 @@
-*** SCHOOL PROJECT ***
+# *** SCHOOL PROJECT ***
 
 
 # Gatekeeper-Front-end
