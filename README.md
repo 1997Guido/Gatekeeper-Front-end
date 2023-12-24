@@ -1,5 +1,8 @@
+*** SCHOOL PROJECT ***
+
+
 # Gatekeeper-Front-end
-De Front-end van de Gatekeeper app.
+De Front-end for the Gatekeeper app.
 
 
 Event Planning Webapp.
