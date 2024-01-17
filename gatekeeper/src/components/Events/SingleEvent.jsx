@@ -15,7 +15,10 @@ function SingleEvent() {
   const [eventowner, seteventowner] = useState(false);
   const [editmode, seteditmode] = useState("false");
   const { pk } = useParams();
-  const mediaURL = process.env.NODE_ENV === 'production' ? "https://guidoerdtsieck.nl" : "http://localhost:8000"
+  const mediaURL =
+    process.env.NODE_ENV === "production"
+      ? "https://guidoerdtsieck.nl"
+      : "http://localhost:8000";
   const getSingleEvent = async () => {
     await axiosinstance
       .get(`/api/event/${pk}/`, {
@@ -26,8 +29,8 @@ function SingleEvent() {
         if (response.data.EventOwner == localStorage.getItem("userpk")) {
           seteventowner(true);
         }
-      }).catch(function (error) {
-      });
+      })
+      .catch(function (error) {});
   };
 
   useEffect(() => {
@@ -42,16 +45,15 @@ function SingleEvent() {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8 }}
       >
-        
         {editmode === "false" ? (
           <div className="container-fluid">
             <div className="card SingleEventContainer mt-5">
               {event.EventBanner === null ? null : (
-              <img
-                class="card-img-top"
-                src={mediaURL + event.EventBannerURL}
-                alt="Card image cap"
-              ></img>
+                <img
+                  class="card-img-top"
+                  src={mediaURL + event.EventBannerURL}
+                  alt="Card image cap"
+                ></img>
               )}
               <div className="card-body">
                 <h5 className="card-title">{event.EventTitle}</h5>
@@ -60,11 +62,11 @@ function SingleEvent() {
               <div className="row">
                 <div className="col">
                   <ul className="list-group list-group-flush">
-                  <li className="list-group-item">
+                    <li className="list-group-item">
                       <TbIcons.TbCalendarEvent /> {event.EventDate}
                     </li>
                     <li className="list-group-item">
-                      <TbIcons.TbLocation /> {event.EventLocation}
+                      <TbIcons.TbLocation /> {event.EventLocationName}
                     </li>
                     <li className="list-group-item">
                       Capacity: {event.EventCurrentGuests}/
@@ -142,7 +144,10 @@ function SingleEvent() {
       ) : (
         <TbIcons.TbArrowBackUp
           className="BackButton"
-          onClick={function() {seteditmode("false"); getSingleEvent();}}
+          onClick={function () {
+            seteditmode("false");
+            getSingleEvent();
+          }}
         />
       )}
     </>
