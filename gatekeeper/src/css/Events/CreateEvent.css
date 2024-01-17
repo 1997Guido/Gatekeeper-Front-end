@@ -12,3 +12,43 @@
         margin-top: 5vh;
         margin-bottom: 10vh;
 }
+
+.location-suggestions {
+        position: absolute;
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        width: 100%; /* Updated to match input field width */
+        max-height: 200px;
+        overflow-y: auto;
+        z-index: 1000;
+        color: #333; /* Text color for visibility */
+      }
+      
+      .location-suggestions li {
+        padding: 10px 15px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        color: #333; /* Text color for visibility */
+      }
+      
+      .location-suggestions li:hover {
+        background-color: #f7f7f7;
+      }
+      
+      .myFormGroupEvent {
+        position: relative; /* Needed for absolute positioning of suggestions */
+      }
+      
+      .form-control {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+      

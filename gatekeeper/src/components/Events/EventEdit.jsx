@@ -4,8 +4,8 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useCookies } from "react-cookie";
 import "./../../css/Events/EventEdit.css";
-
-function EventEdit({eventdata}) {
+import axios from "axios";
+function EventEdit({ eventdata }) {
   let csrftoken = useCookies(["csrftoken"]);
   const [isChecked, setIsChecked] = useState(eventdata.EventIsPrivate);
   const [Status, setStatus] = useState("ready");
@@ -16,7 +16,9 @@ function EventEdit({eventdata}) {
     EventDate: eventdata.EventDate,
     EventTimeStart: eventdata.EventTimeStart,
     EventTimeEnd: eventdata.EventTimeEnd,
-    EventLocation: eventdata.EventLocation,
+    EventLatitude: "",
+    EventLongitude: "",
+    EventLocationName: eventdata.EventLocationName,
     EventMaxGuests: eventdata.EventMaxGuests,
     EventOrganizer: eventdata.EventOrganizer,
     EventIsCancelled: eventdata.EventIsCancelled,
@@ -26,8 +28,14 @@ function EventEdit({eventdata}) {
     pk: eventdata.pk,
     EventBanner: null,
   });
-  const mediaURL = process.env.NODE_ENV === 'production' ? "https://guidoerdtsieck.nl" : "http://localhost:8000"
-  const [currentEventBanner, setCurrentEventBanner] = useState(mediaURL + eventdata.EventBannerURL);
+  const [locationSuggestions, setLocationSuggestions] = useState([]);
+  const mediaURL =
+    process.env.NODE_ENV === "production"
+      ? "https://guidoerdtsieck.nl"
+      : "http://localhost:8000";
+  const [currentEventBanner, setCurrentEventBanner] = useState(
+    mediaURL + eventdata.EventBannerURL
+  );
 
   const handleChange = (event) => {
     if (event.target.name === "EventBanner") {
@@ -37,11 +45,77 @@ function EventEdit({eventdata}) {
     }
   };
 
+  const handleLocationSearch = async (event) => {
+    const searchValue = event.target.value;
+    setEventInfo({ ...EventInfo, EventLocationName: searchValue });
+
+    if (searchValue.length > 2) {
+      try {
+        const response = await axios.get(
+          `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
+            searchValue
+          )}`
+        );
+        setLocationSuggestions(response.data);
+      } catch (error) {
+        console.error("Error fetching location suggestions:", error);
+      }
+    } else {
+      setLocationSuggestions([]);
+    }
+  };
+
+  const selectLocation = (suggestion) => {
+    setEventInfo({
+      ...EventInfo,
+      EventLocationName: suggestion.display_name,
+      EventLatitude: suggestion.lat,
+      EventLongitude: suggestion.lon,
+    });
+    setLocationSuggestions([]);
+  };
+  const getCurrentLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        async (position) => {
+          const { latitude, longitude } = position.coords;
+          try {
+            const response = await axios.get(
+              `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`
+            );
+            setEventInfo({
+              ...EventInfo,
+              EventLocationName: response.data.display_name,
+              EventLatitude: latitude,
+              EventLongitude: longitude,
+            });
+          } catch (error) {
+            console.error("Error in reverse geocoding:", error);
+            setError({
+              ...error,
+              EventLocationName: "Could not find the location",
+            });
+          }
+        },
+        (error) => {
+          console.error("Error getting location:", error.message);
+          setError({
+            ...error,
+            EventLocationName: "Could not get current location",
+          });
+        }
+      );
+    } else {
+      console.error("Geolocation is not supported by this browser.");
+      setError({ ...error, EventLocationName: "Geolocation not supported" });
+    }
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
     const formData = new FormData();
-    Object.keys(EventInfo).forEach(key => {
+    Object.keys(EventInfo).forEach((key) => {
       if (key === "EventBanner" && EventInfo[key]) {
         formData.append(key, EventInfo[key], EventInfo[key].name);
       } else if (key !== "EventBanner") {
@@ -49,24 +123,21 @@ function EventEdit({eventdata}) {
       }
     });
 
-    axiosInstance.put(
-      `api/eventupdate/${EventInfo.pk}/`,
-      formData,
-      { 
-        headers: { 
+    axiosInstance
+      .put(`api/eventupdate/${EventInfo.pk}/`, formData, {
+        headers: {
           "X-CSRFToken": csrftoken[0].csrftoken,
-          "Content-Type": "multipart/form-data", 
-        } 
-      }
-    )
-    .then(function (response) {
-      setStatus("Event edited");
-      window.scrollTo(0, 0);
-    })
-    .catch(function (error) {
-      setError(error.response.data);
-      window.scrollTo(0, 0);
-    });
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then(function (response) {
+        setStatus("Event edited");
+        window.scrollTo(0, 0);
+      })
+      .catch(function (error) {
+        setError(error.response.data);
+        window.scrollTo(0, 0);
+      });
   };
   return (
     <>
@@ -128,9 +199,7 @@ function EventEdit({eventdata}) {
                 />
               </div>
               <div className="myFormEditEvent">
-                <label htmlFor="EventLocation">
-                  Where is your event going to be located?
-                </label>
+                <label htmlFor="EventLocation">Event Location</label>
                 {error !== "no error" ? (
                   <div className="error">{error.EventLocation}</div>
                 ) : null}
@@ -139,9 +208,24 @@ function EventEdit({eventdata}) {
                   className="form-control"
                   name="EventLocation"
                   placeholder="Enter EventLocation"
-                  onChange={handleChange}
-                  value={EventInfo.EventLocation}
+                  onChange={handleLocationSearch}
+                  value={EventInfo.EventLocationName}
                 />
+                <button type="button" onClick={getCurrentLocation}>
+                  Use My Current Location
+                </button>
+                {locationSuggestions.length > 0 && (
+                  <ul className="location-suggestions">
+                    {locationSuggestions.map((suggestion, index) => (
+                      <li
+                        key={index}
+                        onClick={() => selectLocation(suggestion)}
+                      >
+                        {suggestion.display_name}
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </div>
               <div className="myFormEditEvent">
                 <label htmlFor="EventMaxGuests">
@@ -264,12 +348,17 @@ function EventEdit({eventdata}) {
               <div className="myFormGroupEvent">
                 <label htmlFor="EventBanner">Event Banner</label>
                 <div className="EventBannerPreviewContainer">
-                {currentEventBanner && (
-                  <img className="EventBannerPreview" src={currentEventBanner} alt="Current Event Banner" />
-                )}
-
+                  {currentEventBanner && (
+                    <img
+                      className="EventBannerPreview"
+                      src={currentEventBanner}
+                      alt="Current Event Banner"
+                    />
+                  )}
                 </div>
-                {error !== "no error" && <div className="error">{error.EventBanner}</div>}
+                {error !== "no error" && (
+                  <div className="error">{error.EventBanner}</div>
+                )}
                 <input
                   type="file"
                   className="form-control"

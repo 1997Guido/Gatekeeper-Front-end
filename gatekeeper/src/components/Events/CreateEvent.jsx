@@ -1,11 +1,11 @@
-import React from "react";
-import axiosinstance from "../../api/axiosApi";
-import { useState, useEffect } from "react";
+import React, { useState } from "react";
+import axios from "axios";
+import axiosInstance from "../../api/axiosApi";
 import { motion } from "framer-motion";
-import { useCookies } from "react-cookie";
-import "./../../css/Events/CreateEvent.css";
 import { Link } from "react-router-dom";
+import { useCookies } from "react-cookie";
 import * as TbIcons from "react-icons/tb";
+import "./../../css/Events/CreateEvent.css";
 
 function CreateEvent() {
   let csrftoken = useCookies(["csrftoken"]);
@@ -17,7 +17,7 @@ function CreateEvent() {
     EventDate: "",
     EventTimeStart: "",
     EventTimeEnd: "",
-    EventLocation: "",
+    EventLocationName: "",
     EventMaxGuests: "",
     EventOrganizer: "",
     EventPrice: "",
@@ -27,7 +27,40 @@ function CreateEvent() {
     EventCurrentGuests: "",
     EventIsFree: false,
     EventBanner: null,
+    EventLatitude: "",
+    EventLongitude: "",
   });
+  const [locationSuggestions, setLocationSuggestions] = useState([]);
+  const handleLocationSearch = async (event) => {
+    const searchValue = event.target.value;
+    setEventInfo({ ...EventInfo, EventLocationName: searchValue });
+
+    if (searchValue.length > 2) {
+      try {
+        const response = await axios.get(
+          `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
+            searchValue
+          )}`
+        );
+        setLocationSuggestions(response.data);
+      } catch (error) {
+        console.error("Error fetching location suggestions:", error);
+      }
+    } else {
+      setLocationSuggestions([]);
+    }
+  };
+
+  const selectLocation = (suggestion) => {
+    setEventInfo({
+      ...EventInfo,
+      EventLocationName: suggestion.display_name,
+      EventLatitude: suggestion.lat,
+      EventLongitude: suggestion.lon,
+    });
+    setLocationSuggestions([]);
+  };
+
   const handleChange = (event) => {
     if (event.target.name === "EventBanner") {
       setEventInfo({ ...EventInfo, EventBanner: event.target.files[0] });
@@ -35,11 +68,70 @@ function CreateEvent() {
       setEventInfo({ ...EventInfo, [event.target.name]: event.target.value });
     }
   };
-  const handleSubmit = (event) => {
+
+  const geocodeLocation = async () => {
+    try {
+      const response = await axios.get(
+        `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
+          EventInfo.EventLocationName
+        )}`
+      );
+      if (response.data && response.data[0]) {
+        const { lat, lon } = response.data[0];
+        setEventInfo({ ...EventInfo, EventLatitude: lat, EventLongitude: lon });
+      }
+    } catch (error) {
+      console.error("Error in geocoding:", error);
+      setError({
+        ...error,
+        EventLocationName: "Could not geocode the location",
+      });
+    }
+  };
+
+  const getCurrentLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        async (position) => {
+          const { latitude, longitude } = position.coords;
+          try {
+            const response = await axios.get(
+              `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`
+            );
+            setEventInfo({
+              ...EventInfo,
+              EventLocationName: response.data.display_name,
+              EventLatitude: latitude,
+              EventLongitude: longitude,
+            });
+          } catch (error) {
+            console.error("Error in reverse geocoding:", error);
+            setError({
+              ...error,
+              EventLocationName: "Could not find the location",
+            });
+          }
+        },
+        (error) => {
+          console.error("Error getting location:", error.message);
+          setError({
+            ...error,
+            EventLocationName: "Could not get current location",
+          });
+        }
+      );
+    } else {
+      console.error("Geolocation is not supported by this browser.");
+      setError({ ...error, EventLocationName: "Geolocation not supported" });
+    }
+  };
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    await geocodeLocation();
 
     const formData = new FormData();
-    Object.keys(EventInfo).forEach(key => {
+    Object.keys(EventInfo).forEach((key) => {
       if (key === "EventBanner" && EventInfo[key]) {
         formData.append(key, EventInfo[key], EventInfo[key].name);
       } else {
@@ -47,21 +139,23 @@ function CreateEvent() {
       }
     });
 
-    axiosinstance.post("api/eventcreate", formData, {
-      headers: {
-        "X-CSRFToken": csrftoken[0].csrftoken,
-        "Content-Type": "multipart/form-data",
-      }
-    })
-    .then(function (response) {
-      setSuccess(true);
-      window.scrollTo(0, 0);
-    })
-    .catch(function (error) {
-      setError(error.response.data);
-      window.scrollTo(0, 0);
-    });
+    axiosInstance
+      .post("api/eventcreate", formData, {
+        headers: {
+          "X-CSRFToken": csrftoken[0].csrftoken,
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((response) => {
+        setSuccess(true);
+        window.scrollTo(0, 0);
+      })
+      .catch((error) => {
+        setError(error.response.data);
+        window.scrollTo(0, 0);
+      });
   };
+
   return (
     <>
       <motion.div
@@ -119,18 +213,30 @@ function CreateEvent() {
               />
             </div>
             <div className="myFormGroupEvent">
-              <label htmlFor="EventLocation">Location</label>
-              {error !== false ? (
-                <div className="error">{error.EventLocation}</div>
+              <label htmlFor="EventLocationName">Location</label>
+              {error && error.EventLocationName ? (
+                <div className="error">{error.EventLocationName}</div>
               ) : null}
               <input
                 type="text"
                 className="form-control"
-                name="EventLocation"
+                name="EventLocationName"
                 placeholder="Where is your event located?"
-                onChange={handleChange}
-                value={EventInfo.EventLocation}
+                onChange={handleLocationSearch}
+                value={EventInfo.EventLocationName}
               />
+              {locationSuggestions.length > 0 && (
+                <ul className="location-suggestions">
+                  {locationSuggestions.map((suggestion, index) => (
+                    <li key={index} onClick={() => selectLocation(suggestion)}>
+                      {suggestion.display_name}
+                    </li>
+                  ))}
+                </ul>
+              )}
+              <button type="button" onClick={getCurrentLocation}>
+                Use My Current Location
+              </button>
             </div>
             <div className="myFormGroupEvent">
               <label htmlFor="EventMaxGuests">Event Capacity</label>
